@@ -417,11 +417,13 @@ const response = await fetch('/api/profile', {
 - [x] OAuth callback handling
 - [x] Environment variable configuration
 - [x] Comprehensive documentation
+- [x] Sanity CMS schemas (product, category, editorial)
+- [x] Product catalog pages (Listing & Detail) - Wiring complete
+- [x] Sanity Client & GROQ Queries
 
 ### ⏳ Pending Features
 
-- [ ] Sanity CMS schemas (products, collections, editorial)
-- [ ] Product catalog pages
+- [ ] Sanity Studio deployment & Content population
 - [ ] Shopping cart functionality
 - [ ] Gemini AI stylist integration
 - [ ] Razorpay payment integration
