@@ -88,19 +88,31 @@ cd studio && npm run dev
 
 ## 🎨 Design System
 
-### Color Palette
+Sivi Studio uses a **comprehensive design system** with CSS variables and utility classes for consistent, maintainable styling.
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| Sage Green | `#9CA770` | Primary brand, CTAs |
-| Ethereal Ivory | `#E4E4DE` | Editorial backgrounds |
-| Midnight Charcoal | `#1A1A1A` | Dramatic sections |
-| Unbleached Bone | `#FDFCFB` | Global background |
+### Quick Reference
 
-### Typography
+**Colors**: Sage Green (`#9CA770`), Ethereal Ivory (`#E4E4DE`), Midnight Charcoal (`#1A1A1A`), Unbleached Bone (`#FDFCFB`)
 
-- **Headings**: Playfair Display (Serif)
-- **Body**: Inter (Sans-Serif)
+**Typography**: Playfair Display (Serif) for headings, Inter (Sans-Serif) for body text
+
+**Architecture**: All design tokens (colors, spacing, typography, animations, shadows) are centralized in `globals.css` using CSS variables and utility classes.
+
+### Complete Documentation
+
+📖 **See [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)** for:
+- All CSS variables and their usage
+- Utility classes for typography, layout, and effects
+- Spacing scales and animation tokens
+- Implementation examples and best practices
+
+### Key Features
+
+✅ **Single Source of Truth** - All design values in one place  
+✅ **No Hardcoding** - Components use CSS variables and utility classes  
+✅ **Easy Updates** - Change once, applies everywhere  
+✅ **Type Safety** - Utility classes provide autocomplete  
+✅ **Performance** - CSS variables are more efficient than inline styles
 
 ---
 

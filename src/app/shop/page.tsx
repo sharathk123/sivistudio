@@ -32,12 +32,20 @@ export default async function ShopPage() {
                 </div>
             </div>
 
-            {/* Product Grid */}
+            {/* Product Grid - Asymmetrical "Anti-Grid" */}
             <div className="max-w-7xl mx-auto px-6 pb-24">
                 {products.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-                        {products.map((product) => (
-                            <ProductCard key={product._id} product={product} />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 auto-rows-auto">
+                        {products.map((product, index) => (
+                            <div
+                                key={product._id}
+                                className={`
+                                    ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}
+                                    ${index % 5 === 2 ? 'lg:col-span-2' : ''}
+                                `}
+                            >
+                                <ProductCard product={product} />
+                            </div>
                         ))}
                     </div>
                 ) : (

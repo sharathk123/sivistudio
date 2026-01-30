@@ -5,9 +5,9 @@ import Link from 'next/link'
 
 export default function JournalTeaser() {
     const articles = [
-        { title: "The Art of Wet Grinding", category: "Process", date: "Oct 24" },
-        { title: "Dyeing with Natural Indigo", category: "Craft", date: "Sep 12" },
-        { title: "Architecture of a Blouse", category: "Design", date: "Aug 08" }
+        { title: "The Art of Pochampally Ikat", category: "Weaving", date: "Jan 26" },
+        { title: "Natural Dyes of Telangana", category: "Craft", date: "Jan 12" },
+        { title: "The Golden Thread: Zari Work", category: "Heritage", date: "Dec 28" }
     ]
 
     return (

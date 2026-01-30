@@ -23,6 +23,8 @@ import SmoothScroll from '@/components/ui/SmoothScroll'
 import Loader from '@/components/ui/Loader'
 
 import StickyHeader from '@/components/ui/StickyHeader'
+import BoutiqueButton from '@/components/ui/BoutiqueButton'
+import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
 import { CartProvider } from '@/context/CartContext'
 import CartDrawer from '@/components/shop/CartDrawer'
 
@@ -37,6 +39,8 @@ export default function RootLayout({
         <CartProvider>
           <StickyHeader />
           <CartDrawer />
+          <BoutiqueButton />
+          <StyleConciergeButton />
           <Loader />
           <SmoothScroll>
             {children}

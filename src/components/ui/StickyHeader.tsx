@@ -14,6 +14,23 @@ export default function StickyHeader() {
     const { scrollY } = useScroll()
     const lastY = useMotionValue(0)
 
+    // Glassmorphism effect based on scroll
+    const backgroundColor = useTransform(
+        scrollY,
+        [0, 100],
+        ['rgba(154, 167, 112, 0)', 'rgba(154, 167, 112, 0.8)']
+    )
+    const backdropBlur = useTransform(
+        scrollY,
+        [0, 100],
+        ['blur(0px)', 'blur(12px)']
+    )
+    const textColor = useTransform(
+        scrollY,
+        [0, 100],
+        ['#FDFCFB', '#1A1A1A']
+    )
+
     // Hide header on scroll down, show on scroll up
     useEffect(() => {
         return scrollY.on('change', (latest) => {
@@ -36,27 +53,36 @@ export default function StickyHeader() {
                 }}
                 animate={isHidden ? 'hidden' : 'visible'}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                className="fixed top-0 left-0 right-0 z-[40] px-6 py-6 mix-blend-difference text-bone flex justify-between items-center"
+                style={{
+                    backgroundColor,
+                    backdropFilter: backdropBlur,
+                    WebkitBackdropFilter: backdropBlur,
+                }}
+                className="fixed top-0 left-0 right-0 z-[40] px-6 py-6 flex justify-between items-center transition-shadow duration-300"
             >
                 {/* Logo */}
                 <Link href="/" className="font-serif text-2xl font-bold tracking-tight italic z-50">
-                    Sivi
+                    <motion.span style={{ color: textColor }}>
+                        Sivi
+                    </motion.span>
                 </Link>
 
                 {/* Actions */}
                 <div className="flex items-center space-x-8 z-50">
-                    <button
+                    <motion.button
                         onClick={openCart}
-                        className="uppercase text-xs tracking-[0.2em] hover:text-sage transition-colors"
+                        style={{ color: textColor }}
+                        className="uppercase text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
                     >
                         Cart ({itemCount})
-                    </button>
-                    <button
+                    </motion.button>
+                    <motion.button
                         onClick={() => setIsMenuOpen(true)}
-                        className="uppercase text-xs tracking-[0.2em] hover:text-sage transition-colors"
+                        style={{ color: textColor }}
+                        className="uppercase text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
                     >
                         Menu
-                    </button>
+                    </motion.button>
                 </div>
             </motion.header>
 

@@ -1,7 +1,7 @@
 # Sivi Studio - Project Context
 
 > **Global Manifest & Technical Specification**  
-> *Last Updated: 2026-01-30 19:25*
+> *Last Updated: 2026-01-30 23:26*
 
 ---
 
@@ -29,6 +29,77 @@
   
 - **Body**: Sans-Serif (**Inter**)  
   → Minimalist, wide letter-spacing, and modern
+
+### Design System Architecture
+
+**All design values are centralized in `src/app/globals.css` using CSS variables and utility classes.**
+
+#### CSS Variables Structure
+
+```css
+@theme {
+  /* Colors with variations */
+  --color-sage: #9CA770
+  --color-sage-600, --color-sage-700
+  --color-ivory-50, --color-ivory-200, --color-ivory-300
+  --color-charcoal, --color-charcoal-400, --color-charcoal-600
+  
+  /* Typography scales */
+  --text-title-sm, --text-title-lg
+  --text-subtitle, --text-subtitle-md
+  --text-caption, --text-label
+  
+  /* Spacing scales */
+  --spacing-section-y, --spacing-section-x
+  --spacing-grid-gap, --spacing-card-gap
+  
+  /* Animation tokens */
+  --duration-fast, --duration-normal, --duration-slow
+  --delay-xs, --delay-sm, --delay-md
+  
+  /* Transform values */
+  --scale-hover: 1.08
+  --parallax-slow, --parallax-fast
+  
+  /* Shadows, opacity, dimensions */
+  --shadow-card, --shadow-card-hover
+  --opacity-overlay, --icon-size-md
+  --aspect-portrait, --aspect-landscape
+}
+```
+
+#### Utility Classes
+
+```css
+/* Typography */
+.title-editorial       /* Responsive serif titles */
+.subtitle-editorial    /* Responsive serif subtitles */
+.caption-editorial     /* Mono uppercase captions */
+.label-editorial       /* Mono uppercase labels */
+
+/* Layout */
+.section-padding       /* Responsive section spacing */
+.grid-editorial        /* 2-column responsive grid */
+.aspect-portrait       /* 3:4 aspect ratio */
+
+/* Effects */
+.gradient-overlay-dark /* Dark image overlay */
+.hover-scale          /* Smooth scale transition */
+.hover-shadow         /* Shadow elevation */
+
+/* Decorative */
+.decorative-line      /* Horizontal accent line */
+.decorative-divider   /* Small divider */
+```
+
+#### Implementation Rules
+
+1. **No Hardcoding**: All components must use CSS variables or utility classes
+2. **Semantic Classes**: Use descriptive class names like `.title-editorial` instead of `.text-6xl`
+3. **Responsive Design**: Utility classes handle mobile/desktop breakpoints automatically
+4. **Consistency**: Design tokens ensure visual consistency across all components
+
+📖 **Complete documentation**: See [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)
 
 ---
 
@@ -420,6 +491,9 @@ const response = await fetch('/api/profile', {
 - [x] Sanity CMS schemas (product, category, editorial)
 - [x] Product catalog pages (Listing & Detail) - Wiring complete
 - [x] Sanity Client & GROQ Queries
+- [x] **Comprehensive Design System** with CSS variables and utility classes
+- [x] **Editorial Components** (MoodBoardGrid, Hero, etc.) with no hardcoded values
+- [x] **Design System Documentation** (DESIGN_SYSTEM.md)
 
 ### ⏳ Pending Features
 

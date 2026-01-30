@@ -11,10 +11,10 @@ interface NavigationOverlayProps {
 }
 
 const menuItems = [
+    { label: 'Home', href: '/', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop' },
+    { label: 'The Story', href: '/story', image: 'https://images.unsplash.com/photo-1502920313556-c0bbbcd00403?q=80&w=2124&auto=format&fit=crop' },
     { label: 'Atelier', href: '/shop', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop' },
-    { label: 'Journal', href: '/journal', image: 'https://images.unsplash.com/photo-1550614000-4b9519e07502?q=80&w=2148&auto=format&fit=crop' },
-    { label: 'Philosophy', href: '/about', image: 'https://images.unsplash.com/photo-1502920313556-c0bbbcd00403?q=80&w=2124&auto=format&fit=crop' },
-    { label: 'Account', href: '/dashboard', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop' },
+    { label: 'Account', href: '/dashboard', image: 'https://images.unsplash.com/photo-1550614000-4b9519e07502?q=80&w=2148&auto=format&fit=crop' },
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
