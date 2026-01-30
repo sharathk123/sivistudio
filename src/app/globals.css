@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Custom Fonts for Brand - Matching Original Logo */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&family=Allura&display=swap');
+
 @theme {
   /* Color Palette - Base */
   --color-sage: #9CA770;

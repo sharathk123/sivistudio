@@ -15,8 +15,17 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Sivi Studio | Quiet Luxury & Conscious Craft',
-  description: 'Premium Hyderabad-based fashion studio focused on Quiet Luxury, conscious craft, and custom tailoring for all age groups.',
+  title: 'Sivi the Couturier | Handloom Heritage & Custom Tailoring',
+  description: 'Premium Hyderabad-based couturier specializing in handloom heritage, conscious craft, and bespoke tailoring. Discover authentic Indian textiles.',
+  icons: {
+    icon: '/sivi-logo.png',
+    apple: '/sivi-logo.png',
+  },
+  openGraph: {
+    title: 'Sivi the Couturier',
+    description: 'Handloom Heritage & Custom Tailoring',
+    images: ['/sivi-logo.png'],
+  },
 }
 
 import SmoothScroll from '@/components/ui/SmoothScroll'

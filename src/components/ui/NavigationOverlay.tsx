@@ -12,9 +12,12 @@ interface NavigationOverlayProps {
 
 const menuItems = [
     { label: 'Home', href: '/', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop' },
+    { label: 'Collections', href: '/shop', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop' },
     { label: 'The Story', href: '/story', image: 'https://images.unsplash.com/photo-1502920313556-c0bbbcd00403?q=80&w=2124&auto=format&fit=crop' },
-    { label: 'Atelier', href: '/shop', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop' },
+    { label: 'Heritage', href: '/story', image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=2070&auto=format&fit=crop' },
+    { label: 'Custom Tailoring', href: '/shop', image: 'https://images.unsplash.com/photo-1558769132-cb1aea3c8565?q=80&w=2074&auto=format&fit=crop' },
     { label: 'Account', href: '/dashboard', image: 'https://images.unsplash.com/photo-1550614000-4b9519e07502?q=80&w=2148&auto=format&fit=crop' },
+    { label: 'Contact', href: '/shop', image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop' },
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {

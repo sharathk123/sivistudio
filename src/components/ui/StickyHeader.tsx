@@ -60,15 +60,23 @@ export default function StickyHeader() {
                 }}
                 className="fixed top-0 left-0 right-0 z-[40] px-6 py-6 flex justify-between items-center transition-shadow duration-300"
             >
-                {/* Logo */}
-                <Link href="/" className="font-serif text-2xl font-bold tracking-tight italic z-50">
-                    <motion.span style={{ color: textColor }}>
-                        Sivi
-                    </motion.span>
-                </Link>
+                {/* Center Brand Name */}
+                <motion.div
+                    style={{ color: textColor }}
+                    className="absolute left-1/2 -translate-x-1/2 z-50"
+                >
+                    <Link href="/" className="flex items-center gap-3">
+                        <span className="text-xl md:text-2xl tracking-[0.15em] uppercase" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700 }}>
+                            SIVI
+                        </span>
+                        <span className="text-xl md:text-2xl" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
+                            the couturier
+                        </span>
+                    </Link>
+                </motion.div>
 
                 {/* Actions */}
-                <div className="flex items-center space-x-8 z-50">
+                <div className="flex items-center space-x-8 z-50 ml-auto">
                     <motion.button
                         onClick={openCart}
                         style={{ color: textColor }}
