@@ -55,6 +55,12 @@
     --font-playfair: 'Playfair Display', serif;
     --font-inter: 'Inter', sans-serif;
   }
+
+  html,
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
 }
 
 @layer utilities {

@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   description: 'Premium Hyderabad-based fashion studio focused on Quiet Luxury, conscious craft, and custom tailoring for all age groups.',
 }
 
+import SmoothScroll from '@/components/ui/SmoothScroll'
+import Loader from '@/components/ui/Loader'
+
+import StickyHeader from '@/components/ui/StickyHeader'
+import { CartProvider } from '@/context/CartContext'
+import CartDrawer from '@/components/shop/CartDrawer'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,8 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased bg-bone text-charcoal">
-        {children}
+      <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
+        <CartProvider>
+          <StickyHeader />
+          <CartDrawer />
+          <Loader />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </CartProvider>
       </body>
     </html>
   )
