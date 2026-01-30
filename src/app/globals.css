@@ -1,6 +1,54 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Sage Palette */
+  --color-sage: #9CA770;
+  --color-sage-50: #F5F7ED;
+  --color-sage-100: #E8ECDA;
+  --color-sage-200: #D4DCB5;
+  --color-sage-300: #C0CB90;
+  --color-sage-400: #ACBB6B;
+  --color-sage-500: #9CA770;
+  --color-sage-600: #7D8659;
+  --color-sage-700: #5E6442;
+  --color-sage-800: #3F432C;
+  --color-sage-900: #202115;
+
+  /* Ivory Palette */
+  --color-ivory: #E4E4DE;
+  --color-ivory-50: #FDFCFB;
+  --color-ivory-100: #F9F9F6;
+  --color-ivory-200: #F1F1EC;
+  --color-ivory-300: #E9E9E2;
+  --color-ivory-400: #E4E4DE;
+  --color-ivory-500: #D5D5CC;
+  --color-ivory-600: #B8B8AC;
+  --color-ivory-700: #9B9B8C;
+  --color-ivory-800: #7E7E6C;
+  --color-ivory-900: #61614C;
+
+  /* Charcoal Palette */
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-50: #4D4D4D;
+  --color-charcoal-100: #404040;
+  --color-charcoal-200: #333333;
+  --color-charcoal-300: #262626;
+  --color-charcoal-400: #1A1A1A;
+  --color-charcoal-500: #0D0D0D;
+  --color-charcoal-600: #000000;
+
+  /* Bone Palette */
+  --color-bone: #FDFCFB;
+  --color-bone-50: #FFFFFF;
+  --color-bone-100: #FDFCFB;
+
+  /* Typography */
+  --font-serif: var(--font-playfair), "Playfair Display", serif;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+
+  /* Spacing */
+  --tracking-wide-luxury: 0.05em;
+}
 
 @layer base {
   :root {
@@ -12,5 +60,66 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Manual Overrides for Broken Build System */
+  .bg-sage {
+    background-color: #9CA770 !important;
+  }
+
+  .text-sage {
+    color: #9CA770 !important;
+  }
+
+  .bg-ivory {
+    background-color: #E4E4DE !important;
+  }
+
+  .bg-ivory-50 {
+    background-color: #FDFCFB !important;
+  }
+
+  .bg-charcoal {
+    background-color: #1A1A1A !important;
+  }
+
+  .text-charcoal {
+    color: #1A1A1A !important;
+  }
+
+  .text-charcoal-300 {
+    color: #262626 !important;
+  }
+
+  .text-charcoal-400 {
+    color: #1A1A1A !important;
+  }
+
+  .bg-bone {
+    background-color: #FDFCFB !important;
+  }
+
+  .text-bone {
+    color: #FDFCFB !important;
+  }
+
+  .text-ivory-200 {
+    color: #F1F1EC !important;
+  }
+
+  .text-ivory-400 {
+    color: #E4E4DE !important;
+  }
+
+  .text-sage-100 {
+    color: #E8ECDA !important;
+  }
+
+  .font-serif {
+    font-family: var(--font-playfair), 'Playfair Display', serif !important;
+  }
+
+  .font-sans {
+    font-family: var(--font-inter), 'Inter', sans-serif !important;
   }
 }
