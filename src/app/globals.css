@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color Palette */
+  /* Color Palette - Base */
   --color-sage: #9CA770;
   --color-sage-600: #8A9560;
   --color-sage-700: #788450;
@@ -13,6 +13,22 @@
   --color-charcoal-400: #666666;
   --color-charcoal-600: #4D4D4D;
   --color-bone: #FDFCFB;
+
+  /* 2026 Metallic Accents - Zari Inspired */
+  --color-copper: #B87333;
+  --color-copper-light: #D4A574;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F0D98E;
+  --color-silver: #C0C0C0;
+  --color-silver-light: #E8E8E8;
+
+  /* 2026 Natural Dye Palette */
+  --color-indigo: #1E3A5F;
+  --color-indigo-light: #4A6FA5;
+  --color-madder: #8B3A3A;
+  --color-madder-light: #C17171;
+  --color-turmeric: #E6A817;
+  --color-turmeric-light: #F4C542;
 
   /* Typography */
   --font-family-serif: 'Playfair Display', serif;
@@ -68,6 +84,7 @@
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   --shadow-card-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-metallic: 0 4px 12px rgba(184, 115, 51, 0.15);
 
   /* Border Radius */
   --radius-sm: 0.125rem;
@@ -78,6 +95,12 @@
   --opacity-overlay-light: 0.2;
   --opacity-subtle: 0.3;
   --opacity-medium: 0.4;
+
+  /* Blur Levels - 2026 Depth Mapping */
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
 
   /* Dimensions */
   --icon-size-sm: 1.25rem;
@@ -324,5 +347,269 @@
     width: 2rem;
     height: var(--line-height-sm);
     background-color: rgba(156, 167, 112, var(--opacity-medium));
+  }
+
+  /* 2026 Metallic Accent Utilities */
+  .accent-copper {
+    color: var(--color-copper);
+  }
+
+  .accent-gold {
+    color: var(--color-gold);
+  }
+
+  .accent-silver {
+    color: var(--color-silver);
+  }
+
+  .gradient-zari {
+    background: linear-gradient(135deg, var(--color-copper), var(--color-gold));
+  }
+
+  .gradient-zari-subtle {
+    background: linear-gradient(135deg, var(--color-copper-light), var(--color-gold-light));
+  }
+
+  .text-metallic {
+    background: linear-gradient(135deg, var(--color-copper), var(--color-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-metallic {
+    box-shadow: var(--shadow-metallic);
+  }
+
+  /* 2026 Blur Parallax - Depth Mapping */
+  .blur-parallax-sm {
+    filter: blur(var(--blur-sm));
+    transition: filter var(--duration-slow);
+  }
+
+  .blur-parallax-md {
+    filter: blur(var(--blur-md));
+    transition: filter var(--duration-slow);
+  }
+
+  .blur-parallax-lg {
+    filter: blur(var(--blur-lg));
+    transition: filter var(--duration-slow);
+  }
+
+  .blur-parallax-none {
+    filter: blur(0);
+  }
+
+  /* Blur on scroll effect */
+  .blur-on-scroll {
+    will-change: filter;
+  }
+
+  /* 2026 Vertical Typography */
+  .text-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  .text-vertical-upright {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  /* Vertical label for editorial */
+  .label-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: var(--font-family-mono);
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-charcoal-400);
+  }
+
+  /* 2026 Macro Texture Overlay */
+  .macro-texture-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .macro-texture-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.02) 2px,
+        rgba(0, 0, 0, 0.02) 4px);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* Weave pattern overlay */
+  .weave-pattern {
+    position: relative;
+  }
+
+  .weave-pattern::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg,
+        transparent,
+        transparent 1px,
+        rgba(156, 167, 112, 0.03) 1px,
+        rgba(156, 167, 112, 0.03) 2px),
+      repeating-linear-gradient(90deg,
+        transparent,
+        transparent 1px,
+        rgba(156, 167, 112, 0.03) 1px,
+        rgba(156, 167, 112, 0.03) 2px);
+    pointer-events: none;
+  }
+
+  /* 2026 Cursor Lens Effect */
+  .cursor-lens-image {
+    cursor: crosshair;
+    position: relative;
+  }
+
+  .cursor-lens-image:hover::after {
+    content: '';
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--color-copper);
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    animation: pulse 2s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+    z-index: 9999;
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
+  /* 2026 Sustainability Badge */
+  .sustainability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, rgba(156, 167, 112, 0.1), rgba(156, 167, 112, 0.05));
+    border: 1px solid rgba(156, 167, 112, 0.3);
+    border-radius: var(--radius-full);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-sage-700);
+  }
+
+  .provenance-stamp {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-ivory);
+    border: 2px solid var(--color-copper);
+    border-radius: 50%;
+    font-family: var(--font-family-serif);
+    font-size: var(--text-caption);
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-copper);
+    box-shadow: var(--shadow-metallic);
+    position: relative;
+  }
+
+  .provenance-stamp::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 1px dashed var(--color-copper-light);
+    border-radius: 50%;
+  }
+
+  /* 2026 Natural Dye Colors */
+  .bg-indigo {
+    background-color: var(--color-indigo);
+  }
+
+  .bg-madder {
+    background-color: var(--color-madder);
+  }
+
+  .bg-turmeric {
+    background-color: var(--color-turmeric);
+  }
+
+  .text-indigo {
+    color: var(--color-indigo);
+  }
+
+  .text-madder {
+    color: var(--color-madder);
+  }
+
+  .text-turmeric {
+    color: var(--color-turmeric);
+  }
+
+  /* Eco-Informed Gradient */
+  .gradient-natural-dye {
+    background: linear-gradient(135deg,
+        var(--color-indigo) 0%,
+        var(--color-madder) 50%,
+        var(--color-turmeric) 100%);
+  }
+
+  /* 2026 Haptic-Inspired Visuals */
+  .touchable-texture {
+    position: relative;
+    transition: transform var(--duration-normal), box-shadow var(--duration-normal);
+  }
+
+  .touchable-texture:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Glass Morphism for 2026 */
+  .glass-effect {
+    background: rgba(253, 252, 251, 0.7);
+    backdrop-filter: blur(var(--blur-md));
+    -webkit-backdrop-filter: blur(var(--blur-md));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Artisan Hours Badge */
+  .artisan-hours {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    background: rgba(184, 115, 51, 0.1);
+    border-left: 3px solid var(--color-copper);
+    font-family: var(--font-family-mono);
+    font-size: var(--text-caption);
+    color: var(--color-copper);
   }
 }

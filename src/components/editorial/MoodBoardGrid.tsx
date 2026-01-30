@@ -36,19 +36,38 @@ export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
     const col2 = items.slice(splitIndex)
 
     return (
-        <section ref={containerRef} className="section-padding max-w-[1800px] mx-auto bg-ivory-50 relative">
+        <section ref={containerRef} className="section-padding max-w-[1800px] mx-auto bg-ivory-50 relative weave-pattern">
             {/* Decorative Element */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 decorative-line-vertical gradient-decorative" />
 
+            {/* 2026: Vertical Typography Label */}
+            <div className="absolute left-8 top-32 label-vertical text-metallic hidden md:block">
+                Heritage Craft
+            </div>
+
             {title && (
-                <div className="mb-32 flex flex-col items-center text-center">
+                <div className="mb-32 flex flex-col items-center text-center relative">
+                    {/* Metallic Accent Line */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="decorative-line mb-6"
+                        className="decorative-line mb-6 gradient-zari-subtle"
                     />
+
+                    {/* Sustainability Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.05 }}
+                        className="sustainability-badge mb-4"
+                    >
+                        <span>✦</span>
+                        <span>Handwoven • Sustainable • Artisan-Made</span>
+                    </motion.div>
+
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -58,6 +77,7 @@ export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
                     >
                         Handcrafted Collection
                     </motion.span>
+
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -66,14 +86,16 @@ export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
                         className="title-editorial relative"
                     >
                         {title}
+                        {/* Metallic Underline */}
                         <motion.div
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5, duration: 0.8 }}
-                            className="absolute -bottom-4 left-0 right-0 h-px gradient-decorative-horizontal origin-center"
+                            className="absolute -bottom-4 left-0 right-0 h-px gradient-zari origin-center shadow-metallic"
                         />
                     </motion.h2>
+
                     <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
@@ -107,6 +129,7 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
     const [isLoaded, setIsLoaded] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const imgRef = useRef<HTMLImageElement>(null)
+    const cardRef = useRef<HTMLDivElement>(null)
 
     // Handle cached images that don't trigger onLoad
     useEffect(() => {
@@ -115,8 +138,17 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
         }
     }, [])
 
+    // 2026: Blur parallax on scroll (reduced intensity for visibility)
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ["start end", "end start"]
+    })
+
+    const blur = useTransform(scrollYProgress, [0, 0.5, 1], [2, 0, 2])
+
     return (
         <motion.article
+            ref={cardRef}
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -130,17 +162,28 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
             onMouseLeave={() => setIsHovered(false)}
         >
             <div className={cn(
-                "relative overflow-hidden w-full rounded-sm hover-shadow",
+                "relative overflow-hidden w-full rounded-sm hover-shadow macro-texture-overlay",
                 "shadow-[var(--shadow-sm)]",
                 item.aspectRatio === 'portrait' ? "aspect-portrait" :
                     item.aspectRatio === 'landscape' ? "aspect-landscape" : "aspect-square"
             )}>
+                {/* 2026: Provenance Stamp */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute top-4 right-4 z-10 provenance-stamp"
+                >
+                    Authentic
+                </motion.div>
+
                 <motion.div
                     animate={{ scale: isHovered ? 'var(--scale-hover)' : 1 }}
                     transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
                     className="w-full h-full relative"
                     style={{
-                        scale: isHovered ? 'var(--scale-hover)' : 1
+                        scale: isHovered ? 'var(--scale-hover)' : 1,
+                        filter: `blur(${blur}px)` // 2026: Blur parallax
                     }}
                 >
                     {/* Placeholder Background - only shows while loading */}
@@ -169,7 +212,7 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
                         className="absolute inset-0 gradient-overlay-dark"
                     />
 
-                    {/* Hover CTA */}
+                    {/* Hover CTA with Metallic Accent */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{
@@ -188,23 +231,23 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
                                 y: isHovered ? -4 : 0
                             }}
                             transition={{ duration: 0.3 }}
-                            className="icon-md rounded-full bg-sage flex items-center justify-center"
+                            className="icon-md rounded-full gradient-zari flex items-center justify-center shadow-metallic"
                         >
                             <ArrowUpRight className="icon-sm text-charcoal" />
                         </motion.div>
                     </motion.div>
 
-                    {/* Subtle Border Accent */}
+                    {/* Metallic Border Accent */}
                     <motion.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: isHovered ? 1 : 0 }}
                         transition={{ duration: 0.6 }}
-                        className="absolute bottom-0 left-0 right-0 h-1 bg-sage origin-left"
+                        className="absolute bottom-0 left-0 right-0 h-1 gradient-zari origin-left shadow-metallic"
                     />
                 </motion.div>
             </div>
 
-            {/* Enhanced Editorial Caption */}
+            {/* Enhanced Editorial Caption with Artisan Badge */}
             <motion.div
                 className="mt-8 flex flex-col md:flex-row md:justify-between md:items-start gap-3"
                 initial={{ opacity: 0.8 }}
@@ -219,16 +262,29 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
                     >
                         {item.label}
                     </motion.p>
-                    <div className="flex items-center gap-3">
+
+                    <div className="flex items-center gap-3 flex-wrap">
                         <div className="decorative-divider" />
                         <p className="caption-editorial">
                             Hyderabad Studio — 2024
                         </p>
                     </div>
+
+                    {/* 2026: Artisan Hours Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        className="artisan-hours"
+                    >
+                        <span>⏱</span>
+                        <span>120+ Artisan Hours</span>
+                    </motion.div>
                 </div>
+
                 {item.price && (
                     <motion.span
-                        className="font-serif italic text-xl text-sage-700 mt-2 md:mt-0"
+                        className="font-serif italic text-xl accent-copper mt-2 md:mt-0"
                         animate={{ scale: isHovered ? 'var(--scale-subtle)' : 1 }}
                         transition={{ duration: 0.3 }}
                         style={{
