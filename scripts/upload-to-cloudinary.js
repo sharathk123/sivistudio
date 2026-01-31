@@ -1,20 +1,25 @@
 // Script to upload all images from /public/images to Cloudinary
 // Run with: node scripts/upload-to-cloudinary.js
 
+require('dotenv').config({ path: '.env.local' });
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const path = require('path');
 
 // Configure Cloudinary
-// You'll need to set these environment variables or replace with your values
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'YOUR_CLOUD_NAME',
-    api_key: process.env.CLOUDINARY_API_KEY || 'YOUR_API_KEY',
-    api_secret: process.env.CLOUDINARY_API_SECRET || 'YOUR_API_SECRET'
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+console.log('🔑 Cloudinary Config:');
+console.log(`   Cloud Name: ${process.env.CLOUDINARY_CLOUD_NAME}`);
+console.log(`   API Key: ${process.env.CLOUDINARY_API_KEY ? '***' + process.env.CLOUDINARY_API_KEY.slice(-4) : 'NOT SET'}`);
+console.log(`   API Secret: ${process.env.CLOUDINARY_API_SECRET ? '***' + process.env.CLOUDINARY_API_SECRET.slice(-4) : 'NOT SET'}\n`);
+
 const IMAGES_DIR = path.join(__dirname, '../public/images');
-const CLOUDINARY_FOLDER = 'sivi-studio'; // Your folder name in Cloudinary
+const CLOUDINARY_FOLDER = 'sivi studio'; // Your folder name in Cloudinary
 
 async function uploadImage(filePath, fileName) {
     try {
