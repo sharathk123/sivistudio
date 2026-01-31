@@ -77,9 +77,11 @@ export default function HomePage() {
             {/* Marquee Divider */}
             <div className="overflow-hidden bg-bone py-4 border-b border-charcoal/10">
                 <div className="animate-marquee whitespace-nowrap text-xs uppercase tracking-[0.3em] text-charcoal-400 font-mono flex gap-8">
-                    <span>Pochampally Ikat</span> • <span>Gadwal Silk</span> • <span>Uppada Weave</span> •
+                    <span>Pochampally Ikat</span> • <span>Jamdani</span> • <span>Sambalpuri</span> • <span>Kanjivaram Silk</span> •
+                    <span>Gadwal Silk</span> • <span>Uppada Jamdani</span> • <span>Narayanpet</span> • <span>Gollabama</span> •
                     <span>Handspun Cotton</span> • <span>Zari Embroidery</span> • <span>Hyderabad Studio</span> •
-                    <span>Pochampally Ikat</span> • <span>Gadwal Silk</span> • <span>Uppada Weave</span> •
+                    <span>Pochampally Ikat</span> • <span>Jamdani</span> • <span>Sambalpuri</span> • <span>Kanjivaram Silk</span> •
+                    <span>Gadwal Silk</span> • <span>Uppada Jamdani</span> • <span>Narayanpet</span> • <span>Gollabama</span> •
                     <span>Handspun Cotton</span> • <span>Zari Embroidery</span> • <span>Hyderabad Studio</span>
                 </div>
             </div>
