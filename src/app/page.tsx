@@ -5,6 +5,7 @@ import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
 
 import StickyHeader from '@/components/ui/StickyHeader'
+import HeritageMarquee from '@/components/ui/HeritageMarquee'
 
 export default function HomePage() {
     const collectionItems = [
@@ -75,16 +76,7 @@ export default function HomePage() {
             </section>
 
             {/* Marquee Divider */}
-            <div className="overflow-hidden bg-bone py-4 border-b border-charcoal/10">
-                <div className="animate-marquee whitespace-nowrap text-xs uppercase tracking-[0.3em] text-charcoal-400 font-mono flex gap-8">
-                    <span>Pochampally Ikat</span> • <span>Jamdani</span> • <span>Sambalpuri</span> • <span>Kanjivaram Silk</span> •
-                    <span>Gadwal Silk</span> • <span>Uppada Jamdani</span> • <span>Narayanpet</span> • <span>Gollabama</span> •
-                    <span>Handspun Cotton</span> • <span>Zari Embroidery</span> • <span>Hyderabad Studio</span> •
-                    <span>Pochampally Ikat</span> • <span>Jamdani</span> • <span>Sambalpuri</span> • <span>Kanjivaram Silk</span> •
-                    <span>Gadwal Silk</span> • <span>Uppada Jamdani</span> • <span>Narayanpet</span> • <span>Gollabama</span> •
-                    <span>Handspun Cotton</span> • <span>Zari Embroidery</span> • <span>Hyderabad Studio</span>
-                </div>
-            </div>
+            <HeritageMarquee />
 
             {/* Featured Collection - Asymmetrical Grid */}
             <MoodBoardGrid items={collectionItems} title="The Atelier" />
