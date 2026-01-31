@@ -27,21 +27,21 @@ const marqueeItems = [
 
 export default function HeritageMarquee() {
     return (
-        <div className="overflow-hidden bg-ivory-50 border-y border-charcoal/10 py-12 relative">
-            <div className="flex animate-marquee whitespace-nowrap gap-16 min-w-full">
+        <div className="overflow-hidden bg-ivory-50 border-y border-charcoal/10 py-8 md:py-12 relative">
+            <div className="flex animate-marquee whitespace-nowrap gap-10 md:gap-16 min-w-full">
                 {/* First set of items */}
                 {marqueeItems.map((item, idx) => (
-                    <div key={`marquee-1-${idx}`} className="flex flex-col items-center gap-4 flex-shrink-0 group cursor-default min-w-[160px]">
-                        <div className="relative w-32 h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
+                    <div key={`marquee-1-${idx}`} className="flex flex-col items-center gap-3 md:gap-4 flex-shrink-0 group cursor-default min-w-[100px] md:min-w-[160px]">
+                        <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
                             <Image
                                 src={item.image}
                                 alt={item.name}
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                sizes="128px"
+                                sizes="(max-width: 768px) 80px, 128px"
                             />
                         </div>
-                        <span className="text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[160px] font-medium">
+                        <span className="text-xs md:text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[100px] md:max-w-[160px] font-medium">
                             {item.name}
                         </span>
                     </div>
@@ -49,17 +49,17 @@ export default function HeritageMarquee() {
 
                 {/* Duplicate set for seamless loop */}
                 {marqueeItems.map((item, idx) => (
-                    <div key={`marquee-2-${idx}`} className="flex flex-col items-center gap-4 flex-shrink-0 group cursor-default min-w-[160px]">
-                        <div className="relative w-32 h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
+                    <div key={`marquee-2-${idx}`} className="flex flex-col items-center gap-3 md:gap-4 flex-shrink-0 group cursor-default min-w-[100px] md:min-w-[160px]">
+                        <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
                             <Image
                                 src={item.image}
                                 alt={item.name}
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                sizes="128px"
+                                sizes="(max-width: 768px) 80px, 128px"
                             />
                         </div>
-                        <span className="text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[160px] font-medium">
+                        <span className="text-xs md:text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[100px] md:max-w-[160px] font-medium">
                             {item.name}
                         </span>
                     </div>
@@ -67,8 +67,8 @@ export default function HeritageMarquee() {
             </div>
 
             {/* Gradient Fade Edges */}
-            <div className="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-ivory-50 to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-ivory-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-ivory-50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-ivory-50 to-transparent z-10 pointer-events-none" />
         </div>
     )
 }
