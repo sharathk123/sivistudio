@@ -114,6 +114,8 @@ Based on the navigation menu, the following pages need to be created:
   - Kanjivaram (Tamil Nadu)
   - Gadwal Silk (Telangana)
   - Uppada Weave (Andhra Pradesh)
+  - Narayanpet (Telangana)
+  - Gollabama (Telangana)
 - [X] Include history, technique, and characteristics for each
 - [X] Add visual examples of each weave pattern
 - [X] Ensure responsive design
@@ -250,6 +252,7 @@ Based on the navigation menu, the following pages need to be created:
 
 **Priority**: High
 **Estimate**: 5 points
+**Status**: 🚧 IN PROGRESS (Started Jan 31, 2026)
 
 **Acceptance Criteria:**
 
