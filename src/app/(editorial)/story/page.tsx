@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 export default function StoryPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -18,6 +19,7 @@ export default function StoryPage() {
 
     return (
         <main className="bg-bone">
+            <StickyHeader />
             {/* Hero Section */}
             <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <motion.div

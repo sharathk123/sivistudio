@@ -5,6 +5,7 @@ import { useRef, useState } from 'react'
 import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
 import { MapPin, Mail, Phone, Clock, Send } from 'lucide-react'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 export default function ContactPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -47,6 +48,7 @@ export default function ContactPage() {
 
     return (
         <main className="bg-bone">
+            <StickyHeader />
             {/* Hero Section */}
             <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <motion.div

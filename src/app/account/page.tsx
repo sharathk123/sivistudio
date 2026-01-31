@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Footer from '@/components/ui/Footer'
 import Image from 'next/image'
 import { User, Package, MapPin, Heart, LogOut, Settings, ChevronRight } from 'lucide-react'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 // Mock Data
 const userProfile = {
@@ -37,6 +38,7 @@ export default function AccountPage() {
 
     return (
         <main className="bg-bone min-h-screen pt-28">
+            <StickyHeader />
             <div className="max-w-7xl mx-auto px-6 pb-24">
 
                 {/* Header Profile Summary */}

@@ -5,6 +5,7 @@ import Footer from '@/components/ui/Footer'
 import { Ruler, Scissors, PenTool, MessageSquare, Truck, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 const processSteps = [
     {
@@ -60,6 +61,7 @@ const galleryImages = [
 export default function CustomTailoringPage() {
     return (
         <main className="bg-bone min-h-screen">
+            <StickyHeader />
             {/* Hero Section */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <div className="absolute inset-0 z-0">
