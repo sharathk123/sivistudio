@@ -12,12 +12,12 @@ interface NavigationOverlayProps {
 
 const menuItems = [
     { label: 'Home', href: '/', image: '/images/hero-ikat.png' },
-    { label: 'Collections', href: '/shop', image: '/images/saree.png' },
-    { label: 'The Story', href: '/story', image: '/images/gadwal-silk.png' },
-    { label: 'Heritage', href: '/story', image: '/images/dupatta.png' },
-    { label: 'Custom Tailoring', href: '/shop', image: '/images/custom-tailoring.png' },
-    { label: 'Account', href: '/dashboard', image: '/images/account.png' },
-    { label: 'Contact', href: '/shop', image: '/images/contact.png' },
+    { label: 'Collections', href: '/shop', image: '/images/saree-editorial.png' },
+    { label: 'The Story', href: '/story', image: '/images/story-origins-workshop.png' },
+    { label: 'Heritage', href: '/heritage', image: '/images/heritage-hero-textiles.png' },
+    { label: 'Custom Tailoring', href: '/custom-tailoring', image: '/images/custom-tailoring.png' },
+    { label: 'Account', href: '/account', image: '/images/account.png' },
+    { label: 'Contact', href: '/contact', image: '/images/contact.png' },
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {

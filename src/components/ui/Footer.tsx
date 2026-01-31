@@ -81,7 +81,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/custom-tailoring" className="hover:text-white cursor-pointer transition-colors">
                                     Bespoke Tailoring
                                 </Link>
                             </li>

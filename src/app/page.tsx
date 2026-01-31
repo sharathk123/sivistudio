@@ -8,7 +8,7 @@ export default function HomePage() {
     const collectionItems = [
         {
             id: '1',
-            src: '/images/saree-editorial.png',
+            src: '/images/pochampally-ikat-modern.png',
             alt: 'Pochampally Ikat Saree - Editorial',
             aspectRatio: 'portrait' as const,
             label: 'Pochampally Ikat Saree'

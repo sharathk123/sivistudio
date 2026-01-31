@@ -25,7 +25,7 @@ export default function HeritagePage() {
             description: 'A geometric tie-dye technique where threads are resist-dyed before weaving, creating distinctive blurred patterns. This ancient craft requires mathematical precision and artistic vision.',
             technique: 'Tie-dye resist technique on warp and weft threads before weaving',
             characteristics: 'Geometric patterns, double ikat, vibrant colors, cotton and silk blends',
-            image: '/images/saree-editorial.png',
+            image: '/images/heritage-pochampally-dress.png',
             color: 'sage'
         },
         {
@@ -35,7 +35,7 @@ export default function HeritagePage() {
             description: 'An intricate supplementary weft technique creating delicate floral and geometric motifs on sheer cotton. Each motif is individually woven, making it one of the finest muslin weaves.',
             technique: 'Supplementary weft technique with individual motif insertion',
             characteristics: 'Sheer cotton, intricate motifs, lightweight, floral and paisley patterns',
-            image: '/images/story-jamdani-dress.png',
+            image: '/images/heritage-jamdani-saree.png',
             color: 'charcoal'
         },
         {
@@ -45,7 +45,7 @@ export default function HeritagePage() {
             description: 'Traditional ikat weaving featuring tribal motifs, shells, wheels, and flowers. The tie-dye process creates distinctive borders and pallus with cultural significance.',
             technique: 'Tie-dye ikat with traditional tribal motifs',
             characteristics: 'Bold borders, tribal patterns, cotton and silk, rich earthy tones',
-            image: '/images/kurta-mannequin.png',
+            image: '/images/heritage-sambalpuri-outfit.png',
             color: 'rust'
         },
         {
@@ -55,7 +55,7 @@ export default function HeritagePage() {
             description: 'Luxurious silk sarees with heavy gold zari borders and pallus. The contrasting border technique and temple motifs make Kanjivaram silks iconic South Indian wedding attire.',
             technique: 'Three-shuttle weaving with contrasting borders and zari work',
             characteristics: 'Lustrous silk, heavy zari, temple motifs, contrasting borders',
-            image: '/images/story-kanjivaram-outfit.png',
+            image: '/images/heritage-kanjivaram-dress.png',
             color: 'gold'
         },
         {
@@ -65,7 +65,7 @@ export default function HeritagePage() {
             description: 'A unique silk-cotton blend where the body is woven in cotton for comfort and borders in silk with zari for elegance. The interlocked border technique is distinctive to Gadwal.',
             technique: 'Silk-cotton blend with interlocked border weaving',
             characteristics: 'Cotton body, silk borders, zari work, lightweight yet elegant',
-            image: '/images/contemporary-dress-studio.png',
+            image: '/images/heritage-gadwal-ensemble.png',
             color: 'sage'
         },
         {
@@ -75,7 +75,7 @@ export default function HeritagePage() {
             description: 'A lightweight silk weave combining Jamdani technique with traditional South Indian motifs. Known for its feather-light texture and intricate brocade work.',
             technique: 'Jamdani supplementary weft on silk base',
             characteristics: 'Lightweight silk, brocade motifs, delicate texture, traditional designs',
-            image: '/images/layered-outfit-modern-colors.png',
+            image: '/images/heritage-uppada-dress.png',
             color: 'teal'
         }
     ]
@@ -90,12 +90,12 @@ export default function HeritagePage() {
                     style={{ opacity: heroOpacity, scale: heroScale }}
                     className="absolute inset-0 z-0"
                 >
-                    {/* Placeholder for heritage hero image - will be replaced when quota resets */}
+                    {/* Heritage Hero Image */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/images/ikat-fabric-closeup.png"
+                        src="/images/heritage-hero-textiles.png"
                         alt="Indian Handloom Heritage"
-                        className="w-full h-full object-cover opacity-40"
+                        className="w-full h-full object-cover opacity-60"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal" />
                 </motion.div>
@@ -107,7 +107,7 @@ export default function HeritagePage() {
                         transition={{ delay: 0.3, duration: 0.8 }}
                         className="block text-sage text-xs uppercase tracking-[0.3em] mb-8"
                     >
-                        Centuries of Craftsmanship
+                        Timeless Artistry
                     </motion.span>
 
                     <motion.h1
@@ -116,8 +116,8 @@ export default function HeritagePage() {
                         transition={{ delay: 0.6, duration: 1 }}
                         className="font-serif text-[10vw] md:text-[8vw] leading-[0.9] text-bone italic mb-8"
                     >
-                        Handloom <br />
-                        <span className="text-sage-100">Heritage</span>
+                        Legacy <br />
+                        <span className="text-sage-100">of the Loom</span>
                     </motion.h1>
 
                     <motion.p
@@ -126,8 +126,8 @@ export default function HeritagePage() {
                         transition={{ delay: 1, duration: 1 }}
                         className="text-ivory-200 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
                     >
-                        From Telangana to Tamil Nadu, Bengal to Odisha—each region of India weaves
-                        its own story into fabric, preserving techniques passed down through generations.
+                        A journey through India's finest weaves—where every thread tells a story
+                        of culture, craft, and timeless beauty, preserved for the modern world.
                     </motion.p>
                 </div>
             </section>
@@ -173,8 +173,8 @@ export default function HeritagePage() {
                                 transition={{ delay: index * 0.1, duration: 0.5 }}
                                 onClick={() => setActiveWeave(weave.id)}
                                 className={`px-6 py-3 rounded-sm transition-all duration-300 ${activeWeave === weave.id
-                                        ? 'bg-sage text-bone shadow-lg'
-                                        : 'bg-ivory-100 text-charcoal-400 hover:bg-ivory-200'
+                                    ? 'bg-sage text-bone shadow-lg'
+                                    : 'bg-ivory-100 text-charcoal-400 hover:bg-ivory-200'
                                     }`}
                             >
                                 <div className="text-sm font-bold">{weave.name}</div>

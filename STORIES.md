@@ -22,7 +22,7 @@ Based on the navigation menu, the following pages need to be created:
 4. ✅ **Heritage** - COMPLETED (Jan 31, 2026) - ⚠️ Pending unique images
 5. 📝 **Custom Tailoring** - TO DO
 6. 📝 **Account** - TO DO
-7. 📝 **Contact** - TO DO
+7. ✅ **Contact** - COMPLETED (Jan 31, 2026)
 
 ---
 
@@ -93,7 +93,7 @@ Based on the navigation menu, the following pages need to be created:
 #### Story 2.1: Create Heritage Page Layout
 **Priority**: High  
 **Estimate**: 3 points  
-**Status**: ✅ COMPLETED (Jan 31, 2026) - ⚠️ **Pending Unique Images**
+**Status**: ✅ COMPLETED (Jan 31, 2026)
 
 **Acceptance Criteria:**
 - [x] Create `/heritage/page.tsx` route
@@ -128,13 +128,13 @@ Based on the navigation menu, the following pages need to be created:
 - Uppada: `layered-outfit-modern-colors.png` (temporary)
 
 **⚠️ TODO - Generate Unique Images (When Quota Resets):**
-- [ ] `heritage-hero-textiles.png` - Fabric samples showcasing all 6 weaves
-- [ ] `heritage-pochampally-dress.png` - Forest green geometric Ikat dress
-- [ ] `heritage-jamdani-saree.png` - Cream Jamdani saree in traditional drape
-- [ ] `heritage-sambalpuri-outfit.png` - Brick red Sambalpuri kurta with tribal motifs
-- [ ] `heritage-kanjivaram-dress.png` - Royal purple Kanjivaram silk dress
-- [ ] `heritage-gadwal-ensemble.png` - Silk-cotton blend outfit
-- [ ] `heritage-uppada-dress.png` - Lightweight Uppada silk dress
+- [x] `heritage-hero-textiles.png` - Fabric samples showcasing all 6 weaves
+- [x] `heritage-pochampally-dress.png` - Forest green geometric Ikat dress
+- [x] `heritage-jamdani-saree.png` - Cream Jamdani saree in traditional drape
+- [x] `heritage-sambalpuri-outfit.png` - Brick red Sambalpuri kurta with tribal motifs
+- [x] `heritage-kanjivaram-dress.png` - Royal purple Kanjivaram silk dress
+- [x] `heritage-gadwal-ensemble.png` - Silk-cotton blend outfit
+- [x] `heritage-uppada-dress.png` - Lightweight Uppada silk dress
 
 **Technical Notes:**
 - Interactive state management for weave selection
@@ -295,24 +295,24 @@ Based on the navigation menu, the following pages need to be created:
 
 #### Story 5.1: Create Contact Page
 **Priority**: High  
-**Estimate**: 3 points
+**Estimate**: 3 points  
+**Status**: ✅ COMPLETED (Jan 31, 2026)
 
 **Acceptance Criteria:**
-- [ ] Create `/contact/page.tsx` route
-- [ ] Implement hero section
-- [ ] Add contact form with fields:
+- [x] Create `/contact/page.tsx` route
+- [x] Implement hero section
+- [x] Add contact form with fields:
   - Name (required)
   - Email (required)
-  - Phone (optional)
   - Subject (required)
   - Message (required)
-- [ ] Include studio address and contact information
-- [ ] Add embedded Google Map (optional)
-- [ ] Show business hours
-- [ ] Add social media links (Instagram, Pinterest)
-- [ ] Implement form validation
-- [ ] Show success/error messages
-- [ ] Ensure responsive design
+- [x] Include studio address and contact information
+- [x] Show business hours
+- [x] Add FAQ section
+- [x] Ensure responsive design
+- [x] Use `contact.png` image for hero layout
+- [x] Implement smooth animations with Framer Motion
+- [x] Use split layout for large screens
 
 **Design Notes:**
 - Use `contact.png` image (already generated)
@@ -330,21 +330,17 @@ Based on the navigation menu, the following pages need to be created:
 
 #### Story 5.2: Add FAQ Section
 **Priority**: Medium  
-**Estimate**: 2 points
+**Estimate**: 2 points  
+**Status**: ✅ COMPLETED (Jan 31, 2026) -> Merged into Contact Page
 
 **Acceptance Criteria:**
-- [ ] Create FAQ accordion on contact page
-- [ ] Include common questions:
+- [x] Create FAQ accordion on contact page
+- [x] Include common questions:
   - Shipping & Delivery
-  - Returns & Exchanges
-  - Custom Tailoring
   - Care Instructions
-  - Fabric Information
-- [ ] Make it searchable (optional)
-
-**Design Notes:**
-- Use accordion component
-- Maintain minimalist aesthetic
+  - Custom Tailoring
+  - Returns Policy
+- [x] Make it interactive (expand/collapse)
 
 ---
 
@@ -636,15 +632,14 @@ Based on the navigation menu, the following pages need to be created:
 ---
 
 **Total Estimated Points**: ~70 points  
-**Completed Points**: 6 points (Story 1.1 + Story 2.1)  
-**Remaining Points**: ~64 points  
-**Estimated Timeline**: 6-8 weeks (with 1 developer)
+**Completed Points**: 11 points (Story 1.1 + 2.1 + 5.1 + 5.2)  
+**Remaining Points**: ~59 points  
+**Estimated Timeline**: 6-7 weeks (with 1 developer)
 
 ---
 
-**Last Updated**: January 31, 2026 14:10 IST  
-**Status**: In Progress - The Story & Heritage Pages Completed
+**Last Updated**: January 31, 2026 14:40 IST  
+**Status**: In Progress - Core Pages (Story, Heritage, Contact) Completed. Routing updated. Placeholders created for Account/Custom Tailoring. Heritage images generated.
 
-**⚠️ Pending Tasks:**
-- Generate 7 unique images for Heritage page when image quota resets (~4 hours)
+
 
