@@ -173,13 +173,13 @@ export default function Footer() {
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t border-bone/10 text-[10px] uppercase tracking-widest text-bone/50">
                     <span>© {new Date().getFullYear()} Sivi Studio. All Rights Reserved.</span>
                     <div className="flex gap-6">
-                        <Link href="/privacy" className="hover:text-bone transition-colors">
+                        <Link href="/privacy-policy" className="hover:text-bone transition-colors">
                             Privacy
                         </Link>
-                        <Link href="/terms" className="hover:text-bone transition-colors">
+                        <Link href="/terms-of-service" className="hover:text-bone transition-colors">
                             Terms
                         </Link>
-                        <Link href="/shipping" className="hover:text-bone transition-colors">
+                        <Link href="/shipping-policy" className="hover:text-bone transition-colors">
                             Shipping
                         </Link>
                     </div>
