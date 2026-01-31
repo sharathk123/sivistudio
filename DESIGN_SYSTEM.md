@@ -1,6 +1,6 @@
 # Sivi Studio Design System Documentation
 
-> **Version 2.0** — Updated January 2026  
+> **Version 2.1** — Updated January 31, 2026  
 > Complete reference for the Sivi Studio editorial design system
 
 ---
@@ -16,7 +16,8 @@
 7. [Effects & Enhancements](#effects--enhancements)
 8. [Utility Classes](#utility-classes)
 9. [Component Patterns](#component-patterns)
-10. [Best Practices](#best-practices)
+10. [Branding Assets](#branding-assets)
+11. [Best Practices](#best-practices)
 
 ---
 
@@ -493,6 +494,33 @@ Component Implementation
 >
   {/* Header content */}
 </motion.header>
+```
+
+---
+
+## Branding Assets
+
+### Favicon & Icons
+The site uses custom branded iconography generated to match the premium "Couturier" identity.
+
+- **Primary Logo Icon**: A stylized serif 'S' with a needle silhouette in gold.
+- **Favicon**: Multi-size icons (`32x32`, `16x16`) for cross-browser compatibility.
+- **Apple Touch Icon**: `180x180` high-resolution icon for mobile bookmarks.
+- **Assets Location**: `public/` directory (`favicon.ico`, `logo-icon.png`, etc.)
+
+### Branding Metadata
+Metadata is centralized in `src/app/layout.tsx` using the Next.js Metadata API.
+
+```tsx
+export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+}
 ```
 
 ---

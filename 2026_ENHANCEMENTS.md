@@ -143,6 +143,16 @@ Touchable-feeling interactions.
 - Inset highlight for depth
 - Smooth transitions
 
+### 11. **Editorial Journal** 📖
+Magazine-style long-form content system.
+
+**Features:**
+- ✅ Structured data model in `journalData.ts`
+- ✅ Dynamic dynamic article pages with rich headers
+- ✅ Seamless integration with homepage `JournalTeaser`
+- ✅ Optimized readable typography with editorial spacing
+- ✅ Framer Motion entrance animations for article blocks
+
 ## 🎯 Design System Updates
 
 ### New Color Tokens

@@ -12,17 +12,9 @@ This document contains user stories for all remaining pages and features that ne
 
 ---
 
-## 🎯 Menu Items to Implement
-
-Based on the navigation menu, the following pages need to be created:
-
-1. ✅ **Home** - COMPLETED
-2. ⏳ **Collections** - TO BE INTEGRATED WITH SANITY (excluded from this document)
-3. ✅ **The Story** - COMPLETED (Jan 31, 2026)
-4. ✅ **Heritage** - COMPLETED (Jan 31, 2026) 
-5. ✅ **Custom Tailoring** - COMPLETED (Jan 31, 2026)
 6. 🚧 **Account** - IN PROGRESS (UI Implemented)
 7. ✅ **Contact** - COMPLETED (Jan 31, 2026)
+8. ✅ **Journal** - COMPLETED (Jan 31, 2026)
 
 ---
 
@@ -713,12 +705,41 @@ Based on the navigation menu, the following pages need to be created:
 
 ---
 
-**Total Estimated Points**: ~70 points
-**Completed Points**: 11 points (Story 1.1 + 2.1 + 5.1 + 5.2)
+**Total Estimated Points**: ~75 points
+**Completed Points**: 16 points (Story 1.1 + 2.1 + 5.1 + 5.2 + Epic 6)
 **Remaining Points**: ~59 points
-**Estimated Timeline**: 6-7 weeks (with 1 developer)
+**Estimated Timeline**: 5-6 weeks (with 1 developer)
 
 ---
 
-**Last Updated**: January 31, 2026 14:55 IST
-**Status**: In Progress - Core Pages (Story, Heritage, Contact, Custom Tailoring) Fully Completed.
+## 📸 Epic 6: Journal Section (Editorial)
+
+**As a** visitor
+**I want to** read editorial articles about textile heritage and craft
+**So that** I can engage with the brand's cultural perspective
+
+#### Story 6.1: Create Journal Listing Page
+**Status**: ✅ COMPLETED (Jan 31, 2026)
+- [x] Create `/journal/page.tsx`
+- [x] Implement editorial list layout with excerpts
+- [x] Create `journalData.ts` for structured article data
+- [x] Integrate with `JournalTeaser` on homepage
+
+#### Story 6.2: Create Journal Article View
+**Status**: ✅ COMPLETED (Jan 31, 2026)
+- [x] Create `/journal/[slug]/page.tsx`
+- [x] Implement full article layout with rich headers and typography
+- [x] Ensure responsive reading experience
+- [x] Add "Back to Journal" navigation
+
+---
+
+**Total Estimated Points**: ~75 points
+**Completed Points**: 16 points (Story 1.1 + 2.1 + 5.1 + 5.2 + Epic 6)
+**Remaining Points**: ~59 points
+**Estimated Timeline**: 5-6 weeks (with 1 developer)
+
+---
+
+**Last Updated**: January 31, 2026 19:45 IST
+**Status**: In Progress - Core Pages (Story, Heritage, Contact, Custom Tailoring, Journal) Fully Completed. Branded Favicon & Site Metadata Updated.

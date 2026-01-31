@@ -124,19 +124,19 @@ Sivi Studio uses a **comprehensive design system** with CSS variables and utilit
 - [x] Global manifest documented
 - [x] Sanity Studio configured
 - [x] Sanity API token generated
+- [x] Supabase database setup & Auth implemented
+- [x] Editorial pages (The Story, Heritage, Contact, Custom Tailoring)
+- [x] Journal section (Listing & Articles)
+- [x] Branded custom favicon & metadata
 
 ### ⏳ In Progress
-- [ ] Supabase database setup
-- [ ] Next.js application scaffold
-- [ ] Custom Sanity schemas
-- [ ] Gemini AI integration
+- [ ] Shopping cart functionality
+- [/] Gemini AI stylist integration (UI ready)
 
 ### 📝 Pending
-- [ ] Product catalog implementation
-- [ ] Editorial content system
-- [ ] AI Stylist interface
-- [ ] Payment integration
-- [ ] Logistics setup
+- [ ] Product catalog Sanity population
+- [ ] Payment integration (Razorpay)
+- [ ] Logistics setup (Shiprocket)
 
 ---
 
