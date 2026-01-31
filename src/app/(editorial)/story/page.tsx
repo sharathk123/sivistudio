@@ -26,9 +26,9 @@ export default function StoryPage() {
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/images/hero-modern-vibrant.png"
+                        src="/images/story-hero-threads.png"
                         alt="Indian Handloom Heritage"
-                        className="w-full h-full object-cover opacity-40"
+                        className="w-full h-full object-cover opacity-60"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal" />
                 </motion.div>
