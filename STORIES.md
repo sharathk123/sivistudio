@@ -188,22 +188,23 @@ Based on the navigation menu, the following pages need to be created:
 
 **Priority**: High
 **Estimate**: 4 points
+**Status**: ✅ COMPLETED (Jan 31, 2026)
 
 **Acceptance Criteria:**
 
-- [ ] Create `/custom-tailoring/page.tsx` route
-- [ ] Implement hero section explaining custom service
-- [ ] Add "How It Works" section with step-by-step process:
+- [X] Create `/custom-tailoring/page.tsx` route
+- [X] Implement hero section explaining custom service
+- [X] Add "How It Works" section with step-by-step process:
   1. Consultation
   2. Fabric Selection
   3. Design Customization
   4. Measurements
   5. Crafting
   6. Delivery
-- [ ] Include pricing information or "Contact for Quote"
-- [ ] Add gallery of past custom work (use generated images)
-- [ ] Include CTA to book consultation or contact
-- [ ] Ensure responsive design
+- [X] Include pricing information or "Contact for Quote"
+- [X] Add gallery of past custom work (use generated images)
+- [X] Include CTA to book consultation or contact
+- [X] Ensure responsive design
 
 **Design Notes:**
 
@@ -716,5 +717,5 @@ Based on the navigation menu, the following pages need to be created:
 
 ---
 
-**Last Updated**: January 31, 2026 14:45 IST
-**Status**: In Progress - Core Pages (Story, Heritage, Contact) Fully Completed. Heritage Epic Closed.
+**Last Updated**: January 31, 2026 14:55 IST
+**Status**: In Progress - Core Pages (Story, Heritage, Contact, Custom Tailoring) Fully Completed.
