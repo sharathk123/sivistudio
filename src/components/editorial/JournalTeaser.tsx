@@ -3,12 +3,10 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
+import { journalArticles } from '@/data/journalData'
+
 export default function JournalTeaser() {
-    const articles = [
-        { title: "The Art of Pochampally Ikat", category: "Weaving", date: "Jan 26" },
-        { title: "Natural Dyes of Telangana", category: "Craft", date: "Jan 12" },
-        { title: "The Golden Thread: Zari Work", category: "Heritage", date: "Dec 28" }
-    ]
+    const articles = journalArticles.slice(0, 3)
 
     return (
         <section className="bg-ivory py-32 px-6 border-t border-charcoal/10">
@@ -39,19 +37,21 @@ export default function JournalTeaser() {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.1, duration: 0.6 }}
                             viewport={{ once: true }}
-                            className="group cursor-pointer border-b border-charcoal/20 pb-8"
+                            className="group border-b border-charcoal/20 pb-8"
                         >
-                            <div className="flex justify-between items-start mb-2">
-                                <span className="text-xs font-mono text-charcoal-400 uppercase tracking-widest">
-                                    {article.category}
-                                </span>
-                                <span className="text-xs font-mono text-charcoal-400">
-                                    {article.date}
-                                </span>
-                            </div>
-                            <h3 className="font-serif text-3xl text-charcoal group-hover:italic transition-all duration-300">
-                                {article.title}
-                            </h3>
+                            <Link href={`/journal/${article.slug}`}>
+                                <div className="flex justify-between items-start mb-2">
+                                    <span className="text-xs font-mono text-charcoal-400 uppercase tracking-widest">
+                                        {article.category}
+                                    </span>
+                                    <span className="text-xs font-mono text-charcoal-400">
+                                        {article.date}
+                                    </span>
+                                </div>
+                                <h3 className="font-serif text-3xl text-charcoal group-hover:italic transition-all duration-300">
+                                    {article.title}
+                                </h3>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

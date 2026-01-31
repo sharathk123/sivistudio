@@ -77,7 +77,7 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                         <span className="text-sm md:text-xl lg:text-2xl tracking-[0.15em] uppercase whitespace-nowrap" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700 }}>
                             SIVI
                         </span>
-                        <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap hidden xs:block" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
+                        <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap hidden md:block" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
                             the couturière
                         </span>
                     </Link>
