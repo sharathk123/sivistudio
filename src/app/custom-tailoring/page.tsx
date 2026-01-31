@@ -51,7 +51,7 @@ const galleryImages = [
         label: 'Silk Wedding Ensemble'
     },
     {
-        src: '/images/modern-ikat-dress-floating.png',
+        src: '/images/custom-ikat-tunic-modern.png',
         alt: 'Contemporary Ikat',
         label: 'Modern Ikat Tunic'
     }
