@@ -61,7 +61,7 @@ export default function CustomTailoringPage() {
     return (
         <main className="bg-bone min-h-screen">
             {/* Hero Section */}
-            <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-charcoal">
+            <section className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/images/custom-tailoring.png"

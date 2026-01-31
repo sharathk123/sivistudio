@@ -48,7 +48,7 @@ export default function ContactPage() {
     return (
         <main className="bg-bone">
             {/* Hero Section */}
-            <section ref={heroRef} className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-charcoal">
+            <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <motion.div
                     style={{ opacity: heroOpacity, scale: heroScale }}
                     className="absolute inset-0 z-0"
