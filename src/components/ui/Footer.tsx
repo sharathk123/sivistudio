@@ -85,6 +85,11 @@ export default function Footer() {
                                     Bespoke Tailoring
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/shipping-policy" className="hover:text-white cursor-pointer transition-colors">
+                                    Shipping & Returns
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
