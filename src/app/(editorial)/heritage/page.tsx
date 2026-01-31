@@ -95,9 +95,9 @@ export default function HeritagePage() {
                     <img
                         src="/images/heritage-hero-textiles.png"
                         alt="Indian Handloom Heritage"
-                        className="w-full h-full object-cover opacity-60"
+                        className="w-full h-full object-cover opacity-70"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal" />
                 </motion.div>
 
                 <div className="relative z-10 text-center px-6 max-w-5xl">
