@@ -77,6 +77,26 @@ export default function HeritagePage() {
             characteristics: 'Lightweight silk, brocade motifs, delicate texture, traditional designs',
             image: '/images/heritage-uppada-jamdani-new.png',
             color: 'teal'
+        },
+        {
+            id: 'narayanpet',
+            name: 'Narayanpet',
+            region: 'Telangana',
+            description: 'Known for its distinct checkered pattern and temple borders. Historically woven for royalty, Narayanpet cottons and silks are celebrated for their earthy tones and lightweight comfort.',
+            technique: 'Interlock weft technique with checked body',
+            characteristics: 'Checkered patterns, contrasting temple borders, earthy colors',
+            image: '/images/heritage-narayanpet-modern.png',
+            color: 'maroon'
+        },
+        {
+            id: 'gollabama',
+            name: 'Gollabama',
+            region: 'Telangana',
+            description: 'A geograpical indication (GI) tagged weave from Siddipet, featuring the iconic "Gollabama" (milkmaid) motif woven into the border. A symbol of rural Telangana culture.',
+            technique: 'Intricate inlay technique for motifs',
+            characteristics: 'Signature milkmaid motifs, cotton fabric, single color body',
+            image: '/images/heritage-gollabama-modern.png',
+            color: 'olive'
         }
     ]
 
