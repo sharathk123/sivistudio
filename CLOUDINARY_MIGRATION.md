@@ -2,18 +2,18 @@
 
 ## ✅ Images Uploaded Successfully!
 
-All 38 images have been uploaded to Cloudinary in the **"sivi studio"** folder.
+All 38 images have been uploaded to Cloudinary in the **"sivi-studio"** folder.
 
 ## 🔗 Your Cloudinary URLs
 
 Your images are now available at:
 ```
-https://res.cloudinary.com/dj3a6c22e/image/upload/sivi%20studio/{image-name}
+https://res.cloudinary.com/dj3a6c22e/image/upload/sivi-studio/{image-name}
 ```
 
 For example:
-- `hero-ikat.png` → `https://res.cloudinary.com/dj3a6c22e/image/upload/sivi%20studio/hero-ikat`
-- `heritage-pochampally-dress.png` → `https://res.cloudinary.com/dj3a6c22e/image/upload/sivi%20studio/heritage-pochampally-dress`
+- `hero-ikat.png` → `https://res.cloudinary.com/dj3a6c22e/image/upload/sivi-studio/hero-ikat`
+- `heritage-pochampally-dress.png` → `https://res.cloudinary.com/dj3a6c22e/image/upload/sivi-studio/heritage-pochampally-dress`
 
 ## 🎯 How to Use Cloudinary Images
 
@@ -39,7 +39,7 @@ export default function MyComponent() {
 
 ```tsx
 <Image
-    src="https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi%20studio/hero-ikat"
+    src="https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/hero-ikat"
     alt="Hero Ikat"
     width={1200}
     height={800}

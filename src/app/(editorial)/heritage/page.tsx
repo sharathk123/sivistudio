@@ -2,10 +2,12 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
+import Image from 'next/image'
 import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
 import StickyHeader from '@/components/ui/StickyHeader'
 
+import { IMAGES } from '@/lib/images'
 import { weaves } from '@/data/heritageData'
 
 export default function HeritagePage() {
@@ -32,11 +34,12 @@ export default function HeritagePage() {
                     className="absolute inset-0 z-0"
                 >
                     {/* Heritage Hero Image */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/images/heritage-hero-textiles.png"
+                    <Image
+                        src={IMAGES.heritageHeroTextiles}
                         alt="Indian Handloom Heritage"
-                        className="w-full h-full object-cover opacity-70"
+                        fill
+                        priority
+                        className="object-cover opacity-70"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal" />
                 </motion.div>
@@ -134,11 +137,11 @@ export default function HeritagePage() {
                     >
                         {/* Image */}
                         <div className="relative h-[600px] rounded-sm overflow-hidden order-2 lg:order-1">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <Image
                                 src={activeWeaveData.image}
                                 alt={`${activeWeaveData.name} from ${activeWeaveData.region}`}
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
                         </div>
 

@@ -1,74 +1,53 @@
 'use client'
 
 import Image from 'next/image'
-import { weaves } from '@/data/heritageData'
+import { marqueeItems } from '@/data/marqueeData'
 
-// Additional items not in the weaves data
-const additionalItems = [
-    {
-        name: 'Handspun Cotton',
-        image: '/images/ikat-fabric-closeup.png'
-    },
-    {
-        name: 'Zari Embroidery',
-        image: '/images/saree-editorial.png'
-    },
-    {
-        name: 'Hyderabad Studio',
-        image: '/images/collection-studio.png'
-    }
-]
-
-// Combine and duplicate for infinite scroll
-const marqueeItems = [
-    ...weaves.map(w => ({ name: w.name, image: w.image })),
-    ...additionalItems
-]
-
+/**
+ * HeritageMarquee Component
+ * Displays an infinite scrolling marquee of handloom heritage items.
+ * Items are deduplicated and looped for a seamless visual experience.
+ */
 export default function HeritageMarquee() {
-    return (
-        <div className="overflow-hidden bg-ivory-50 border-y border-charcoal/10 py-8 md:py-12 relative">
-            <div className="flex animate-marquee whitespace-nowrap gap-10 md:gap-16 min-w-full">
-                {/* First set of items */}
-                {marqueeItems.map((item, idx) => (
-                    <div key={`marquee-1-${idx}`} className="flex flex-col items-center gap-3 md:gap-4 flex-shrink-0 group cursor-default min-w-[100px] md:min-w-[160px]">
-                        <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
-                            <Image
-                                src={item.image}
-                                alt={item.name}
-                                fill
-                                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                sizes="(max-width: 768px) 80px, 128px"
-                            />
-                        </div>
-                        <span className="text-xs md:text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[100px] md:max-w-[160px] font-medium">
-                            {item.name}
-                        </span>
-                    </div>
-                ))}
+    // Create a triple set of items to ensure enough coverage for the animation on large screens
+    // or very fast transitions. Two sets is usually enough fortranslateX(-50%), 
+    // but three sets with translateX(-33.33%) is often more robust for very long marquees.
+    // However, the current CSS is built for 50%, so we'll stick to 2 sets.
+    const loopItems = [...marqueeItems, ...marqueeItems]
 
-                {/* Duplicate set for seamless loop */}
-                {marqueeItems.map((item, idx) => (
-                    <div key={`marquee-2-${idx}`} className="flex flex-col items-center gap-3 md:gap-4 flex-shrink-0 group cursor-default min-w-[100px] md:min-w-[160px]">
-                        <div className="relative w-20 h-20 md:w-32 md:h-32 rounded-sm overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-xl transition-all duration-300">
+    return (
+        <section className="overflow-hidden bg-ivory-50 border-y border-charcoal/10 py-16 md:py-24 relative" aria-label="Heritage Collection Marquee">
+            <div className="flex animate-marquee whitespace-nowrap gap-16 md:gap-24 min-w-full">
+                {loopItems.map((item, idx) => (
+                    <div
+                        key={`${item.name}-${idx}`}
+                        className="flex flex-col items-center gap-4 md:gap-6 flex-shrink-0 group cursor-default min-w-[160px] md:min-w-[240px]"
+                    >
+                        <div className="relative w-32 h-32 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-charcoal/20 group-hover:border-sage group-hover:shadow-2xl transition-all duration-300">
                             <Image
                                 src={item.image}
-                                alt={item.name}
+                                alt={`${item.name} - ${item.category}`}
                                 fill
                                 className="object-cover group-hover:scale-110 transition-transform duration-500"
-                                sizes="(max-width: 768px) 80px, 128px"
+                                sizes="(max-width: 768px) 128px, 224px"
+                                priority={idx < 10} // Priority load the first few images
                             />
                         </div>
-                        <span className="text-xs md:text-sm uppercase tracking-wide text-charcoal font-mono group-hover:text-sage transition-colors text-center leading-tight max-w-[100px] md:max-w-[160px] font-medium">
-                            {item.name}
-                        </span>
+                        <div className="text-center space-y-1">
+                            <span className="block text-[10px] md:text-xs uppercase tracking-[0.2em] text-sage font-bold">
+                                {item.category}
+                            </span>
+                            <span className="block text-sm md:text-base uppercase tracking-widest text-charcoal font-mono group-hover:text-sage transition-colors leading-tight max-w-[160px] md:max-w-[240px] font-medium">
+                                {item.name}
+                            </span>
+                        </div>
                     </div>
                 ))}
             </div>
 
-            {/* Gradient Fade Edges */}
-            <div className="absolute top-0 left-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-ivory-50 to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-ivory-50 to-transparent z-10 pointer-events-none" />
-        </div>
+            {/* Gradient Fade Edges for Professional Polish */}
+            <div className="absolute top-0 left-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-ivory-50 to-transparent z-10 pointer-events-none" aria-hidden="true" />
+            <div className="absolute top-0 right-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-ivory-50 to-transparent z-10 pointer-events-none" aria-hidden="true" />
+        </section>
     )
 }

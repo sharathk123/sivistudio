@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useState, useRef, useEffect } from 'react'
 import { ArrowUpRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface MoodBoardItem {
     id: string
@@ -142,15 +143,7 @@ export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
 function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
-    const imgRef = useRef<HTMLImageElement>(null)
     const cardRef = useRef<HTMLDivElement>(null)
-
-    // Handle cached images that don't trigger onLoad
-    useEffect(() => {
-        if (imgRef.current?.complete) {
-            setIsLoaded(true)
-        }
-    }, [])
 
     // 2026: Blur parallax on scroll (reduced intensity for visibility)
     const { scrollYProgress } = useScroll({
@@ -205,17 +198,16 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
                         <div className="absolute inset-0 gradient-loading animate-pulse" />
                     )}
 
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        ref={imgRef}
+                    <Image
                         src={item.src}
                         alt={item.alt}
+                        fill
                         className={cn(
-                            "w-full h-full object-cover transition-opacity duration-1000 ease-in-out",
+                            "object-cover transition-opacity duration-1000 ease-in-out",
                             isLoaded ? "opacity-100" : "opacity-0"
                         )}
                         onLoad={() => setIsLoaded(true)}
-                        onError={() => setIsLoaded(true)}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
 
                     {/* Enhanced Gradient Overlay */}

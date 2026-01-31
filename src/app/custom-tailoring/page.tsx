@@ -2,61 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Footer from '@/components/ui/Footer'
-import { Ruler, Scissors, PenTool, MessageSquare, Truck, CheckCircle } from 'lucide-react'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import StickyHeader from '@/components/ui/StickyHeader'
+import { IMAGES } from '@/lib/images'
 
-const processSteps = [
-    {
-        title: 'Consultation',
-        description: 'Discuss your vision, preferences, and occasion with our lead stylist.',
-        icon: MessageSquare,
-        delay: 0.1
-    },
-    {
-        title: 'Fabric Selection',
-        description: 'Choose from our curated collection of authentic handloom textiles.',
-        icon: CheckCircle,
-        delay: 0.2
-    },
-    {
-        title: 'Design & Measure',
-        description: 'We finalize the silhouette and take precise measurements for a perfect fit.',
-        icon: Ruler,
-        delay: 0.3
-    },
-    {
-        title: 'Handcrafting',
-        description: 'Our master tailors and artisans bring your garment to life.',
-        icon: Scissors,
-        delay: 0.4
-    },
-    {
-        title: 'Delivery',
-        description: 'Your bespoke outfit is delivered to your doorstep, ready to wear.',
-        icon: Truck,
-        delay: 0.5
-    }
-]
-
-const galleryImages = [
-    {
-        src: '/images/heritage-pochampally-dress.png',
-        alt: 'Custom Pochampally Dress',
-        label: 'Ikat Evening Gown'
-    },
-    {
-        src: '/images/heritage-kanjivaram-dress.png',
-        alt: 'Bespoke Kanjivaram',
-        label: 'Silk Wedding Ensemble'
-    },
-    {
-        src: '/images/custom-ikat-tunic-modern.png',
-        alt: 'Contemporary Ikat',
-        label: 'Modern Ikat Tunic'
-    }
-]
+import { processSteps, galleryImages } from '@/data/tailoringData'
 
 export default function CustomTailoringPage() {
     return (
@@ -66,7 +18,7 @@ export default function CustomTailoringPage() {
             <section className="relative h-screen flex items-center justify-center overflow-hidden bg-charcoal">
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/images/custom-tailoring.png"
+                        src={IMAGES.customTailoring}
                         alt="Bespoke Tailoring"
                         fill
                         className="object-cover opacity-70"
@@ -181,6 +133,7 @@ export default function CustomTailoringPage() {
                                     alt={img.alt}
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                                     <p className="text-bone font-serif text-xl italic">{img.label}</p>

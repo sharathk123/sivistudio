@@ -2,10 +2,13 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useState } from 'react'
+import Image from 'next/image'
 import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
 import { MapPin, Mail, Phone, Clock, Send } from 'lucide-react'
 import StickyHeader from '@/components/ui/StickyHeader'
+import { IMAGES } from '@/lib/images'
+import { faqItems } from '@/data/contactData'
 
 export default function ContactPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -55,11 +58,13 @@ export default function ContactPage() {
                     style={{ opacity: heroOpacity, scale: heroScale }}
                     className="absolute inset-0 z-0"
                 >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/images/contact.png"
+                    <Image
+                        src={IMAGES.contact}
                         alt="Sivi Studio Interior"
-                        className="w-full h-full object-cover opacity-50"
+                        fill
+                        priority
+                        className="object-cover opacity-50"
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal" />
                 </motion.div>
@@ -266,22 +271,13 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-6">
-                        <FAQItem
-                            question="Do you ship internationally?"
-                            answer="Yes, we ship worldwide. International shipping typically takes 7-14 business days depending on the destination. Shipping costs are calculated at checkout."
-                        />
-                        <FAQItem
-                            question="How do I care for my handloom garments?"
-                            answer="Most of our handloom pieces, especially silk and Jamdani, should be dry cleaned only to maintain their texture and longevity. Cotton handlooms can be gently hand-washed in cold water with mild detergent."
-                        />
-                        <FAQItem
-                            question="Can I customize the fit of a dress?"
-                            answer="Absolutely. We offer custom tailoring services. You can select 'Custom Size' on the product page or visit our Custom Tailoring page to book a consultation."
-                        />
-                        <FAQItem
-                            question="What is your return policy?"
-                            answer="We accept returns for unworn items with tags attached within 14 days of delivery. Custom-made items are final sale but we offer alteration services if the fit isn't perfect."
-                        />
+                        {faqItems.map((item, index) => (
+                            <FAQItem
+                                key={index}
+                                question={item.question}
+                                answer={item.answer}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>

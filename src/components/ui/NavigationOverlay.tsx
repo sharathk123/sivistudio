@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
+import { IMAGES } from '@/lib/images'
+import Image from 'next/image'
 
 interface NavigationOverlayProps {
     isOpen: boolean
@@ -11,13 +13,13 @@ interface NavigationOverlayProps {
 }
 
 const menuItems = [
-    { label: 'Home', href: '/', image: '/images/hero-ikat.png' },
-    { label: 'Collections', href: '/shop', image: '/images/saree-editorial.png' },
-    { label: 'The Story', href: '/story', image: '/images/story-origins-workshop.png' },
-    { label: 'Heritage', href: '/heritage', image: '/images/heritage-hero-textiles.png' },
-    { label: 'Custom Tailoring', href: '/custom-tailoring', image: '/images/custom-tailoring.png' },
-    { label: 'Account', href: '/account', image: '/images/account.png' },
-    { label: 'Contact', href: '/contact', image: '/images/contact.png' },
+    { label: 'Home', href: '/', image: IMAGES.heroIkat },
+    { label: 'Collections', href: '/shop', image: IMAGES.sareeEditorial },
+    { label: 'The Story', href: '/story', image: IMAGES.storyOrigins },
+    { label: 'Heritage', href: '/heritage', image: IMAGES.heritageHeroTextiles },
+    { label: 'Custom Tailoring', href: '/custom-tailoring', image: IMAGES.customTailoring },
+    { label: 'Account', href: '/account', image: IMAGES.account },
+    { label: 'Contact', href: '/contact', image: IMAGES.contact },
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
@@ -103,11 +105,12 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                     transition={{ duration: 0.6 }}
                                     className="absolute inset-0"
                                 >
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
+                                    <Image
                                         src={activeImage}
                                         alt="Menu Preview"
-                                        className="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                                        fill
+                                        className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                                        sizes="50vw"
                                     />
                                 </motion.div>
                             )}

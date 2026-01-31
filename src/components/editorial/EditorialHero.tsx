@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { IMAGES } from '@/lib/images'
 
 export default function EditorialHero() {
     return (
@@ -9,11 +11,13 @@ export default function EditorialHero() {
         >
             {/* Hero Background Image */}
             <div className="absolute inset-0 z-0">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/images/hero-ikat.png"
+                <Image
+                    src={IMAGES.heroIkat}
                     alt="Pochampally Ikat Fabric"
-                    className="h-full w-full object-cover opacity-70"
+                    fill
+                    priority
+                    className="object-cover opacity-70"
+                    sizes="100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/80" />
             </div>

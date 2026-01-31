@@ -3,44 +3,15 @@ import MoodBoardGrid from '@/components/editorial/MoodBoardGrid'
 import JournalTeaser from '@/components/editorial/JournalTeaser'
 import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import StickyHeader from '@/components/ui/StickyHeader'
 import HeritageMarquee from '@/components/ui/HeritageMarquee'
 
-export default function HomePage() {
-    const collectionItems = [
-        {
-            id: '1',
-            src: '/images/pochampally-ikat-modern.png',
-            alt: 'Pochampally Ikat Saree - Editorial',
-            aspectRatio: 'portrait' as const,
-            label: 'Pochampally Ikat Saree'
-        },
-        {
-            id: '2',
-            src: '/images/kurta-mannequin.png',
-            alt: 'Contemporary Handwoven Cotton Kurta',
-            aspectRatio: 'square' as const,
-            label: 'Handwoven Cotton Kurta',
-            colSpan: 1 as const
-        },
-        {
-            id: '3',
-            src: '/images/layered-outfit-mannequin.png',
-            alt: 'Modern Layered Handloom Outfit',
-            aspectRatio: 'landscape' as const,
-            label: 'Layered Handloom Ensemble',
-            colSpan: 2 as const
-        },
-        {
-            id: '4',
-            src: '/images/hero-ikat.png',
-            alt: 'Asymmetric Ikat Wrap Dress',
-            aspectRatio: 'portrait' as const,
-            label: 'Contemporary Ikat Dress'
-        }
-    ]
+import { IMAGES } from '@/lib/images'
+import { collectionItems } from '@/data/homeData'
 
+export default function HomePage() {
     return (
         <main className="bg-bone min-h-screen">
             <StickyHeader theme="dark" />
@@ -87,11 +58,12 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
                         {/* Large Lifestyle Image - 60% width */}
                         <div className="lg:col-span-3 relative h-[500px] lg:h-[700px]">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                                src="/images/collection-studio.png"
+                            <Image
+                                src={IMAGES.collectionStudio}
                                 alt="Sivi Studio - Contemporary Handloom Dresses"
-                                className="w-full h-full object-cover rounded-sm"
+                                fill
+                                className="object-cover rounded-sm"
+                                sizes="(max-width: 1024px) 100vw, 60vw"
                             />
                         </div>
 
@@ -126,12 +98,12 @@ export default function HomePage() {
                             </div>
 
                             <div className="pt-6">
-                                <a
+                                <Link
                                     href="/story"
                                     className="inline-block border-b-2 border-sage text-sage hover:text-sage-700 hover:border-sage-700 transition-colors pb-1 text-sm uppercase tracking-widest"
                                 >
                                     Read Our Story →
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

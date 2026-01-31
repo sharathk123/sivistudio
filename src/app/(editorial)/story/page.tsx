@@ -6,6 +6,7 @@ import Image from 'next/image'
 import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
 import StickyHeader from '@/components/ui/StickyHeader'
+import { IMAGES } from '@/lib/images'
 
 export default function StoryPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -26,11 +27,13 @@ export default function StoryPage() {
                     style={{ opacity: heroOpacity, scale: heroScale }}
                     className="absolute inset-0 z-0"
                 >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src="/images/story-hero-threads.png"
+                    <Image
+                        src={IMAGES.storyHeroThreads}
                         alt="Indian Handloom Heritage"
-                        className="w-full h-full object-cover opacity-60"
+                        fill
+                        priority
+                        className="object-cover opacity-60"
+                        sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal" />
                 </motion.div>
@@ -107,11 +110,12 @@ export default function StoryPage() {
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 className="relative h-[600px] rounded-sm overflow-hidden"
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src="/images/story-origins-workshop.png"
+                                <Image
+                                    src={IMAGES.storyOrigins}
                                     alt="Handloom Heritage Workshop"
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
                                 />
                             </motion.div>
                         </div>
@@ -159,11 +163,12 @@ export default function StoryPage() {
                                 transition={{ duration: 0.8 }}
                                 className="relative h-[400px] ml-0 lg:ml-16"
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src="/images/story-jamdani-dress.png"
+                                <Image
+                                    src={IMAGES.storyJamdani}
                                     alt="Jamdani Handloom Dress from Bengal"
-                                    className="w-full h-full object-cover rounded-sm"
+                                    fill
+                                    className="object-cover rounded-sm"
+                                    sizes="(max-width: 1024px) 90vw, 50vw"
                                 />
                             </motion.div>
                             <motion.div
@@ -173,11 +178,12 @@ export default function StoryPage() {
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 className="relative h-[300px] mr-0 lg:mr-16"
                             >
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src="/images/story-kanjivaram-outfit.png"
+                                <Image
+                                    src={IMAGES.storyKanjivaram}
                                     alt="Kanjivaram Silk Contemporary Outfit"
-                                    className="w-full h-full object-cover rounded-sm"
+                                    fill
+                                    className="object-cover rounded-sm"
+                                    sizes="(max-width: 1024px) 90vw, 50vw"
                                 />
                             </motion.div>
                         </div>

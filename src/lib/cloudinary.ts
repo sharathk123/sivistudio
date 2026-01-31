@@ -2,11 +2,11 @@
 // Generates optimized Cloudinary URLs for images
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dj3a6c22e'
-const FOLDER = 'sivi studio'
+const FOLDER = 'sivi-studio'
 
 /**
  * Get Cloudinary URL for an image
- * @param imagePath - Local image path (e.g., '/images/hero-ikat.png')
+ * @param imagePath - Local image path (e.g., 'https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi%20studio/hero-ikat')
  * @param options - Cloudinary transformation options
  * @returns Cloudinary URL
  */

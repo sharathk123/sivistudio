@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   title: 'Sivi the Couturier | Handloom Heritage & Custom Tailoring',
   description: 'Premium Hyderabad-based couturier specializing in handloom heritage, conscious craft, and bespoke tailoring. Discover authentic Indian textiles.',
   icons: {
-    icon: '/sivi-logo.png',
-    apple: '/sivi-logo.png',
+    icon: 'https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/hero-ikat',
+    apple: 'https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/hero-ikat',
   },
   openGraph: {
     title: 'Sivi the Couturier',
     description: 'Handloom Heritage & Custom Tailoring',
-    images: ['/sivi-logo.png'],
+    images: ['https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/hero-ikat'],
   },
 }
 
