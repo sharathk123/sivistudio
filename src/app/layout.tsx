@@ -31,7 +31,6 @@ export const metadata: Metadata = {
 import SmoothScroll from '@/components/ui/SmoothScroll'
 import Loader from '@/components/ui/Loader'
 
-import StickyHeader from '@/components/ui/StickyHeader'
 import BoutiqueButton from '@/components/ui/BoutiqueButton'
 import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
 import { CartProvider } from '@/context/CartContext'
@@ -46,7 +45,6 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
         <CartProvider>
-          <StickyHeader />
           <CartDrawer />
           <BoutiqueButton />
           <StyleConciergeButton />

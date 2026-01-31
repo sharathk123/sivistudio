@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import AddToCartButton from '@/components/shop/AddToCartButton'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 export const revalidate = 60
 
@@ -18,6 +19,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
     return (
         <div className="bg-bone min-h-screen">
+            <StickyHeader theme="light" />
             {/* Top Section: Split Layout */}
             <div className="flex flex-col lg:flex-row min-h-screen">
 

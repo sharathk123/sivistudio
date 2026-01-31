@@ -1,6 +1,7 @@
 import { getProducts } from '@/lib/sanity/client'
 import ProductCard from '@/components/shop/ProductCard'
 import Link from 'next/link'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -9,6 +10,7 @@ export default async function ShopPage() {
 
     return (
         <div className="min-h-screen bg-bone">
+            <StickyHeader theme="light" />
             {/* Header */}
             <div className="pt-32 pb-16 px-6 text-center">
                 <h1 className="font-serif text-5xl md:text-7xl text-charcoal italic mb-6">

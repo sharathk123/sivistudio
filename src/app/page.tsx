@@ -4,6 +4,8 @@ import JournalTeaser from '@/components/editorial/JournalTeaser'
 import Footer from '@/components/ui/Footer'
 import Link from 'next/link'
 
+import StickyHeader from '@/components/ui/StickyHeader'
+
 export default function HomePage() {
     const collectionItems = [
         {
@@ -40,6 +42,7 @@ export default function HomePage() {
 
     return (
         <main className="bg-bone min-h-screen">
+            <StickyHeader theme="dark" />
             <EditorialHero />
 
             {/* Philosophy Section - Chromatic Pacing (Charcoal) */}

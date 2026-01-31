@@ -1,8 +1,10 @@
 import Footer from '@/components/ui/Footer'
+import StickyHeader from '@/components/ui/StickyHeader'
 
 export default function JournalPage() {
     return (
         <main className="bg-bone min-h-screen flex flex-col">
+            <StickyHeader theme="light" />
             <div className="flex-grow flex items-center justify-center pt-32 pb-20 px-6">
                 <div className="text-center max-w-2xl mx-auto">
                     <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">The Journal</span>
