@@ -75,7 +75,7 @@ export default function HeritagePage() {
             description: 'A lightweight silk weave combining Jamdani technique with traditional South Indian motifs. Known for its feather-light texture and intricate brocade work.',
             technique: 'Jamdani supplementary weft on silk base',
             characteristics: 'Lightweight silk, brocade motifs, delicate texture, traditional designs',
-            image: '/images/heritage-uppada-dress.png',
+            image: '/images/heritage-uppada-jamdani-new.png',
             color: 'teal'
         }
     ]
