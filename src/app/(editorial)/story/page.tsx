@@ -26,8 +26,8 @@ export default function StoryPage() {
                 >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/images/hero-ikat.png"
-                        alt="Telangana Weaving Heritage"
+                        src="/images/hero-modern-vibrant.png"
+                        alt="Indian Handloom Heritage"
                         className="w-full h-full object-cover opacity-40"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal" />
@@ -40,7 +40,7 @@ export default function StoryPage() {
                         transition={{ delay: 0.3, duration: 0.8 }}
                         className="block text-sage text-xs uppercase tracking-[0.3em] mb-8"
                     >
-                        Est. 1947 • Hyderabad
+                        Hyderabad Studio • Handlooms from Across India
                     </motion.span>
 
                     <motion.h1
@@ -50,7 +50,7 @@ export default function StoryPage() {
                         className="font-serif text-[10vw] md:text-[8vw] leading-[0.9] text-bone italic mb-8"
                     >
                         Threads of <br />
-                        <span className="text-sage-100">Heritage</span>
+                        <span className="text-sage-100">Innovation</span>
                     </motion.h1>
 
                     <motion.p
@@ -59,7 +59,7 @@ export default function StoryPage() {
                         transition={{ delay: 1, duration: 1 }}
                         className="text-ivory-200 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
                     >
-                        From the rhythmic clatter of pit looms in Nalgonda to our design studio in Hyderabad,
+                        From the rhythmic clatter of pit looms across India to our design studio in Hyderabad,
                         Sivi bridges ancestral craftsmanship with contemporary silhouettes.
                     </motion.p>
                 </div>
@@ -86,13 +86,14 @@ export default function StoryPage() {
                                 </h2>
                                 <div className="w-24 h-1 bg-sage" />
                                 <p className="text-charcoal-400 text-lg leading-relaxed font-light">
-                                    In 1947, as India gained independence, the looms of Telangana continued their ancient rhythm.
-                                    Pochampally Ikat, Gadwal silk, and Uppada weaves—each a testament to centuries of textile wisdom
-                                    passed down through generations of master weavers.
+                                    Across India, from the villages of Telangana to the workshops of Bengal, Odisha, and Tamil Nadu,
+                                    master weavers continue their ancient craft. Pochampally Ikat, Jamdani, Sambalpuri, Kanjivaram—each
+                                    a testament to centuries of textile wisdom passed down through generations.
                                 </p>
                                 <p className="text-charcoal-400 text-lg leading-relaxed font-light">
                                     Sivi was born from a simple belief: that these heritage techniques deserved to evolve,
-                                    not fade. That quiet luxury could be woven with conscious intent.
+                                    not fade. That handloom fabrics could be transformed into contemporary dresses, modern outfits,
+                                    and traditional sarees that honor both heritage and modern aesthetics.
                                 </p>
                             </motion.div>
 
@@ -106,8 +107,8 @@ export default function StoryPage() {
                             >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="/images/saree.png"
-                                    alt="Pochampally Ikat Weaving"
+                                    src="/images/story-origins-workshop.png"
+                                    alt="Handloom Heritage Workshop"
                                     className="w-full h-full object-cover"
                                 />
                             </motion.div>
@@ -158,8 +159,8 @@ export default function StoryPage() {
                             >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="/images/kurta.png"
-                                    alt="Handloom Weaving"
+                                    src="/images/story-jamdani-dress.png"
+                                    alt="Jamdani Handloom Dress from Bengal"
                                     className="w-full h-full object-cover rounded-sm"
                                 />
                             </motion.div>
@@ -172,8 +173,8 @@ export default function StoryPage() {
                             >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="/images/dupatta.png"
-                                    alt="Zari Embroidery Detail"
+                                    src="/images/story-kanjivaram-outfit.png"
+                                    alt="Kanjivaram Silk Contemporary Outfit"
                                     className="w-full h-full object-cover rounded-sm"
                                 />
                             </motion.div>
@@ -191,24 +192,24 @@ export default function StoryPage() {
                                 Chapter II
                             </span>
                             <h2 className="font-serif text-5xl md:text-6xl text-bone italic leading-tight">
-                                The Artisan's <br />Touch
+                                Innovation in <br />Every Thread
                             </h2>
                             <div className="w-24 h-1 bg-sage" />
                             <div className="space-y-6 text-ivory-200 text-lg leading-relaxed font-light">
                                 <p>
-                                    In the villages surrounding Hyderabad, master weavers work on traditional pit looms,
-                                    their hands moving with practiced precision. Each Pochampally Ikat pattern is
-                                    tie-dyed before weaving—a technique that requires mathematical precision and
-                                    artistic vision in equal measure.
+                                    From Pochampally's geometric Ikat patterns to Jamdani's delicate motifs, from Sambalpuri's
+                                    traditional borders to Kanjivaram's lustrous silk—we source the finest handlooms from across India.
+                                    Each region brings its unique heritage and technique.
                                 </p>
                                 <p>
-                                    The Gadwal silk-cotton blend, with its distinctive zari borders, takes weeks to complete.
-                                    Every motif, every color transition, is a deliberate choice made by artisans who learned
-                                    their craft from their parents, who learned from theirs.
+                                    But we don't stop at tradition. Our Hyderabad design studio reimagines these heritage fabrics
+                                    into contemporary silhouettes: asymmetric dresses, layered ensembles, modern outfits that fit
+                                    today's lifestyles while honoring centuries of craftsmanship.
                                 </p>
                                 <p>
-                                    At Sivi, we don't just source fabrics. We collaborate. We listen. We ensure that
-                                    every piece honors the hands that created it.
+                                    Every piece is a collaboration between master weavers and modern designers, between ancestral
+                                    wisdom and innovative vision. This is how handlooms evolve—not by abandoning tradition,
+                                    but by giving it new life.
                                 </p>
                             </div>
                         </motion.div>
