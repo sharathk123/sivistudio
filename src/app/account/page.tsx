@@ -42,13 +42,8 @@ export default function AccountPage() {
                 {/* Header Profile Summary */}
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12 border-b border-charcoal/10 pb-8">
                     <div className="flex items-center space-x-6">
-                        <div className="relative w-24 h-24 rounded-full overflow-hidden border border-sage/30">
-                            <Image
-                                src="/images/account.png"
-                                alt="Profile"
-                                fill
-                                className="object-cover"
-                            />
+                        <div className="w-24 h-24 rounded-full border border-sage/30 bg-ivory flex items-center justify-center text-sage">
+                            <User size={40} strokeWidth={1} />
                         </div>
                         <div>
                             <span className="text-sage text-xs uppercase tracking-widest font-bold block mb-1">Welcome Back</span>
