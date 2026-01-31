@@ -70,7 +70,7 @@ export default function StickyHeader() {
                             SIVI
                         </span>
                         <span className="text-xl md:text-2xl" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
-                            the couturier
+                            the couturière
                         </span>
                     </Link>
                 </motion.div>
@@ -92,7 +92,7 @@ export default function StickyHeader() {
                         Menu
                     </motion.button>
                 </div>
-            </motion.header>
+            </motion.header >
 
             <NavigationOverlay
                 isOpen={isMenuOpen}
