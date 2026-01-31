@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 
 interface NavigationOverlayProps {
@@ -11,31 +11,58 @@ interface NavigationOverlayProps {
 }
 
 const menuItems = [
-    { label: 'Home', href: '/', image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop' },
-    { label: 'Collections', href: '/shop', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop' },
-    { label: 'The Story', href: '/story', image: 'https://images.unsplash.com/photo-1502920313556-c0bbbcd00403?q=80&w=2124&auto=format&fit=crop' },
-    { label: 'Heritage', href: '/story', image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=2070&auto=format&fit=crop' },
-    { label: 'Custom Tailoring', href: '/shop', image: 'https://images.unsplash.com/photo-1558769132-cb1aea3c8565?q=80&w=2074&auto=format&fit=crop' },
-    { label: 'Account', href: '/dashboard', image: 'https://images.unsplash.com/photo-1550614000-4b9519e07502?q=80&w=2148&auto=format&fit=crop' },
-    { label: 'Contact', href: '/shop', image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop' },
+    { label: 'Home', href: '/', image: '/images/hero-ikat.png' },
+    { label: 'Collections', href: '/shop', image: '/images/saree.png' },
+    { label: 'The Story', href: '/story', image: '/images/gadwal-silk.png' },
+    { label: 'Heritage', href: '/story', image: '/images/dupatta.png' },
+    { label: 'Custom Tailoring', href: '/shop', image: '/images/custom-tailoring.png' },
+    { label: 'Account', href: '/dashboard', image: '/images/account.png' },
+    { label: 'Contact', href: '/shop', image: '/images/contact.png' },
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
     const [activeImage, setActiveImage] = useState<string | null>(null)
+    const overlayRef = useRef<HTMLDivElement>(null)
+    const firstFocusableRef = useRef<HTMLAnchorElement>(null)
+
+    // Keyboard navigation: Escape key handler
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClose()
+            }
+        }
+
+        if (isOpen) {
+            document.addEventListener('keydown', handleEscape)
+            // Focus first menu item when overlay opens
+            setTimeout(() => {
+                firstFocusableRef.current?.focus()
+            }, 100)
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscape)
+        }
+    }, [isOpen, onClose])
 
     return (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
+                    ref={overlayRef}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
                     className="fixed inset-0 z-[50] bg-charcoal text-bone flex"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Navigation menu"
                 >
                     {/* Left: Navigation Links */}
                     <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative">
-                        <nav className="flex flex-col space-y-2">
+                        <nav className="flex flex-col space-y-2" aria-label="Main navigation">
                             {menuItems.map((item, index) => (
                                 <motion.div
                                     key={item.label}
@@ -46,9 +73,10 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                     onMouseLeave={() => setActiveImage(null)}
                                 >
                                     <Link
+                                        ref={index === 0 ? firstFocusableRef : null}
                                         href={item.href}
                                         onClick={onClose}
-                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-colors duration-300 block py-2"
+                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-colors duration-300 block py-2 focus:outline-none focus:text-sage focus:underline"
                                     >
                                         {item.label}
                                     </Link>
@@ -89,7 +117,8 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                     {/* Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-8 right-8 z-20 text-xs uppercase tracking-widest hover:text-sage"
+                        className="absolute top-8 right-8 z-20 text-xs uppercase tracking-widest hover:text-sage focus:outline-none focus:text-sage focus:underline transition-colors"
+                        aria-label="Close navigation menu"
                     >
                         Close [esc]
                     </button>

@@ -1,2 +1,10 @@
 // UI components barrel export
-// Placeholder for UI component exports
+export { default as ErrorBoundary } from './ErrorBoundary'
+export { default as StickyHeader } from './StickyHeader'
+export { default as NavigationOverlay } from './NavigationOverlay'
+export { default as Footer } from './Footer'
+export { default as Loader } from './Loader'
+export { default as BoutiqueButton } from './BoutiqueButton'
+export { default as ChromaticWrapper } from './ChromaticWrapper'
+export { default as SmoothScroll } from './SmoothScroll'
+export { default as PortableTextContent } from './PortableTextContent'

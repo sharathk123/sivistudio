@@ -22,14 +22,28 @@ interface MoodBoardGridProps {
 
 export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
     const containerRef = useRef<HTMLDivElement>(null)
+    const [parallaxSlow, setParallaxSlow] = useState(-80)
+    const [parallaxFast, setParallaxFast] = useState(-180)
+
+    // Read CSS variables on client side only
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const styles = getComputedStyle(document.documentElement)
+            const slowValue = parseInt(styles.getPropertyValue('--parallax-slow') || '-80')
+            const fastValue = parseInt(styles.getPropertyValue('--parallax-fast') || '-180')
+            setParallaxSlow(slowValue)
+            setParallaxFast(fastValue)
+        }
+    }, [])
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end start"]
     })
 
-    // Parallax effects using CSS variables
-    const y1 = useTransform(scrollYProgress, [0, 1], [0, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--parallax-slow') || '-80')])
-    const y2 = useTransform(scrollYProgress, [0, 1], [0, parseInt(getComputedStyle(document.documentElement).getPropertyValue('--parallax-fast') || '-180')])
+    // Parallax effects using CSS variables (read on client side)
+    const y1 = useTransform(scrollYProgress, [0, 1], [0, parallaxSlow])
+    const y2 = useTransform(scrollYProgress, [0, 1], [0, parallaxFast])
 
     const splitIndex = Math.ceil(items.length / 2)
     const col1 = items.slice(0, splitIndex)

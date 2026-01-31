@@ -5,9 +5,33 @@ import { useCart } from '@/context/CartContext'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/client'
 import Link from 'next/link'
+import { useEffect, useRef } from 'react'
 
 export default function CartDrawer() {
     const { isOpen, closeCart, items, removeItem, updateQuantity } = useCart()
+    const drawerRef = useRef<HTMLDivElement>(null)
+    const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+    // Keyboard navigation: Escape key handler
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                closeCart()
+            }
+        }
+
+        if (isOpen) {
+            document.addEventListener('keydown', handleEscape)
+            // Focus close button when drawer opens
+            setTimeout(() => {
+                closeButtonRef.current?.focus()
+            }, 100)
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscape)
+        }
+    }, [isOpen, closeCart])
 
     // Calculate subtotal
     const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0)
@@ -27,20 +51,34 @@ export default function CartDrawer() {
 
                     {/* Drawer */}
                     <motion.div
+                        ref={drawerRef}
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                         className="fixed top-0 right-0 z-[70] h-full w-full md:w-[500px] bg-bone shadow-2xl flex flex-col"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Shopping cart"
                     >
                         {/* Header */}
                         <div className="flex items-center justify-between p-6 border-b border-ivory-300">
                             <h2 className="font-serif text-2xl italic text-charcoal">
                                 Your Bag {items.length > 0 && `(${items.length})`}
                             </h2>
-                            <button onClick={closeCart} className="text-xs uppercase tracking-widest hover:text-sage transition-colors">
+                            <button
+                                ref={closeButtonRef}
+                                onClick={closeCart}
+                                className="text-xs uppercase tracking-widest hover:text-sage transition-colors focus:outline-none focus:text-sage focus:underline"
+                                aria-label="Close shopping cart"
+                            >
                                 Close
                             </button>
+                        </div>
+
+                        {/* Screen Reader Announcement */}
+                        <div role="status" aria-live="polite" className="sr-only">
+                            {items.length} {items.length === 1 ? 'item' : 'items'} in cart
                         </div>
 
                         {/* Cart Items or Empty State */}

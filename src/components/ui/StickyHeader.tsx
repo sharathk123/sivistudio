@@ -18,7 +18,7 @@ export default function StickyHeader() {
     const backgroundColor = useTransform(
         scrollY,
         [0, 100],
-        ['rgba(154, 167, 112, 0)', 'rgba(154, 167, 112, 0.8)']
+        ['var(--color-sage-transparent)', 'var(--color-sage-overlay)']
     )
     const backdropBlur = useTransform(
         scrollY,
@@ -28,7 +28,7 @@ export default function StickyHeader() {
     const textColor = useTransform(
         scrollY,
         [0, 100],
-        ['#FDFCFB', '#1A1A1A']
+        ['var(--color-bone)', 'var(--color-charcoal)']
     )
 
     // Hide header on scroll down, show on scroll up

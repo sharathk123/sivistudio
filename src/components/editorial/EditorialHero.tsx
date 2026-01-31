@@ -53,8 +53,8 @@ export default function EditorialHero() {
                     transition={{ delay: 0.8, duration: 1 }}
                     className="max-w-md text-sm md:text-base font-light tracking-wide text-ivory-300 leading-relaxed"
                 >
-                    Pochampally. Gadwal. Uppada. <br />
-                    Heritage weaves, contemporary silhouettes.
+                    Handlooms from across India. <br />
+                    Contemporary dresses, modern outfits, traditional sarees.
                 </motion.p>
             </div>
 

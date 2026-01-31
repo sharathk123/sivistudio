@@ -33,6 +33,14 @@
   --color-turmeric: #E6A817;
   --color-turmeric-light: #F4C542;
 
+  /* Transparent & Overlay Variants */
+  --color-sage-transparent: rgba(156, 167, 112, 0);
+  --color-sage-overlay: rgba(156, 167, 112, 0.8);
+  --color-bone-transparent: rgba(253, 252, 251, 0);
+  --color-bone-overlay: rgba(253, 252, 251, 1);
+  --color-charcoal-transparent: rgba(26, 26, 26, 0);
+  --color-charcoal-overlay: rgba(26, 26, 26, 1);
+
   /* Typography */
   --font-family-serif: 'Playfair Display', serif;
   --font-family-sans: 'Inter', sans-serif;
@@ -115,7 +123,8 @@
 
   /* Aspect Ratios */
   --aspect-portrait: 3/4;
-  --aspect-landscape: 16/9;
+  --aspect-landscape: 4/3;
+  /* Changed from 16/9 to show more vertical space for full outfits */
   --aspect-square: 1/1;
 }
 
@@ -614,5 +623,18 @@
     font-family: var(--font-family-mono);
     font-size: var(--text-caption);
     color: var(--color-copper);
+  }
+
+  /* Accessibility: Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }

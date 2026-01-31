@@ -16,8 +16,8 @@ interface ChromaticWrapperProps {
  */
 export default function ChromaticWrapper({
     children,
-    startColor = '#E4E4DE', // Ivory
-    endColor = '#1A1A1A',   // Charcoal
+    startColor = 'var(--color-ivory)', // Use CSS variable
+    endColor = 'var(--color-charcoal)',   // Use CSS variable
     scrollRange = [0, 800]
 }: ChromaticWrapperProps) {
     const containerRef = useRef<HTMLDivElement>(null)

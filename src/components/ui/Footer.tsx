@@ -2,8 +2,49 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useState, FormEvent } from 'react'
 
 export default function Footer() {
+    const [email, setEmail] = useState('')
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+    const [errorMessage, setErrorMessage] = useState('')
+
+    const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setStatus('loading')
+        setErrorMessage('')
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!email || !emailRegex.test(email)) {
+            setStatus('error')
+            setErrorMessage('Please enter a valid email address')
+            return
+        }
+
+        try {
+            // TODO: Replace with actual newsletter API endpoint
+            // const response = await fetch('/api/newsletter', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email })
+            // })
+
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000))
+
+            setStatus('success')
+            setEmail('')
+
+            // Reset success message after 3 seconds
+            setTimeout(() => {
+                setStatus('idle')
+            }, 3000)
+        } catch (error) {
+            setStatus('error')
+            setErrorMessage('Something went wrong. Please try again.')
+        }
+    }
     return (
         <footer className="bg-charcoal text-bone pt-24 pb-8 px-6">
             <div className="max-w-[1600px] mx-auto">
@@ -15,8 +56,8 @@ export default function Footer() {
                     <div className="space-y-6">
                         <span className="font-serif italic text-2xl">Sivi Studio</span>
                         <p className="text-sm text-bone/60 font-light leading-relaxed max-w-xs">
-                            Quiet luxury born from the heritage of Hyderabad.
-                            Conscious craft for the modern aesthete.
+                            Indian handloom cloth brand specializing in contemporary dresses,
+                            modern outfits, and traditional sarees from Hyderabad.
                         </p>
                     </div>
 
@@ -80,17 +121,36 @@ export default function Footer() {
                         <p className="text-xs text-bone/60 leading-relaxed">
                             Receive curated insights on craft, culture, and conscious living.
                         </p>
-                        <form className="flex flex-col gap-3">
-                            <input
-                                type="email"
-                                placeholder="Your email address"
-                                className="bg-transparent border-b border-bone/30 pb-2 text-sm outline-none placeholder:text-bone/40 focus:border-sage transition-colors"
-                            />
+                        <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
+                            <div>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Your email address"
+                                    disabled={status === 'loading'}
+                                    className="w-full bg-transparent border-b border-bone/30 pb-2 text-sm outline-none placeholder:text-bone/40 focus:border-sage transition-colors disabled:opacity-50"
+                                    aria-label="Email address for newsletter"
+                                    aria-invalid={status === 'error'}
+                                    aria-describedby={status === 'error' ? 'newsletter-error' : undefined}
+                                />
+                                {status === 'error' && (
+                                    <p id="newsletter-error" className="text-xs text-red-400 mt-2" role="alert">
+                                        {errorMessage}
+                                    </p>
+                                )}
+                                {status === 'success' && (
+                                    <p className="text-xs text-sage mt-2" role="status">
+                                        ✓ Thank you for subscribing!
+                                    </p>
+                                )}
+                            </div>
                             <button
                                 type="submit"
-                                className="self-start text-xs uppercase tracking-widest hover:text-sage transition-colors border-b border-transparent hover:border-sage pb-1"
+                                disabled={status === 'loading'}
+                                className="self-start text-xs uppercase tracking-widest hover:text-sage transition-colors border-b border-transparent hover:border-sage pb-1 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Subscribe
+                                {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
                             </button>
                         </form>
                     </div>
