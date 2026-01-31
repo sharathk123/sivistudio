@@ -38,7 +38,7 @@ export default function AccountPage() {
 
     return (
         <main className="bg-bone min-h-screen pt-28">
-            <StickyHeader />
+            <StickyHeader theme="light" />
             <div className="max-w-7xl mx-auto px-6 pb-24">
 
                 {/* Header Profile Summary */}

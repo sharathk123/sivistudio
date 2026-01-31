@@ -6,7 +6,11 @@ import Link from 'next/link'
 import NavigationOverlay from './NavigationOverlay'
 import { useCart } from '@/context/CartContext'
 
-export default function StickyHeader() {
+interface StickyHeaderProps {
+    theme?: 'dark' | 'light'
+}
+
+export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isHidden, setIsHidden] = useState(false)
     const { openCart, itemCount } = useCart()
@@ -28,7 +32,9 @@ export default function StickyHeader() {
     const textColor = useTransform(
         scrollY,
         [0, 100],
-        ['var(--color-bone)', 'var(--color-charcoal)']
+        theme === 'dark'
+            ? ['var(--color-bone)', 'var(--color-charcoal)']
+            : ['var(--color-charcoal)', 'var(--color-charcoal)']
     )
 
     // Hide header on scroll down, show on scroll up
