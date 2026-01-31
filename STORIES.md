@@ -20,8 +20,8 @@ Based on the navigation menu, the following pages need to be created:
 2. ⏳ **Collections** - TO BE INTEGRATED WITH SANITY (excluded from this document)
 3. ✅ **The Story** - COMPLETED (Jan 31, 2026)
 4. ✅ **Heritage** - COMPLETED (Jan 31, 2026) 
-5. 📝 **Custom Tailoring** - TO DO
-6. 📝 **Account** - TO DO
+5. ✅ **Custom Tailoring** - COMPLETED (Jan 31, 2026)
+6. 🚧 **Account** - IN PROGRESS (UI Implemented)
 7. ✅ **Contact** - COMPLETED (Jan 31, 2026)
 
 ---
