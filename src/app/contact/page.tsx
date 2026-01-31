@@ -229,8 +229,8 @@ export default function ContactPage() {
                                         type="submit"
                                         disabled={isSubmitting || submitStatus === 'success'}
                                         className={`w-full py-4 px-8 flex items-center justify-center space-x-3 transition-all duration-300 ${submitStatus === 'success'
-                                                ? 'bg-sage text-white cursor-default'
-                                                : 'bg-charcoal text-white hover:bg-sage'
+                                            ? 'bg-sage text-white cursor-default'
+                                            : 'bg-charcoal text-white hover:bg-sage'
                                             }`}
                                     >
                                         {isSubmitting ? (

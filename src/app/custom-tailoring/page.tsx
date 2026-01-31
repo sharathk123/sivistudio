@@ -67,10 +67,10 @@ export default function CustomTailoringPage() {
                         src="/images/custom-tailoring.png"
                         alt="Bespoke Tailoring"
                         fill
-                        className="object-cover opacity-60"
+                        className="object-cover opacity-70"
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/40 to-bone" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal" />
                 </div>
 
                 <div className="relative z-10 text-center px-6 max-w-4xl pt-20">
