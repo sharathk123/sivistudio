@@ -64,41 +64,41 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                     backdropFilter: backdropBlur,
                     WebkitBackdropFilter: backdropBlur,
                 }}
-                className="fixed top-0 left-0 right-0 z-[40] px-6 py-6 flex justify-between items-center transition-shadow duration-300"
+                className="fixed top-0 left-0 right-0 z-[40] px-4 md:px-6 py-4 md:py-6 flex justify-between items-center transition-shadow duration-300"
             >
                 {/* Center Brand Name */}
                 <motion.div
                     style={{ color: textColor }}
-                    className="absolute left-1/2 -translate-x-1/2 z-50"
+                    className="absolute left-1/2 -translate-x-1/2 z-50 max-w-[55%] md:max-w-none"
                 >
-                    <Link href="/" className="flex items-center gap-3">
-                        <span className="text-xl md:text-2xl tracking-[0.15em] uppercase" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700 }}>
+                    <Link href="/" className="flex items-center gap-1.5 md:gap-3">
+                        <span className="text-sm md:text-xl lg:text-2xl tracking-[0.15em] uppercase whitespace-nowrap" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700 }}>
                             SIVI
                         </span>
-                        <span className="text-xl md:text-2xl" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
+                        <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
                             the couturière
                         </span>
                     </Link>
                 </motion.div>
 
                 {/* Actions */}
-                <div className="flex items-center space-x-8 z-50 ml-auto">
+                <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto">
                     <motion.button
                         onClick={openCart}
                         style={{ color: textColor }}
-                        className="uppercase text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
+                        className="uppercase text-[10px] md:text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
                     >
                         Cart ({itemCount})
                     </motion.button>
                     <motion.button
                         onClick={() => setIsMenuOpen(true)}
                         style={{ color: textColor }}
-                        className="uppercase text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
+                        className="uppercase text-[10px] md:text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
                     >
                         Menu
                     </motion.button>
                 </div>
-            </motion.header >
+            </motion.header>
 
             <NavigationOverlay
                 isOpen={isMenuOpen}
