@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { IMAGES } from '@/lib/images'
 import Image from 'next/image'
+import { useAuth } from '@/context/AuthContext'
 
 interface NavigationOverlayProps {
     isOpen: boolean
@@ -26,6 +27,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
     const [activeImage, setActiveImage] = useState<string | null>(null)
     const overlayRef = useRef<HTMLDivElement>(null)
     const firstFocusableRef = useRef<HTMLAnchorElement>(null)
+    const { user, signOut } = useAuth()
 
     // Keyboard navigation: Escape key handler
     useEffect(() => {
@@ -65,25 +67,48 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                     {/* Left: Navigation Links */}
                     <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative">
                         <nav className="flex flex-col space-y-2" aria-label="Main navigation">
-                            {menuItems.map((item, index) => (
+                            {menuItems.map((item, index) => {
+                                // Skip "Account" in main list if we want custom handling, 
+                                // but standard link is fine. We will dynamically change label though.
+                                const label = item.label === 'Account' && !user ? 'Log In' : item.label
+
+                                return (
+                                    <motion.div
+                                        key={item.label}
+                                        initial={{ x: -50, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
+                                        onMouseEnter={() => setActiveImage(item.image)}
+                                        onMouseLeave={() => setActiveImage(null)}
+                                    >
+                                        <Link
+                                            ref={index === 0 ? firstFocusableRef : null}
+                                            href={item.label === 'Account' && !user ? '/login' : item.href}
+                                            onClick={onClose}
+                                            className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-colors duration-300 block py-2 focus:outline-none focus:text-sage focus:underline"
+                                        >
+                                            {label}
+                                        </Link>
+                                    </motion.div>
+                                )
+                            })}
+                            {user && (
                                 <motion.div
-                                    key={item.label}
                                     initial={{ x: -50, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
-                                    transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
-                                    onMouseEnter={() => setActiveImage(item.image)}
-                                    onMouseLeave={() => setActiveImage(null)}
+                                    transition={{ delay: 0.2 + (menuItems.length * 0.1), duration: 0.5 }}
                                 >
-                                    <Link
-                                        ref={index === 0 ? firstFocusableRef : null}
-                                        href={item.href}
-                                        onClick={onClose}
-                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-colors duration-300 block py-2 focus:outline-none focus:text-sage focus:underline"
+                                    <button
+                                        onClick={() => {
+                                            signOut()
+                                            onClose()
+                                        }}
+                                        className="font-serif text-3xl md:text-5xl italic text-white/50 hover:text-white transition-colors duration-300 block py-2 mt-4 text-left focus:outline-none focus:text-white"
                                     >
-                                        {item.label}
-                                    </Link>
+                                        Sign Out
+                                    </button>
                                 </motion.div>
-                            ))}
+                            )}
                         </nav>
 
                         <div className="mt-12 flex space-x-6 text-xs uppercase tracking-widest text-white/50">

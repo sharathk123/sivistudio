@@ -34,6 +34,7 @@ import Loader from '@/components/ui/Loader'
 import BoutiqueButton from '@/components/ui/BoutiqueButton'
 import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
 import { CartProvider } from '@/context/CartContext'
+import { AuthProvider } from '@/context/AuthContext'
 import CartDrawer from '@/components/shop/CartDrawer'
 
 export default function RootLayout({
@@ -44,15 +45,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
-        <CartProvider>
-          <CartDrawer />
-          <BoutiqueButton />
-          <StyleConciergeButton />
-          <Loader />
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <CartDrawer />
+            <BoutiqueButton />
+            <StyleConciergeButton />
+            <Loader />
+            <SmoothScroll>
+              {children}
+            </SmoothScroll>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   )
