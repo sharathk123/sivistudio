@@ -20,6 +20,8 @@ This document contains user stories for all remaining pages and features that ne
 - ✅ **UI Refinement**: Fixed Sticky Header visibility on light pages. Reduced excessive whitespace on Collection pages.
 - ✅ **Performance**: Optimized Font Loading (Google Fonts) & Sanity Image connections.
 - ✅ **Asset Management**: Migrated static assets to Cloudinary & dynamic content to Sanity. Integrated local favicons.
+- ✅ **Editorial Pages**: Launched Size Guide (/size-guide), Story Page (/story), and 404 Page Redesign.
+- ✅ **Navigation**: Unified Sticky Header behavior (Sage Green/Charcoal) across all pages.
 
 ---
 
@@ -375,6 +377,58 @@ This document contains user stories for all remaining pages and features that ne
 
 ---
 
+### Epic 6: Checkout & Payments
+
+**As a** customer
+**I want to** securely pay for my order using Razorpay
+**So that** I can complete my purchase seamlessly
+
+#### Story 6.1: Razorpay Configuration & Backend
+
+**Priority**: High (P0)
+**Estimate**: 3 points
+
+**Acceptance Criteria:**
+- [ ] Create Razorpay Account & API Keys
+- [ ] secure Environment Variables (`RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`)
+- [ ] Create `/api/payment/create-order` endpoint:
+  - Validate cart total
+  - Create Razorpay Order ID (Currency: INR)
+  - Return Order ID to client
+- [ ] Create `/api/payment/verify` endpoint:
+  - Verify signature (`razorpay_signature`)
+  - Update Order Status in Database (Supabase)
+
+#### Story 6.2: Payment UI Integration
+
+**Priority**: High (P0)
+**Estimate**: 3 points
+
+**Acceptance Criteria:**
+- [ ] Integrate Razorpay Checkout.js script
+- [ ] trigger Payment Modal on "Proceed to Checkout" click
+- [ ] Handle Payment Success:
+  - Call `/api/payment/verify`
+  - Clear Cart
+  - Redirect to Order Confirmation Page
+- [ ] Handle Payment Failure:
+  - Show Error Message
+  - Allow Retry
+- [ ] styling: Customize Razorpay modal theme to match Sivi (Sage/Charcoal)
+
+#### Story 6.3: Post-Purchase Experience
+
+**Priority**: High
+**Estimate**: 2 points
+
+**Acceptance Criteria:**
+- [ ] Create `/checkout/success` page (Order Confirmation)
+- [ ] Show Order Summary and ID
+- [ ] Send Order Confirmation Email (Resend/SendGrid)
+- [ ] Create `/checkout/failed` page (optional) or reuse Cart with error
+
+---
+
 ## 🔧 Technical Stories
 
 ### Story T1: Set up Sanity CMS Integration
@@ -621,9 +675,10 @@ This document contains user stories for all remaining pages and features that ne
 ## 📊 Priority Matrix (Updated)
 
 ### Must Have (P0)
-1. Account Dashboard Logic (Story 4.1)
-2. Checkout Flow Implementation
-3. Accessibility Testing (Story Test2)
+1. Razorpay Integration (Story 6.1, 6.2)
+2. Account Dashboard Logic (Story 4.1)
+3. Checkout Flow Implementation
+4. Accessibility Testing (Story Test2)
 
 ### Should Have (P1)
 1. Artisan Profiles (Story 1.2)
