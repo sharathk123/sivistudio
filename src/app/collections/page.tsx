@@ -12,7 +12,7 @@ export default async function CollectionsPage() {
 
     return (
         <main className="min-h-screen bg-bone">
-            <StickyHeader />
+            <StickyHeader theme="light" />
 
             <section className="section-padding pt-32">
                 <div className="max-w-7xl mx-auto">
