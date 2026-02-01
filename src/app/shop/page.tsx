@@ -51,16 +51,19 @@ export default async function ShopPage() {
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-24 space-y-6">
-                        <p className="font-serif text-2xl text-charcoal-300 italic">
+                    <div className="text-center py-32 flex flex-col items-center">
+                        <div className="w-24 h-24 rounded-full bg-ivory-100 flex items-center justify-center mb-8">
+                            <span className="font-serif text-4xl text-sage italic">S</span>
+                        </div>
+                        <h2 className="font-serif text-4xl text-charcoal italic mb-4">
                             The new collection is on the loom.
-                        </p>
-                        <p className="text-charcoal-400">
-                            Our artisans are crafting the next drop. Check back soon.
+                        </h2>
+                        <p className="text-charcoal-400 font-light max-w-lg mx-auto mb-8">
+                            Our artisans are crafting the next drop. The atelier will be replenished soon.
                         </p>
                         <Link
                             href="/"
-                            className="inline-block border-b border-sage text-sage hover:text-sage-700 transition-colors pb-1"
+                            className="inline-block px-8 py-3 bg-charcoal text-bone text-xs uppercase tracking-widest hover:bg-sage transition-all duration-300 shadow-lg"
                         >
                             Return Home
                         </Link>

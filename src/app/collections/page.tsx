@@ -74,9 +74,14 @@ export default async function CollectionsPage() {
                     </div>
 
                     {collections.length === 0 && (
-                        <div className="text-center py-40">
-                            <h2 className="subtitle-editorial text-ivory-300">New Collections Coming Soon</h2>
-                            <p className="caption-editorial mt-4">Curating our next selection of heritage weaves.</p>
+                        <div className="text-center py-40 flex flex-col items-center">
+                            <div className="w-24 h-24 rounded-full bg-ivory-100 flex items-center justify-center mb-6">
+                                <span className="font-serif text-4xl text-sage italic">S</span>
+                            </div>
+                            <h2 className="subtitle-editorial text-2xl text-charcoal">New Collections Coming Soon</h2>
+                            <p className="text-charcoal-400 mt-4 max-w-md mx-auto font-light">
+                                Our master weavers are currently curating the next selection of heritage textiles.
+                            </p>
                         </div>
                     )}
                 </div>

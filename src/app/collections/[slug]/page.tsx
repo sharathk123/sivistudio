@@ -119,9 +119,17 @@ export default async function CollectionPage({ params }: PageProps) {
                     </div>
 
                     {(!collection.products || collection.products.length === 0) && (
-                        <div className="text-center py-24 bg-ivory-50 rounded-lg">
-                            <p className="subtitle-editorial text-ivory-300">Catalog Refresh in Progress</p>
-                            <p className="caption-editorial mt-4">New arrivals joining this collection soon.</p>
+                        <div className="text-center py-32 bg-ivory-50 rounded-sm border border-ivory-200 flex flex-col items-center justify-center">
+                            <div className="w-20 h-20 rounded-full bg-bone flex items-center justify-center mb-6 shadow-sm">
+                                <span className="font-serif text-3xl text-sage italic">S</span>
+                            </div>
+                            <h2 className="subtitle-editorial text-2xl text-charcoal">Catalog Refresh in Progress</h2>
+                            <p className="text-charcoal-400 mt-4 max-w-lg mx-auto font-light">
+                                New arrivals are being photographed and will join this collection shortly.
+                            </p>
+                            <Link href="/shop" className="mt-8 text-xs uppercase tracking-widest border-b border-sage text-sage hover:text-sage-700 pb-1">
+                                Browse All Products
+                            </Link>
                         </div>
                     )}
                 </div>
