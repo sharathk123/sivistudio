@@ -183,23 +183,18 @@ export default defineType({
             media: 'heroImage',
             publishedAt: 'publishedAt',
         },
-        prepare({ title, category, media, publishedAt }) {
-            const categoryLabel = {
+        prepare(selection: any) {
+            const { title, category, media, publishedAt } = selection
+            const categoryLabels: Record<string, string> = {
                 weaving: '🧵 Weaving',
                 heritage: '🏛️ Heritage',
                 materials: '🌿 Materials',
                 regional: '🗺️ Regional',
-                innovation: '✨ Innovation',
-            }[category] || category
-
-            const date = publishedAt ? new Date(publishedAt).toLocaleDateString('en-IN', {
-                year: 'numeric',
-                month: 'short'
-            }) : 'Draft'
-
+                innovation: '💡 Innovation',
+            }
             return {
                 title,
-                subtitle: `${categoryLabel} • ${date}`,
+                subtitle: `${categoryLabels[category] || category} • ${publishedAt ? new Date(publishedAt).toLocaleDateString('en-IN', { year: 'numeric', month: 'short' }) : 'Draft'}`,
                 media,
             }
         },

@@ -214,15 +214,16 @@ export default defineType({
             availability: 'availability',
             media: 'images.0',
         },
-        prepare({ title, availability, media }) {
-            const availabilityLabel = {
+        prepare(selection: any) {
+            const { title, availability, media } = selection
+            const availabilityLabels: Record<string, string> = {
                 in_stock: '✅ In Stock',
                 made_to_order: '⏳ Made to Order',
                 sold_out: '❌ Sold Out',
-            }[availability] || availability
+            }
             return {
                 title,
-                subtitle: availabilityLabel,
+                subtitle: availabilityLabels[availability] || availability,
                 media,
             }
         },
