@@ -13,7 +13,7 @@ import { collectionItems } from '@/data/homeData'
 
 export default function HomePage() {
     return (
-        <main className="bg-bone min-h-screen">
+        <main id="main-content" className="bg-bone min-h-screen">
             <StickyHeader theme="dark" />
             <EditorialHero />
 

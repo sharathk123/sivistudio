@@ -143,8 +143,22 @@ Sivi Studio uses a **comprehensive design system** with CSS variables and utilit
 ## 📚 Documentation
 
 - **Project Context**: See [SIVI_PROJECT_CONTEXT.md](./SIVI_PROJECT_CONTEXT.md)
+- **Design System**: See [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md)
+- **Code Quality**: See [docs/CODE_QUALITY_IMPROVEMENTS.md](./docs/CODE_QUALITY_IMPROVEMENTS.md)
+- **Accessibility**: See [docs/ACCESSIBILITY_GUIDE.md](./docs/ACCESSIBILITY_GUIDE.md)
 - **Sanity Studio**: `http://localhost:3333` (when running)
 - **Next.js App**: `http://localhost:3000` (when running)
+
+---
+
+## ✨ Code Quality Features
+
+- ✅ **Error Boundaries**: Graceful error handling with custom fallback UI
+- ✅ **API Rate Limiting**: Production-ready rate limiting for all API routes
+- ✅ **WCAG 2.1 AA Compliant**: Full accessibility support with keyboard navigation
+- ✅ **Focus Indicators**: Visible focus styles for all interactive elements
+- ✅ **Screen Reader Support**: Proper ARIA labels and semantic HTML
+- ✅ **Accessibility Testing**: Built-in utilities for testing compliance
 
 ---
 

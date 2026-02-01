@@ -85,9 +85,9 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
 
                 {/* Actions */}
                 <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto">
-                    <div style={{ color: textColor as any }}>
+                    <motion.div style={{ color: textColor as any }}>
                         <CartButton />
-                    </div>
+                    </motion.div>
 
                     <motion.button
                         onClick={() => setIsMenuOpen(true)}

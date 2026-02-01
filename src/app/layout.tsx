@@ -61,6 +61,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${bodoni.variable} ${allura.variable}`}>
       <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
+        {/* Skip to main content link for keyboard users */}
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
+
         <AuthProvider>
           <CartProvider>
             <CartDrawer />

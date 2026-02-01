@@ -650,4 +650,93 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  /* Accessibility: Focus Visible Styles for Keyboard Navigation */
+  /* WCAG 2.1 AA Compliance - Visible focus indicators */
+
+  /* Default focus style for all focusable elements */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Enhanced focus for buttons */
+  button:focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 4px;
+    box-shadow: 0 0 0 4px rgba(156, 167, 112, 0.1);
+  }
+
+  /* Enhanced focus for links */
+  a:focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 2px;
+    text-decoration: underline;
+    text-decoration-color: var(--color-sage);
+    text-decoration-thickness: 2px;
+  }
+
+  /* Form input focus */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 0;
+    border-color: var(--color-sage);
+    box-shadow: 0 0 0 3px rgba(156, 167, 112, 0.1);
+  }
+
+  /* Skip to main content link (for keyboard users) */
+  .skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-charcoal);
+    color: var(--color-bone);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 100;
+    transition: top 0.2s;
+  }
+
+  .skip-to-main:focus {
+    top: 0;
+  }
+
+  /* Focus trap for modals/drawers */
+  .focus-trap {
+    position: relative;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline-width: 3px;
+      outline-offset: 3px;
+    }
+  }
 }
