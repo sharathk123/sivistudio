@@ -56,6 +56,7 @@ export const productsQuery = groq`*[_type == "product"] | order(displayOrder asc
   availability,
   "collections": collections[]->{title, slug},
   technicalSpecs,
+  sizes,
   artisanHours,
   featured,
   displayOrder
@@ -78,6 +79,7 @@ export const productBySlugQuery = groq`*[_type == "product" && slug.current == $
   },
   materialStory,
   technicalSpecs,
+  sizes,
   artisanHours,
   "craftStories": craftStories[]->{
     _id,

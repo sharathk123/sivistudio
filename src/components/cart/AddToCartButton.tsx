@@ -6,15 +6,17 @@ import { Product } from '@/lib/sanity/client';
 
 interface AddToCartButtonProps {
     product: Product;
+    selectedSize?: string;
+    disabled?: boolean;
 }
 
-export default function AddToCartButton({ product }: AddToCartButtonProps) {
+export default function AddToCartButton({ product, selectedSize, disabled = false }: AddToCartButtonProps) {
     const { addToCart, isCartOpen } = useCart();
     const [isAdding, setIsAdding] = useState(false);
 
     const handleAddToCart = () => {
         setIsAdding(true);
-        addToCart(product, 1);
+        addToCart(product, 1, selectedSize);
 
         // Show adding feedback briefly
         setTimeout(() => {
@@ -36,8 +38,8 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
     return (
         <button
             onClick={handleAddToCart}
-            disabled={isAdding}
-            className={`w-full py-5 px-8 label-editorial transition-all duration-500 shadow-card hover:shadow-lg active:scale-[0.98] relative overflow-hidden group ${isAdding
+            disabled={isAdding || disabled}
+            className={`w-full py-5 px-8 label-editorial transition-all duration-500 shadow-card hover:shadow-lg active:scale-[0.98] relative overflow-hidden group ${isAdding || disabled
                 ? 'bg-sage text-bone'
                 : 'bg-charcoal text-bone hover:bg-sage'
                 }`}

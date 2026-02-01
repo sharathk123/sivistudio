@@ -35,6 +35,7 @@ export interface Product {
     collections?: Collection[]
     materialStory?: any[]
     technicalSpecs?: { label: string; value: string }[]
+    sizes?: string[]
     artisanHours?: number
     craftStories?: CraftStory[]
     featured: boolean

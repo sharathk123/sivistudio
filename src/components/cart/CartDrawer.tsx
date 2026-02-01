@@ -81,7 +81,7 @@ export default function CartDrawer() {
                         ) : (
                             <div className="space-y-6">
                                 {items.map((item) => (
-                                    <div key={item.product._id} className="flex gap-4 animate-fadeInUp">
+                                    <div key={item.variantId} className="flex gap-4 animate-fadeInUp">
                                         {/* Product Image */}
                                         <Link
                                             href={`/products/${item.product.slug.current}`}
@@ -110,19 +110,27 @@ export default function CartDrawer() {
                                                 </h3>
                                             </Link>
 
-                                            {item.product.priceDisplay === 'numeric' && item.product.price ? (
-                                                <p className="font-mono accent-copper mb-4">
-                                                    ₹{item.product.price.toLocaleString('en-IN')}
-                                                </p>
-                                            ) : (
-                                                <p className="caption-editorial text-sage mb-4">Price on Request</p>
-                                            )}
+                                            <div className="flex items-baseline gap-2 mb-3">
+                                                {item.product.priceDisplay === 'numeric' && item.product.price ? (
+                                                    <p className="font-mono accent-copper">
+                                                        ₹{item.product.price.toLocaleString('en-IN')}
+                                                    </p>
+                                                ) : (
+                                                    <p className="caption-editorial text-sage">Price on Request</p>
+                                                )}
+
+                                                {item.selectedSize && (
+                                                    <p className="text-xs uppercase tracking-wider text-sage border-l border-sage/30 pl-2">
+                                                        Size: {item.selectedSize}
+                                                    </p>
+                                                )}
+                                            </div>
 
                                             {/* Quantity Controls */}
                                             <div className="flex items-center gap-4">
                                                 <div className="flex items-center border border-ivory-300">
                                                     <button
-                                                        onClick={() => updateQuantity(item.product._id, item.quantity - 1)}
+                                                        onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
                                                         className="w-10 h-10 flex items-center justify-center hover:bg-ivory-100 active:bg-ivory-200 active:scale-95 transition-all text-charcoal/60 hover:text-charcoal"
                                                         aria-label="Decrease quantity"
                                                     >
@@ -132,7 +140,7 @@ export default function CartDrawer() {
                                                     </button>
                                                     <span className="w-10 text-center label-editorial text-charcoal">{item.quantity}</span>
                                                     <button
-                                                        onClick={() => updateQuantity(item.product._id, item.quantity + 1)}
+                                                        onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
                                                         className="w-10 h-10 flex items-center justify-center hover:bg-ivory-100 active:bg-ivory-200 active:scale-95 transition-all text-charcoal/60 hover:text-charcoal"
                                                         aria-label="Increase quantity"
                                                     >
@@ -143,7 +151,7 @@ export default function CartDrawer() {
                                                 </div>
 
                                                 <button
-                                                    onClick={() => removeFromCart(item.product._id)}
+                                                    onClick={() => removeFromCart(item.variantId)}
                                                     className="caption-editorial text-ivory-300 hover:text-copper transition-colors"
                                                 >
                                                     Remove

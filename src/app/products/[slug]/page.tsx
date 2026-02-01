@@ -5,7 +5,7 @@ import { getProduct, urlFor } from '@/lib/sanity/client';
 import StickyHeader from '@/components/ui/StickyHeader';
 import Footer from '@/components/ui/Footer';
 import { PortableText } from '@portabletext/react';
-import AddToCartButton from '@/components/cart/AddToCartButton';
+import ProductActions from '@/components/cart/ProductActions';
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -134,19 +134,8 @@ export default async function ProductPage({ params }: PageProps) {
                                 </div>
                             )}
 
-                            {/* CTA Buttons */}
-                            {/* CTA Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                                <div className="flex-1">
-                                    <AddToCartButton product={product} />
-                                </div>
-                                <Link
-                                    href="/custom-tailoring"
-                                    className="flex-1 border border-charcoal text-charcoal py-5 px-8 label-editorial hover:bg-charcoal hover:text-bone transition-all duration-500 text-center"
-                                >
-                                    Schedule Consultation
-                                </Link>
-                            </div>
+                            {/* CTA Actions (Size + Cart) */}
+                            <ProductActions product={product} />
 
                             {/* Collections */}
                             {product.collections && product.collections.length > 0 && (
