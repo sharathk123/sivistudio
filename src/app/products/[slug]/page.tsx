@@ -35,7 +35,7 @@ export default async function ProductPage({ params }: PageProps) {
 
     return (
         <main className="min-h-screen bg-bone">
-            <StickyHeader />
+            <StickyHeader theme="light" />
 
             {/* Product Hero */}
             <section className="section-padding pt-32">

@@ -52,7 +52,7 @@ export default async function CollectionPage({ params }: PageProps) {
             </section>
 
             {/* Products Grid */}
-            <section className="section-padding">
+            <section className="pt-24 pb-12 md:pt-32 md:pb-16 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex justify-between items-baseline mb-16">
                         <div>
@@ -128,7 +128,7 @@ export default async function CollectionPage({ params }: PageProps) {
             </section>
 
             {/* Pagination/CTA */}
-            <section className="section-padding bg-charcoal text-bone relative overflow-hidden">
+            <section className="py-16 md:py-24 bg-charcoal text-bone relative overflow-hidden">
                 <div className="max-w-4xl mx-auto text-center relative z-10">
                     <h2 className="title-editorial text-bone mb-8">Bespoke Inquiries</h2>
                     <p className="subtitle-editorial text-ivory/80 mb-12">
