@@ -54,15 +54,6 @@ export async function getCraftStory(slug: string): Promise<Types.CraftStory | nu
   return client.fetch(Queries.craftStoryBySlugQuery, { slug })
 }
 
-// === LEGACY: Editorial ===
-export async function getEditorials(): Promise<Types.Editorial[]> {
-  return client.fetch(Queries.editorialsQuery)
-}
-
-export async function getEditorial(slug: string): Promise<Types.Editorial | null> {
-  return client.fetch(Queries.editorialBySlugQuery, { slug })
-}
-
 // === DEPRECATED: Category ===
 export async function getCategories(): Promise<Types.Category[]> {
   return client.fetch(Queries.categoriesQuery)

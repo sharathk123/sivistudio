@@ -5,8 +5,33 @@ import { getCollection, urlFor } from '@/lib/sanity/client';
 import StickyHeader from '@/components/ui/StickyHeader';
 import Footer from '@/components/ui/Footer';
 
+import { Metadata } from 'next';
+
 interface PageProps {
     params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const collection = await getCollection(slug);
+
+    if (!collection) {
+        return {
+            title: 'Collection Not Found | Sivi Studio',
+        };
+    }
+
+    const imageUrl = collection.heroImage ? urlFor(collection.heroImage).width(1200).height(630).url() : '';
+
+    return {
+        title: `${collection.title} | Sivi Studio`,
+        description: collection.description || `Explore the ${collection.title} collection from Sivi Studio.`,
+        openGraph: {
+            title: collection.title,
+            description: collection.description,
+            images: imageUrl ? [imageUrl] : [],
+        },
+    };
 }
 
 export const revalidate = 60;

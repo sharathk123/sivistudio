@@ -147,6 +147,9 @@
   body {
     overflow-y: auto !important;
     overflow-x: hidden !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   *,
@@ -738,5 +741,170 @@
       outline-width: 3px;
       outline-offset: 3px;
     }
+  }
+
+  /* 2026 Editorial Typography System */
+  .prose-editorial h3 {
+    font-family: var(--font-family-serif);
+    font-style: italic;
+    font-size: 2rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-charcoal);
+    line-height: 1.2;
+  }
+
+  .prose-editorial p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--color-charcoal-600);
+    font-weight: 300;
+  }
+
+  .prose-editorial .lead {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-charcoal);
+    font-family: var(--font-family-serif);
+    font-style: italic;
+    margin-bottom: 3.5rem;
+  }
+
+  .prose-editorial em {
+    font-family: var(--font-family-serif);
+    color: var(--color-sage-700);
+    font-style: italic;
+  }
+
+  .prose-editorial strong {
+    color: var(--color-charcoal);
+    font-weight: 600;
+  }
+
+  .prose-editorial ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .prose-editorial li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-charcoal-600);
+    font-weight: 300;
+  }
+
+  .prose-editorial li::before {
+    content: "—";
+    color: var(--color-sage);
+    font-weight: bold;
+  }
+
+  /* Image blocks in editorial */
+  .prose-editorial figure {
+    margin: 4rem 0;
+  }
+
+  .prose-editorial blockquote {
+    margin: 4rem 0;
+    padding-left: 2rem;
+    border-left: 2px solid var(--color-sage);
+    font-family: var(--font-family-serif);
+    font-size: 1.75rem;
+    font-style: italic;
+    color: var(--color-sage-700);
+    line-height: 1.4;
+  }
+
+  /* Boutique Button Utilities */
+  .btn-luxury {
+    display: inline-block;
+    border: 1px solid var(--color-charcoal);
+    color: var(--color-charcoal);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    transition: all 500ms ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .btn-luxury:hover {
+    background-color: var(--color-sage);
+    border-color: var(--color-sage);
+    color: var(--color-bone);
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-sage);
+    color: var(--color-bone);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    transition: all 500ms ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-sage-700);
+  }
+
+  .btn-pill {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(26, 26, 26, 0.1);
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 300ms ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .btn-pill:hover {
+    border-color: var(--color-sage);
+    color: var(--color-sage);
+  }
+
+  /* Boutique Form Utilities */
+  .input-boutique {
+    width: 100%;
+    background-color: var(--color-ivory-50);
+    border: 1px solid rgba(26, 26, 26, 0.05);
+    padding: 1rem;
+    color: var(--color-charcoal);
+    font-size: 0.875rem;
+    font-family: var(--font-family-sans);
+    font-weight: 300;
+    transition: all 400ms ease;
+    border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .input-boutique:focus {
+    outline: none;
+    border-color: var(--color-sage);
+    background-color: var(--color-bone);
+    box-shadow: 0 0 0 1px var(--color-sage-transparent);
+  }
+
+  .input-boutique::placeholder {
+    color: var(--color-charcoal-400);
+    opacity: 0.5;
+  }
+
+  textarea.input-boutique {
+    resize: none;
+    min-height: 120px;
   }
 }

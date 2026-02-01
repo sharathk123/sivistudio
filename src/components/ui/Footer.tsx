@@ -54,29 +54,36 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div className="space-y-6">
-                        <span className="font-serif italic text-2xl">Sivi Studio</span>
-                        <p className="text-sm text-bone/60 font-light leading-relaxed max-w-xs">
+                        <div className="flex flex-col gap-1 antialiased">
+                            <span className="text-3xl tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700, letterSpacing: '0.25em' }}>
+                                SIVI
+                            </span>
+                            <span className="text-2xl" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400, marginTop: '-0.25rem' }}>
+                                the couturière
+                            </span>
+                        </div>
+                        <p className="text-[13px] text-bone/70 font-light leading-relaxed max-w-xs antialiased">
                             Indian handloom textile studio specializing in contemporary dresses,
                             modern outfits, and traditional sarees from Hyderabad.
                         </p>
                     </div>
 
                     {/* Shop */}
-                    <div className="space-y-4">
-                        <h4 className="text-xs uppercase tracking-widest text-sage">Shop</h4>
-                        <ul className="space-y-3 text-sm font-light text-bone/70">
+                    <div className="space-y-4 antialiased">
+                        <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Shop</h4>
+                        <ul className="space-y-3 text-[13px] font-normal text-bone/70">
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/handloom-sarees" className="hover:text-white cursor-pointer transition-colors">
                                     Handloom Sarees
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/cotton-kurtas" className="hover:text-white cursor-pointer transition-colors">
                                     Cotton Kurtas
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/silk-dupattas" className="hover:text-white cursor-pointer transition-colors">
                                     Silk Dupattas
                                 </Link>
                             </li>
@@ -86,20 +93,25 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/shipping-policy" className="hover:text-white cursor-pointer transition-colors">
-                                    Shipping & Returns
+                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                    All Collections
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
                     {/* Studio */}
-                    <div className="space-y-4">
-                        <h4 className="text-xs uppercase tracking-widest text-sage">Studio</h4>
-                        <ul className="space-y-3 text-sm font-light text-bone/70">
+                    <div className="space-y-4 antialiased">
+                        <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Studio</h4>
+                        <ul className="space-y-3 text-[13px] font-normal text-bone/70">
                             <li>
                                 <Link href="/story" className="hover:text-white cursor-pointer transition-colors">
                                     Our Philosophy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/heritage" className="hover:text-white cursor-pointer transition-colors">
+                                    The Heritage
                                 </Link>
                             </li>
                             <li>
@@ -121,9 +133,9 @@ export default function Footer() {
                     </div>
 
                     {/* Newsletter */}
-                    <div className="space-y-4">
-                        <h4 className="text-xs uppercase tracking-widest text-sage">Newsletter</h4>
-                        <p className="text-xs text-bone/60 leading-relaxed">
+                    <div className="space-y-4 antialiased">
+                        <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Newsletter</h4>
+                        <p className="text-[13px] text-bone/70 leading-relaxed font-normal">
                             Receive curated insights on craft, culture, and conscious living.
                         </p>
                         <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
@@ -163,15 +175,21 @@ export default function Footer() {
 
                 {/* Big Typography */}
                 <div className="text-center overflow-hidden mb-12">
-                    <motion.h1
-                        initial={{ y: "100%" }}
-                        whileInView={{ y: 0 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 0.1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
-                        className="text-[14vw] md:text-[12vw] font-serif leading-none opacity-10 hover:opacity-30 transition-opacity duration-700 select-none"
+                        transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1] }}
+                        className="flex flex-col items-center justify-center hover:opacity-20 transition-opacity duration-700 select-none pb-8 antialiased"
+                        style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
                     >
-                        SIVI STUDIO
-                    </motion.h1>
+                        <span className="text-[14vw] md:text-[12vw] leading-none uppercase tracking-editorial font-bold" style={{ fontFamily: 'var(--font-bodoni)', textRendering: 'geometricPrecision' }}>
+                            SIVI
+                        </span>
+                        <span className="text-[6vw] md:text-[5vw] leading-none -mt-[4vw]" style={{ fontFamily: 'var(--font-allura)', textRendering: 'geometricPrecision' }}>
+                            the couturière
+                        </span>
+                    </motion.div>
                 </div>
 
                 {/* Bottom Bar */}

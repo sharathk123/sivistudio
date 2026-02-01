@@ -7,8 +7,33 @@ import Footer from '@/components/ui/Footer';
 import { PortableText } from '@portabletext/react';
 import ProductActions from '@/components/cart/ProductActions';
 
+import { Metadata } from 'next';
+
 interface PageProps {
     params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const product = await getProduct(slug);
+
+    if (!product) {
+        return {
+            title: 'Product Not Found | Sivi Studio',
+        };
+    }
+
+    const imageUrl = product.images?.[0] ? urlFor(product.images[0]).width(1200).height(630).url() : '';
+
+    return {
+        title: `${product.title} | Sivi Studio`,
+        description: product.description || `Discover the handcrafted ${product.title} from Sivi Studio.`,
+        openGraph: {
+            title: product.title,
+            description: product.description,
+            images: imageUrl ? [imageUrl] : [],
+        },
+    };
 }
 
 export const revalidate = 60;

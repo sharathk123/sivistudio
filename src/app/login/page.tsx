@@ -133,7 +133,7 @@ export default function LoginPage() {
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full px-4 py-3 border border-ivory-400 rounded-sm bg-bone focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all"
+                                    className="input-boutique"
                                     placeholder="you@example.com"
                                 />
                             </div>
@@ -150,7 +150,7 @@ export default function LoginPage() {
                                     required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-4 py-3 border border-ivory-400 rounded-sm bg-bone focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-all"
+                                    className="input-boutique"
                                     placeholder="Enter your password"
                                 />
                             </div>
@@ -172,7 +172,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-3 px-4 bg-sage text-white font-medium rounded-sm hover:bg-sage-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sage transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="btn-primary w-full rounded-sm"
                         >
                             {loading ? 'Signing in...' : 'Sign In'}
                         </button>

@@ -181,7 +181,7 @@ export default function ContactPage() {
                                                 required
                                                 value={formState.name}
                                                 onChange={handleChange}
-                                                className="w-full bg-ivory-100 border-none p-4 text-charcoal focus:ring-1 focus:ring-sage placeholder:text-gray-400 font-light"
+                                                className="input-boutique"
                                                 placeholder="Your name"
                                             />
                                         </div>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                                                 required
                                                 value={formState.email}
                                                 onChange={handleChange}
-                                                className="w-full bg-ivory-100 border-none p-4 text-charcoal focus:ring-1 focus:ring-sage placeholder:text-gray-400 font-light"
+                                                className="input-boutique"
                                                 placeholder="your@email.com"
                                             />
                                         </div>
@@ -208,7 +208,7 @@ export default function ContactPage() {
                                             required
                                             value={formState.subject}
                                             onChange={(e) => setFormState(prev => ({ ...prev, subject: e.target.value }))}
-                                            className="w-full bg-ivory-100 border-none p-4 text-charcoal focus:ring-1 focus:ring-sage font-light cursor-pointer"
+                                            className="input-boutique cursor-pointer"
                                         >
                                             <option value="" disabled>Select a topic</option>
                                             <option value="General Inquiry">General Inquiry</option>
@@ -227,7 +227,7 @@ export default function ContactPage() {
                                             rows={5}
                                             value={formState.message}
                                             onChange={handleChange}
-                                            className="w-full bg-ivory-100 border-none p-4 text-charcoal focus:ring-1 focus:ring-sage placeholder:text-gray-400 font-light resize-none"
+                                            className="input-boutique"
                                             placeholder="How can we help you?"
                                         />
                                     </div>
@@ -235,9 +235,9 @@ export default function ContactPage() {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting || submitStatus === 'success'}
-                                        className={`w-full py-4 px-8 flex items-center justify-center space-x-3 transition-all duration-300 ${submitStatus === 'success'
-                                            ? 'bg-sage text-white cursor-default'
-                                            : 'bg-charcoal text-white hover:bg-sage'
+                                        className={`btn-primary w-full flex items-center justify-center space-x-3 transition-all duration-300 ${submitStatus === 'success'
+                                            ? 'cursor-default opacity-80'
+                                            : ''
                                             }`}
                                     >
                                         {isSubmitting ? (

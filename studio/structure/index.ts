@@ -129,17 +129,6 @@ export const structure = (S: StructureBuilder) =>
                                         .filter('_type == "craftStory" && category == "innovation"')
                                 ),
 
-                            S.divider(),
-
-                            // Legacy Editorial
-                            S.listItem()
-                                .title('Legacy Editorial (Deprecated)')
-                                .icon(DocumentTextIcon)
-                                .child(
-                                    S.documentTypeList('editorial')
-                                        .title('Legacy Editorial Stories')
-                                        .filter('_type == "editorial"')
-                                ),
                         ])
                 ),
 

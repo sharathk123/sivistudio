@@ -57,16 +57,7 @@ export interface CraftStory {
     relatedProducts?: Product[]
 }
 
-// === LEGACY: Editorial (Deprecated - use CraftStory) ===
-export interface Editorial {
-    _id: string
-    title: string
-    slug: { current: string }
-    publishedAt: string
-    mainImage?: SanityImage
-    excerpt: string
-    body?: any[]
-}
+
 
 // === DEPRECATED: Category (use Collection instead) ===
 export interface Category {

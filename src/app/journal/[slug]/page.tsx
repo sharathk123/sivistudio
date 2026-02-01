@@ -1,28 +1,44 @@
-'use client'
-
-import { useParams, useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import StickyHeader from '@/components/ui/StickyHeader'
 import Footer from '@/components/ui/Footer'
-import { journalArticles } from '@/data/journalData'
-import { useEffect, useState } from 'react'
+import { getCraftStory, urlFor } from '@/lib/sanity/client'
+import { formatDate } from '@/lib/utils/dateUtils'
+import { PortableText } from '@portabletext/react'
 
-export default function JournalArticlePage() {
-    const { slug } = useParams()
-    const router = useRouter()
-    const article = journalArticles.find((a) => a.slug === slug)
+interface PageProps {
+    params: Promise<{ slug: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params
+    const article = await getCraftStory(slug)
 
     if (!article) {
-        return (
-            <div className="min-h-screen bg-bone flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="font-serif text-4xl mb-4">Story not found</h1>
-                    <Link href="/journal" className="text-sage border-b border-sage">Return to Journal</Link>
-                </div>
-            </div>
-        )
+        return {
+            title: 'Story Not Found | Sivi Studio',
+        }
+    }
+
+    return {
+        title: `${article.title} | Sivi Studio Journal`,
+        description: article.excerpt,
+        openGraph: {
+            title: article.title,
+            description: article.excerpt,
+            images: article.heroImage ? [urlFor(article.heroImage).width(1200).height(630).url()] : [],
+        },
+    }
+}
+
+export default async function JournalArticlePage({ params }: PageProps) {
+    const { slug } = await params
+    const article = await getCraftStory(slug)
+
+    if (!article) {
+        notFound()
     }
 
     return (
@@ -34,42 +50,43 @@ export default function JournalArticlePage() {
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-charcoal-400">
                     <Link href="/journal" className="hover:text-sage transition-colors">Journal</Link>
                     <span>/</span>
-                    <span className="text-sage font-bold">{article.category}</span>
+                    <span className="text-sage font-bold capitalize">{article.category}</span>
                 </div>
             </nav>
 
             {/* Article Header */}
             <header className="pt-12 pb-20 px-6 max-w-4xl mx-auto">
                 <div className="text-xs font-mono text-charcoal-400 uppercase tracking-widest mb-6">
-                    {article.date}
+                    {formatDate(article.publishedAt)}
                 </div>
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="font-serif text-5xl md:text-7xl text-charcoal italic leading-tight mb-8"
-                >
+                <h1 className="font-serif text-5xl md:text-7xl text-charcoal italic leading-tight mb-8">
                     {article.title}
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="font-sans text-xl text-charcoal-600 font-light leading-relaxed max-w-2xl"
-                >
+                </h1>
+                <p className="font-sans text-xl text-charcoal-600 font-light leading-relaxed max-w-2xl">
                     {article.excerpt}
-                </motion.p>
+                </p>
             </header>
+
+            {/* Main Image */}
+            {article.heroImage && (
+                <section className="px-6 mb-20 max-w-6xl mx-auto">
+                    <div className="relative aspect-[16/9] overflow-hidden rounded-sm shadow-card">
+                        <Image
+                            src={urlFor(article.heroImage).width(1800).height(1012).url()}
+                            alt={article.title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                </section>
+            )}
 
             {/* Content Body */}
             <section className="px-6 pb-32 max-w-4xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="prose prose-lg prose-charcoal max-w-none"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                />
+                <div className="prose-editorial">
+                    {article.body && <PortableText value={article.body} />}
+                </div>
 
                 {/* Navigation Footer */}
                 <div className="mt-32 pt-16 border-t border-charcoal/10 flex justify-between items-center">
@@ -84,55 +101,6 @@ export default function JournalArticlePage() {
             </section>
 
             <Footer />
-
-            <style jsx global>{`
-                .prose h3 {
-                    font-family: 'Bodoni Moda', serif;
-                    font-style: italic;
-                    font-size: 2rem;
-                    margin-top: 3rem;
-                    margin-bottom: 1.5rem;
-                    color: var(--color-charcoal);
-                }
-                .prose p {
-                    font-size: 1.125rem;
-                    line-height: 1.8;
-                    margin-bottom: 2rem;
-                    color: rgba(51, 51, 51, 0.8);
-                    font-weight: 300;
-                }
-                .prose .lead {
-                    font-size: 1.5rem;
-                    line-height: 1.6;
-                    color: var(--color-charcoal);
-                    font-family: 'Bodoni Moda', serif;
-                    font-style: italic;
-                    margin-bottom: 3rem;
-                }
-                .prose em {
-                    font-family: 'Bodoni Moda', serif;
-                    color: var(--color-sage);
-                }
-                .prose strong {
-                    color: var(--color-charcoal);
-                    font-weight: 600;
-                }
-                .prose ul {
-                    list-style: none;
-                    padding-left: 0;
-                    margin-bottom: 2rem;
-                }
-                .prose li {
-                    margin-bottom: 1rem;
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 1rem;
-                }
-                .prose li::before {
-                    content: "—";
-                    color: var(--color-sage);
-                }
-            `}</style>
         </main>
     )
 }

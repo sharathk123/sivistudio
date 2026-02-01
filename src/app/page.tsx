@@ -10,8 +10,10 @@ import HeritageMarquee from '@/components/ui/HeritageMarquee'
 
 import { IMAGES } from '@/lib/images'
 import { collectionItems } from '@/data/homeData'
+import { getCraftStories } from '@/lib/sanity/client'
 
-export default function HomePage() {
+export default async function HomePage() {
+    const stories = await getCraftStories()
     return (
         <main id="main-content" className="bg-bone min-h-screen">
             <StickyHeader theme="dark" />
@@ -111,13 +113,13 @@ export default function HomePage() {
             </section>
 
             {/* Journal Teaser */}
-            <JournalTeaser />
+            <JournalTeaser articles={stories} />
 
             {/* CTA Footer Tease */}
             <section className="py-24 px-6 text-center bg-ivory-50">
                 <Link
                     href="/shop"
-                    className="inline-block border border-charcoal text-charcoal px-12 py-6 text-sm uppercase tracking-widest hover:bg-charcoal hover:text-bone transition-colors duration-500"
+                    className="btn-luxury"
                 >
                     View Full Collection
                 </Link>

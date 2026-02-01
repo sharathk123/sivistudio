@@ -27,9 +27,9 @@ export default async function ShopPage() {
                     <div>
                         <span>All Items ({products.length})</span>
                     </div>
-                    <div className="flex gap-6">
-                        <button className="hover:text-sage transition-colors">Filter</button>
-                        <button className="hover:text-sage transition-colors">Sort</button>
+                    <div className="flex gap-4">
+                        <button className="btn-pill">Filter</button>
+                        <button className="btn-pill">Sort</button>
                     </div>
                 </div>
             </div>

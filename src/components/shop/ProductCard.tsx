@@ -86,11 +86,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                         </p>
                     )}
                     {product.priceDisplay === 'numeric' && product.price ? (
-                        <p className="font-medium text-sage-700">
+                        <p className="font-mono accent-copper">
                             ₹{product.price.toLocaleString('en-IN')}
                         </p>
                     ) : (
-                        <p className="font-medium text-sage-700 text-sm">
+                        <p className="caption-editorial text-sage">
                             Price on Request
                         </p>
                     )}

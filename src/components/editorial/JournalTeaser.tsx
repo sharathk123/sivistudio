@@ -2,11 +2,16 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { CraftStory } from '@/lib/sanity/types'
+import { formatDate } from '@/lib/utils/dateUtils'
 
-import { journalArticles } from '@/data/journalData'
+interface JournalTeaserProps {
+    articles: CraftStory[]
+}
 
-export default function JournalTeaser() {
-    const articles = journalArticles.slice(0, 3)
+export default function JournalTeaser({ articles }: JournalTeaserProps) {
+    // Show only first 3 articles
+    const displayedArticles = articles.slice(0, 3)
 
     return (
         <section className="bg-ivory py-32 px-6 border-t border-charcoal/10">
@@ -30,30 +35,34 @@ export default function JournalTeaser() {
 
                 {/* Right: Article List */}
                 <div className="space-y-12">
-                    {articles.map((article, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.1, duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="group border-b border-charcoal/20 pb-8"
-                        >
-                            <Link href={`/journal/${article.slug}`}>
-                                <div className="flex justify-between items-start mb-2">
-                                    <span className="text-xs font-mono text-charcoal-400 uppercase tracking-widest">
-                                        {article.category}
-                                    </span>
-                                    <span className="text-xs font-mono text-charcoal-400">
-                                        {article.date}
-                                    </span>
-                                </div>
-                                <h3 className="font-serif text-3xl text-charcoal group-hover:italic transition-all duration-300">
-                                    {article.title}
-                                </h3>
-                            </Link>
-                        </motion.div>
-                    ))}
+                    {displayedArticles.length > 0 ? (
+                        displayedArticles.map((article, i) => (
+                            <motion.div
+                                key={article._id}
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.1, duration: 0.6 }}
+                                viewport={{ once: true }}
+                                className="group border-b border-charcoal/20 pb-8"
+                            >
+                                <Link href={`/journal/${article.slug.current}`}>
+                                    <div className="flex justify-between items-start mb-2">
+                                        <span className="text-xs font-mono text-charcoal-400 uppercase tracking-widest capitalize">
+                                            {article.category}
+                                        </span>
+                                        <span className="text-xs font-mono text-charcoal-400">
+                                            {formatDate(article.publishedAt)}
+                                        </span>
+                                    </div>
+                                    <h3 className="font-serif text-3xl text-charcoal group-hover:italic transition-all duration-300">
+                                        {article.title}
+                                    </h3>
+                                </Link>
+                            </motion.div>
+                        ))
+                    ) : (
+                        <p className="text-charcoal-400 italic">No recent notes from the studio.</p>
+                    )}
                 </div>
             </div>
         </section>

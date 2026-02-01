@@ -129,32 +129,7 @@ export const craftStoryBySlugQuery = groq`*[_type == "craftStory" && slug.curren
   }
 }`
 
-// === LEGACY: Editorial ===
-export const editorialsQuery = groq`*[_type == "editorial"] | order(publishedAt desc) {
-  _id,
-  title,
-  slug,
-  publishedAt,
-  mainImage,
-  excerpt
-}`
 
-export const editorialBySlugQuery = groq`*[_type == "editorial" && slug.current == $slug][0] {
-    _id,
-    title,
-    slug,
-    publishedAt,
-    mainImage,
-    excerpt,
-    body,
-    "featuredProducts": featuredProducts[]->{
-        _id,
-        title,
-        slug,
-        price,
-        images
-    }
-}`
 
 // === DEPRECATED: Category ===
 export const categoriesQuery = groq`*[_type == "category"] {
