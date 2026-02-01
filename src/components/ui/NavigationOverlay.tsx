@@ -15,7 +15,8 @@ interface NavigationOverlayProps {
 
 const menuItems = [
     { label: 'Home', href: '/', image: IMAGES.heroIkat },
-    { label: 'Collections', href: '/shop', image: IMAGES.sareeEditorial },
+    { label: 'Collections', href: '/collections', image: IMAGES.sareeEditorial },
+    { label: 'The Atelier', href: '/shop', image: IMAGES.contemporaryDress },
     { label: 'The Story', href: '/story', image: IMAGES.storyOrigins },
     { label: 'Heritage', href: '/heritage', image: IMAGES.heritageHeroTextiles },
     { label: 'Custom Tailoring', href: '/custom-tailoring', image: IMAGES.customTailoring },

@@ -56,9 +56,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                             <h1 className="font-serif text-4xl lg:text-5xl text-charcoal mb-4 italic leading-tight">
                                 {product.title}
                             </h1>
-                            <p className="text-2xl text-sage-700 font-medium">
-                                ₹{product.price.toLocaleString('en-IN')}
-                            </p>
+                            {product.priceDisplay === 'numeric' && product.price ? (
+                                <p className="text-2xl text-sage-700 font-medium">
+                                    ₹{product.price.toLocaleString('en-IN')}
+                                </p>
+                            ) : (
+                                <p className="text-2xl text-sage-700 font-medium">
+                                    Price on Request
+                                </p>
+                            )}
                         </div>
 
                         {/* Description */}

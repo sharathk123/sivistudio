@@ -13,14 +13,19 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
     const { addItem } = useCart()
     const [isAdding, setIsAdding] = useState(false)
 
+    // Disable cart for products without numeric pricing
+    const canAddToCart = product.priceDisplay === 'numeric' && product.price !== undefined
+
     const handleAddToCart = async () => {
+        if (!canAddToCart) return
+
         setIsAdding(true)
 
         // Add to cart
         addItem({
             id: product._id,
             title: product.title,
-            price: product.price,
+            price: product.price!,
             image: product.images?.[0],
             quantity: 1
         })
@@ -29,6 +34,14 @@ export default function AddToCartButton({ product }: AddToCartButtonProps) {
         setTimeout(() => {
             setIsAdding(false)
         }, 1000)
+    }
+
+    if (!canAddToCart) {
+        return (
+            <div className="w-full text-lg py-4 px-8 uppercase tracking-widest font-medium bg-ivory-200 text-charcoal-400 text-center border border-ivory-300">
+                Contact for Pricing
+            </div>
+        )
     }
 
     return (

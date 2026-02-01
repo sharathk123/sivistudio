@@ -54,7 +54,7 @@ export async function getStyleRecommendation(
     // Build product context
     const productContext = products.length > 0
         ? `\n\n## Available Products\n${products.map(p =>
-            `- **${p.title}** (₹${p.price.toLocaleString('en-IN')}): ${p.description}`
+            `- **${p.title}**${p.price ? ` (₹${p.price.toLocaleString('en-IN')})` : ' (Price on Request)'}: ${p.description}`
         ).join('\n')}`
         : ''
 
@@ -95,7 +95,7 @@ export async function streamStyleRecommendation(
 
     const productContext = products.length > 0
         ? `\n\n## Available Products\n${products.map(p =>
-            `- **${p.title}** (₹${p.price.toLocaleString('en-IN')}): ${p.description}`
+            `- **${p.title}**${p.price ? ` (₹${p.price.toLocaleString('en-IN')})` : ' (Price on Request)'}: ${p.description}`
         ).join('\n')}`
         : ''
 

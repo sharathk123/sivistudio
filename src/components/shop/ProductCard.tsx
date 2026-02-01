@@ -80,14 +80,20 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <h3 className="font-serif text-xl text-charcoal group-hover:text-sage transition-colors duration-300">
                         {product.title}
                     </h3>
-                    {product.categories && product.categories.length > 0 && (
+                    {product.collections && product.collections.length > 0 && (
                         <p className="text-xs text-charcoal-300 uppercase tracking-widest">
-                            {product.categories[0].title}
+                            {product.collections[0].title}
                         </p>
                     )}
-                    <p className="font-medium text-sage-700">
-                        ₹{product.price.toLocaleString('en-IN')}
-                    </p>
+                    {product.priceDisplay === 'numeric' && product.price ? (
+                        <p className="font-medium text-sage-700">
+                            ₹{product.price.toLocaleString('en-IN')}
+                        </p>
+                    ) : (
+                        <p className="font-medium text-sage-700 text-sm">
+                            Price on Request
+                        </p>
+                    )}
                 </div>
             </motion.div>
         </Link>
