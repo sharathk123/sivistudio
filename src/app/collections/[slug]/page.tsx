@@ -38,10 +38,10 @@ export default async function CollectionPage({ params }: PageProps) {
                 )}
                 <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/70 to-charcoal/60 flex items-center justify-center">
                     <div className="text-center max-w-4xl px-4">
-                        <span className="caption-editorial mb-4 block drop-shadow-2xl text-bone">Collection</span>
-                        <h1 className="title-editorial text-bone text-7xl md:text-9xl mb-6 drop-shadow-2xl">{collection.title}</h1>
+                        <span className="caption-editorial mb-4 block drop-shadow-2xl !text-bone">Collection</span>
+                        <h1 className="title-editorial !text-bone text-7xl md:text-9xl mb-6 drop-shadow-2xl">{collection.title}</h1>
                         <div className="h-px bg-bone/50 w-full max-w-sm mx-auto mb-8" />
-                        <p className="subtitle-editorial text-bone text-2xl md:text-3xl max-w-2xl mx-auto drop-shadow-2xl font-light">
+                        <p className="subtitle-editorial !text-bone text-2xl md:text-3xl max-w-2xl mx-auto drop-shadow-2xl font-light">
                             {collection.description}
                         </p>
                     </div>
