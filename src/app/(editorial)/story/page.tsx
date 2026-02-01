@@ -7,6 +7,7 @@ import ChromaticWrapper from '@/components/ui/ChromaticWrapper'
 import Footer from '@/components/ui/Footer'
 import StickyHeader from '@/components/ui/StickyHeader'
 import { IMAGES } from '@/lib/images'
+import ArtisanProfiles from '@/components/story/ArtisanProfiles'
 
 export default function StoryPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -71,7 +72,7 @@ export default function StoryPage() {
             </section>
 
             {/* Origins Section - Ivory Background */}
-            <ChromaticWrapper startColor="#FDFCFB" endColor="#E4E4DE">
+            <ChromaticWrapper startColor="#FDFCFB" endColor="#FDFCFB">
                 <section className="py-32 px-6">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -123,8 +124,11 @@ export default function StoryPage() {
                 </section>
             </ChromaticWrapper>
 
+            {/* Artisan Profiles */}
+            <ArtisanProfiles />
+
             {/* Pull Quote - Charcoal Transition */}
-            <ChromaticWrapper startColor="#E4E4DE" endColor="#1A1A1A">
+            <ChromaticWrapper startColor="#FDFCFB" endColor="#1A1A1A">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.blockquote

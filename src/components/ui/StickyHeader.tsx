@@ -20,11 +20,11 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
     const { scrollY } = useScroll()
     const lastY = useMotionValue(0)
 
-    // Glassmorphism effect based on scroll
+    // Glassmorphism effect based on scroll - Sage Green Sticky Header
     const backgroundColor = useTransform(
         scrollY,
         [0, 100],
-        ['var(--color-sage-transparent)', 'var(--color-sage-overlay)']
+        ['rgba(156, 167, 112, 0)', 'rgba(156, 167, 112, 0.95)'] // Transparent to Opaque Sage
     )
     const backdropBlur = useTransform(
         scrollY,
@@ -35,8 +35,8 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
         scrollY,
         [0, 100],
         theme === 'dark'
-            ? ['var(--color-bone)', 'var(--color-charcoal)']
-            : ['var(--color-charcoal)', 'var(--color-charcoal)']
+            ? ['#FDFCFB', '#1A1A1A'] // Bone -> Charcoal (Dark Text on Sage BG)
+            : ['#1A1A1A', '#1A1A1A'] // Charcoal -> Charcoal (Stay Dark)
     )
 
     // Hide header on scroll down, show on scroll up
