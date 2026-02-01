@@ -31,7 +31,7 @@ export default function HomePage() {
                     </div>
                     <div className="space-y-12 text-lg md:text-xl font-light text-ivory-200 leading-relaxed font-sans">
                         <p>
-                            Sivi is a cloth brand specializing in Indian handloom fabrics transformed
+                            Sivi is a textile studio specializing in Indian handloom fabrics transformed
                             into contemporary dresses, modern outfits, and traditional sarees. We source
                             authentic handlooms from across India — Pochampally Ikat and Gadwal from Telangana,
                             Jamdani from Bengal, Sambalpuri from Odisha, Kanjivaram from Tamil Nadu, and more.

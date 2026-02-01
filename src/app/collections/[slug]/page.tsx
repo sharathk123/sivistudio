@@ -36,12 +36,12 @@ export default async function CollectionPage({ params }: PageProps) {
                 ) : (
                     <div className="w-full h-full bg-ivory-200" />
                 )}
-                <div className="absolute inset-0 bg-charcoal/30 flex items-center justify-center">
-                    <div className="text-center text-bone max-w-4xl px-4">
-                        <span className="caption-editorial mb-4 block drop-shadow-lg text-ivory">Collection</span>
-                        <h1 className="title-editorial text-7xl md:text-9xl mb-6 drop-shadow-2xl">{collection.title}</h1>
-                        <div className="h-px bg-bone/30 w-full max-w-sm mx-auto mb-8" />
-                        <p className="subtitle-editorial text-2xl md:text-3xl max-w-2xl mx-auto drop-shadow-lg font-light">
+                <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/70 to-charcoal/60 flex items-center justify-center">
+                    <div className="text-center max-w-4xl px-4">
+                        <span className="caption-editorial mb-4 block drop-shadow-2xl text-bone">Collection</span>
+                        <h1 className="title-editorial text-bone text-7xl md:text-9xl mb-6 drop-shadow-2xl">{collection.title}</h1>
+                        <div className="h-px bg-bone/50 w-full max-w-sm mx-auto mb-8" />
+                        <p className="subtitle-editorial text-bone text-2xl md:text-3xl max-w-2xl mx-auto drop-shadow-2xl font-light">
                             {collection.description}
                         </p>
                     </div>
@@ -75,13 +75,13 @@ export default async function CollectionPage({ params }: PageProps) {
                                 className="group block animate-fadeInUp"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
-                                <div className="aspect-portrait relative overflow-hidden bg-ivory-200 shadow-card mb-6">
+                                <div className="aspect-[3/4] relative overflow-hidden bg-ivory-200 shadow-card mb-6">
                                     {product.images && product.images[0] ? (
                                         <Image
-                                            src={urlFor(product.images[0]).width(800).url()}
+                                            src={urlFor(product.images[0]).width(800).height(1067).url()}
                                             alt={product.title}
                                             fill
-                                            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                            className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
                                         />
                                     ) : (
                                         <div className="w-full h-full gradient-loading" />

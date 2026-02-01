@@ -6,6 +6,7 @@ import Link from 'next/link'
 import NavigationOverlay from './NavigationOverlay'
 import { useCart } from '@/context/CartContext'
 import { useAuth } from '@/context/AuthContext'
+import CartButton from '@/components/cart/CartButton'
 
 interface StickyHeaderProps {
     theme?: 'dark' | 'light'
@@ -14,7 +15,6 @@ interface StickyHeaderProps {
 export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [isHidden, setIsHidden] = useState(false)
-    const { openCart, itemCount } = useCart()
     const { user } = useAuth()
 
     const { scrollY } = useScroll()
@@ -66,7 +66,7 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                     backdropFilter: backdropBlur,
                     WebkitBackdropFilter: backdropBlur,
                 }}
-                className="fixed top-0 left-0 right-0 z-[40] px-4 md:px-6 py-4 md:py-6 flex justify-between items-center transition-shadow duration-300"
+                className="fixed top-0 left-0 right-0 z-[var(--z-header)] px-4 md:px-6 py-4 md:py-6 flex justify-between items-center transition-shadow duration-300"
             >
                 {/* Center Brand Name */}
                 <motion.div
@@ -74,10 +74,10 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                     className="z-50 md:absolute md:left-1/2 md:-translate-x-1/2"
                 >
                     <Link href="/" className="flex items-center gap-1.5 md:gap-3">
-                        <span className="text-sm md:text-xl lg:text-2xl tracking-[0.15em] uppercase whitespace-nowrap" style={{ fontFamily: 'Bodoni Moda, serif', fontWeight: 700 }}>
+                        <span className="text-sm md:text-xl lg:text-2xl tracking-editorial uppercase whitespace-nowrap" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700 }}>
                             SIVI
                         </span>
-                        <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap hidden md:block" style={{ fontFamily: 'Allura, cursive', fontWeight: 400 }}>
+                        <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap hidden md:block" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400 }}>
                             the couturière
                         </span>
                     </Link>
@@ -85,23 +85,20 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
 
                 {/* Actions */}
                 <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto">
-                    <motion.button
-                        onClick={openCart}
-                        style={{ color: textColor as any }}
-                        className="uppercase text-[10px] md:text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
-                    >
-                        <span className="hidden md:inline">Cart</span> ({itemCount})
-                    </motion.button>
+                    <div style={{ color: textColor as any }}>
+                        <CartButton />
+                    </div>
+
                     <motion.button
                         onClick={() => setIsMenuOpen(true)}
                         style={{ color: textColor as any }}
-                        className="uppercase text-[10px] md:text-xs tracking-[0.2em] hover:opacity-70 transition-opacity"
+                        className="uppercase text-[10px] md:text-xs tracking-nav hover:opacity-70 transition-opacity"
                     >
                         Menu
                     </motion.button>
                     <Link
                         href={user ? "/account" : "/login"}
-                        className="uppercase text-[10px] md:text-xs tracking-[0.2em] hover:opacity-70 transition-opacity hidden md:block" // Hidden on mobile to avoid clutter, visible in menu
+                        className="uppercase text-[10px] md:text-xs tracking-nav hover:opacity-70 transition-opacity hidden md:block" // Hidden on mobile to avoid clutter, visible in menu
                     >
                         <motion.span style={{ color: textColor as any }}>
                             {user ? 'Account' : 'Login'}

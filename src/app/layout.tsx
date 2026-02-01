@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Playfair_Display, Inter, Bodoni_Moda, Allura } from 'next/font/google'
 import './globals.css'
 
 const playfair = Playfair_Display({
@@ -14,8 +14,21 @@ const inter = Inter({
   display: 'swap',
 })
 
+const bodoni = Bodoni_Moda({
+  subsets: ['latin'],
+  variable: '--font-bodoni',
+  display: 'swap',
+})
+
+const allura = Allura({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-allura',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'Sivi the Couturier | Handloom Heritage & Custom Tailoring',
+  title: 'Sivi the Couturière | Handloom Heritage & Custom Tailoring',
   description: 'Premium Hyderabad-based couturier specializing in handloom heritage, conscious craft, and bespoke tailoring. Discover authentic Indian textiles.',
   icons: {
     icon: [
@@ -38,7 +51,7 @@ import BoutiqueButton from '@/components/ui/BoutiqueButton'
 import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
 import { CartProvider } from '@/context/CartContext'
 import { AuthProvider } from '@/context/AuthContext'
-import CartDrawer from '@/components/shop/CartDrawer'
+import CartDrawer from '@/components/cart/CartDrawer'
 
 export default function RootLayout({
   children,
@@ -46,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} ${bodoni.variable} ${allura.variable}`}>
       <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
         <AuthProvider>
           <CartProvider>

@@ -56,7 +56,7 @@ export default function Footer() {
                     <div className="space-y-6">
                         <span className="font-serif italic text-2xl">Sivi Studio</span>
                         <p className="text-sm text-bone/60 font-light leading-relaxed max-w-xs">
-                            Indian handloom cloth brand specializing in contemporary dresses,
+                            Indian handloom textile studio specializing in contemporary dresses,
                             modern outfits, and traditional sarees from Hyderabad.
                         </p>
                     </div>

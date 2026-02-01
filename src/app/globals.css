@@ -1,7 +1,6 @@
-@import "tailwindcss";
-
 /* Custom Fonts for Brand - Matching Original Logo */
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&family=Allura&display=swap');
+/* Note: Bodoni and Allura are now loaded via next/font in layout.tsx */
+@import "tailwindcss";
 
 @theme {
   /* Color Palette - Base */
@@ -45,6 +44,8 @@
   --font-family-serif: 'Playfair Display', serif;
   --font-family-sans: 'Inter', sans-serif;
   --font-family-mono: 'Courier New', monospace;
+  --font-family-bodoni: var(--font-bodoni);
+  --font-family-allura: var(--font-allura);
 
   /* Spacing Scale */
   --spacing-section-y: 8rem;
@@ -68,6 +69,7 @@
 
   /* Letter Spacing */
   --tracking-ultra-wide: 0.3em;
+  --tracking-nav: 0.2em;
   --tracking-wide: 0.15em;
   --tracking-wider: 0.1em;
 
@@ -120,6 +122,13 @@
   --line-height-md: 0.25rem;
   --decorative-width: 4rem;
   --decorative-height: 6rem;
+  --width-drawer: 30rem;
+  /* 480px */
+
+  /* Z-Index */
+  --z-header: 40;
+  --z-drawer: 50;
+  --z-overlay: 40;
 
   /* Aspect Ratios */
   --aspect-portrait: 3/4;
@@ -164,6 +173,10 @@
 
   .tracking-wide-luxury {
     letter-spacing: var(--tracking-wider);
+  }
+
+  .tracking-nav {
+    letter-spacing: var(--tracking-nav);
   }
 
   /* Animation Utilities */

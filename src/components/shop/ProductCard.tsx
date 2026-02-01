@@ -19,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     const macroImage = product.images?.[1] || product.images?.[0]
 
     return (
-        <Link href={`/shop/${product.slug.current}`} className="group block">
+        <Link href={`/products/${product.slug.current}`} className="group block">
             <motion.div
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.3 }}
