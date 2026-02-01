@@ -479,7 +479,7 @@ This document contains user stories for all remaining pages and features that ne
 
 **Acceptance Criteria:**
 
-- [ ] Create custom 404 page
+- [X] Create custom 404 page
 - [ ] Create custom 500 error page
 - [X] Add error boundaries (already have ErrorBoundary component)
 - [ ] Implement graceful error messages
