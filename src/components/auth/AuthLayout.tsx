@@ -13,10 +13,15 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({ title, subtitle, childre
             <div className="max-w-md w-full space-y-8">
                 {/* Header */}
                 <div className="text-center">
-                    <Link href="/" className="inline-block">
-                        <h1 className="font-serif text-5xl font-bold text-charcoal italic hover:text-sage transition-colors">
-                            Sivi Studio
-                        </h1>
+                    <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
+                        <div className="flex flex-col items-center gap-1 antialiased">
+                            <span className="text-3xl tracking-nav uppercase text-charcoal" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700 }}>
+                                SIVI
+                            </span>
+                            <span className="text-2xl text-charcoal" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400, marginTop: '-0.25rem' }}>
+                                the couturière
+                            </span>
+                        </div>
                     </Link>
                     <p className="mt-4 text-lg text-charcoal-300 tracking-wide-luxury">
                         {title}

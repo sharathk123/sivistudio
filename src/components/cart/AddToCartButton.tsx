@@ -40,12 +40,12 @@ export default function AddToCartButton({ product, selectedSize, disabled = fals
             onClick={handleAddToCart}
             disabled={isAdding || disabled}
             className={`w-full py-5 px-8 label-editorial transition-all duration-500 shadow-card hover:shadow-lg active:scale-[0.98] relative overflow-hidden group ${isAdding || disabled
-                ? 'bg-sage text-bone'
-                : 'bg-charcoal text-bone hover:bg-sage'
+                ? 'bg-sage-600 text-bone'
+                : 'bg-sage text-bone hover:bg-sage-600'
                 }`}
         >
             <span className={`relative z-10 flex items-center justify-center gap-2 ${isAdding ? 'opacity-0' : 'opacity-100'} transition-opacity`}>
-                {product.availability === 'made_to_order' ? 'Order Now' : 'Add to Cart'}
+                {product.availability === 'made_to_order' ? 'Order Now' : 'Add to Bag'}
             </span>
 
             {/* Success State */}
@@ -53,7 +53,7 @@ export default function AddToCartButton({ product, selectedSize, disabled = fals
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
-                Added to Cart
+                Added to Bag
             </span>
         </button>
     );

@@ -77,7 +77,7 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                     className="z-50 md:absolute md:left-1/2 md:-translate-x-1/2"
                 >
                     <Link href="/" className="flex items-center gap-1.5 md:gap-3">
-                        <span className="text-sm md:text-xl lg:text-2xl tracking-editorial uppercase whitespace-nowrap" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700 }}>
+                        <span className="text-sm md:text-xl lg:text-2xl tracking-nav uppercase whitespace-nowrap" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700 }}>
                             SIVI
                         </span>
                         <span className="text-sm md:text-xl lg:text-2xl whitespace-nowrap hidden md:block" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400 }}>

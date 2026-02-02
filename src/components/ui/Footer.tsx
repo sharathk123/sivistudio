@@ -56,7 +56,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="space-y-6">
                         <div className="flex flex-col gap-1 antialiased">
-                            <span className="text-3xl tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700, letterSpacing: '0.25em' }}>
+                            <span className="text-3xl tracking-nav uppercase" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700 }}>
                                 SIVI
                             </span>
                             <span className="text-2xl" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400, marginTop: '-0.25rem' }}>
@@ -162,8 +162,8 @@ export default function Footer() {
                         <p className="text-[13px] text-bone/70 leading-relaxed font-normal">
                             Receive curated insights on craft, culture, and conscious living.
                         </p>
-                        <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
-                            <div>
+                        <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                            <div className="relative">
                                 <input
                                     type="email"
                                     value={email}
@@ -172,27 +172,25 @@ export default function Footer() {
                                     disabled={status === 'loading'}
                                     className="w-full bg-transparent border-b border-bone/30 pb-2 text-sm outline-none placeholder:text-bone/40 focus:border-sage transition-colors disabled:opacity-50"
                                     aria-label="Email address for newsletter"
-                                    aria-invalid={status === 'error'}
-                                    aria-describedby={status === 'error' ? 'newsletter-error' : undefined}
                                 />
-                                {status === 'error' && (
-                                    <p id="newsletter-error" className="text-xs text-red-400 mt-2" role="alert">
-                                        {errorMessage}
-                                    </p>
-                                )}
-                                {status === 'success' && (
-                                    <p className="text-xs text-sage mt-2" role="status">
-                                        ✓ Thank you for subscribing!
-                                    </p>
-                                )}
+                                <button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="absolute right-0 bottom-2 text-xs uppercase tracking-widest hover:text-sage transition-colors border-b border-transparent hover:border-sage pb-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {status === 'loading' ? '...' : 'Join'}
+                                </button>
                             </div>
-                            <button
-                                type="submit"
-                                disabled={status === 'loading'}
-                                className="self-start text-xs uppercase tracking-widest hover:text-sage transition-colors border-b border-transparent hover:border-sage pb-1 disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
-                            </button>
+                            {status === 'error' && (
+                                <p id="newsletter-error" className="text-xs text-red-400" role="alert">
+                                    {errorMessage}
+                                </p>
+                            )}
+                            {status === 'success' && (
+                                <p className="text-xs text-sage" role="status">
+                                    ✓ Thank you for subscribing!
+                                </p>
+                            )}
                         </form>
                     </div>
                 </div>
