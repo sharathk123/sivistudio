@@ -98,10 +98,13 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                             {order.order_items.map((item: any) => (
                                 <div key={item.id} className="flex justify-between items-start">
                                     <div>
-                                        <p className="font-bold text-charcoal mb-1">Product {item.product_id ? item.product_id.slice(0, 8) : 'Unknown'}</p>
+                                        <p className="font-bold text-charcoal mb-1">Product {item.sanity_product_id ? item.sanity_product_id.slice(0, 8) : 'Unknown'}</p>
+                                        {item.selected_size && (
+                                            <p className="text-xs text-sage uppercase tracking-wider mb-1">Size: {item.selected_size}</p>
+                                        )}
                                         <p className="text-sm text-charcoal-400">Quantity: {item.quantity}</p>
                                     </div>
-                                    <p className="font-serif text-lg">₹{(item.unit_price * item.quantity).toLocaleString()}</p>
+                                    <p className="font-serif text-lg">₹{(Number(item.price || 0) * item.quantity).toLocaleString('en-IN')}</p>
                                 </div>
                             ))}
                         </div>
@@ -110,7 +113,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                         <div className="border-t-2 border-charcoal/10 pt-6 space-y-3">
                             <div className="flex justify-between text-charcoal-400 text-sm">
                                 <span>Subtotal</span>
-                                <span>₹{order.total_amount.toLocaleString()}</span>
+                                <span>₹{Number(order.total_amount || 0).toLocaleString('en-IN')}</span>
                             </div>
                             <div className="flex justify-between text-charcoal-400 text-sm">
                                 <span>Shipping</span>
@@ -118,7 +121,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                             </div>
                             <div className="flex justify-between text-charcoal font-bold text-xl pt-4 border-t border-charcoal/5">
                                 <span>Total</span>
-                                <span>₹{order.total_amount.toLocaleString()}</span>
+                                <span>₹{Number(order.total_amount || 0).toLocaleString('en-IN')}</span>
                             </div>
                         </div>
                     </div>
@@ -129,9 +132,19 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                             <h3 className="font-bold text-charcoal uppercase tracking-widest text-xs mb-4 flex items-center">
                                 <MapPin size={14} className="mr-2" /> Shipping Address
                             </h3>
-                            <p className="text-charcoal-400 text-sm leading-relaxed">
-                                {order.shipping_address}
-                            </p>
+                            <div className="text-charcoal-400 text-sm leading-relaxed">
+                                {typeof order.shipping_address === 'object' ? (
+                                    <>
+                                        <p className="font-bold text-charcoal mb-1">{order.shipping_address.full_name}</p>
+                                        <p>{order.shipping_address.address_line1}</p>
+                                        {order.shipping_address.address_line2 && <p>{order.shipping_address.address_line2}</p>}
+                                        <p>{order.shipping_address.city}, {order.shipping_address.state} - {order.shipping_address.zip_code}</p>
+                                        <p>{order.shipping_address.phone_number}</p>
+                                    </>
+                                ) : (
+                                    <p>{order.shipping_address}</p>
+                                )}
+                            </div>
                         </div>
 
                         <div className="bg-ivory p-6 border border-charcoal/5">

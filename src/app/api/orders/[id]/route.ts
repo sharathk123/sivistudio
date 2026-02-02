@@ -18,21 +18,13 @@ export const GET = withAuth(async (request: NextRequest, { params, user }) => {
 
         const { data: order, error } = await supabase
             .from('orders')
-            .select(`
-                *,
-                order_items (
-                    id,
-                    product_id,
-                    quantity,
-                    unit_price,
-                    subtotal
-                )
-            `)
+            .select('*, order_items(id, sanity_product_id, selected_size, quantity, price)')
             .eq('id', orderId)
-            .eq('user_id', user.id) // Security: Ensure user owns the order
+            .eq('profile_id', user.id) // Security: Ensure user owns the order
             .single()
 
         if (error || !order) {
+            console.error('[API] Order Detail Fetch Error:', error)
             return NextResponse.json({ error: 'Order not found' }, { status: 404 })
         }
 
