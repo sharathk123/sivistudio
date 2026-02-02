@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState, FormEvent } from 'react'
 import { Instagram, HelpCircle } from 'lucide-react'
 
@@ -56,23 +55,13 @@ export default function Footer() {
 
                     {/* Brand */}
                     <div className="space-y-6">
-                        <div className="flex flex-col gap-4 antialiased">
-                            <Link href="/" className="inline-block relative w-12 h-12">
-                                <Image
-                                    src="/logo-icon.png"
-                                    alt="Sivi Studio Logo"
-                                    fill
-                                    className="object-contain brightness-0 invert opacity-80"
-                                />
-                            </Link>
-                            <div className="flex flex-col gap-1">
-                                <span className="text-3xl tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700, letterSpacing: '0.25em' }}>
-                                    SIVI
-                                </span>
-                                <span className="text-2xl" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400, marginTop: '-0.25rem' }}>
-                                    the couturière
-                                </span>
-                            </div>
+                        <div className="flex flex-col gap-1 antialiased">
+                            <span className="text-3xl tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-bodoni)', fontWeight: 700, letterSpacing: '0.25em' }}>
+                                SIVI
+                            </span>
+                            <span className="text-2xl" style={{ fontFamily: 'var(--font-allura)', fontWeight: 400, marginTop: '-0.25rem' }}>
+                                the couturière
+                            </span>
                         </div>
                         <p className="text-[13px] text-bone/70 font-light leading-relaxed max-w-xs antialiased">
                             Indian handloom textile studio specializing in contemporary dresses,
