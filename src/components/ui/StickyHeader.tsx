@@ -89,7 +89,7 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                 {/* Actions */}
                 <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto">
                     <motion.div style={{ color: textColor as any }}>
-                        <Link href="/account" className="relative group text-current block" aria-label="Wishlist">
+                        <Link href="/account?tab=wishlist" className="relative group text-current block" aria-label="Wishlist">
                             <Heart className="w-6 h-6 transition-transform group-hover:scale-110" strokeWidth={1.5} />
                             {wishlistItems.length > 0 && (
                                 <span className="absolute -top-2 -right-2 w-5 h-5 bg-copper text-bone text-xs font-mono flex items-center justify-center rounded-full animate-fadeInUp">
