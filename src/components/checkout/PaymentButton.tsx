@@ -139,7 +139,7 @@ export default function PaymentButton({
                         <div className="w-full flex flex-col items-center gap-4">
                             <div className="flex items-center justify-center gap-4 w-full">
                                 <div className="h-[1px] flex-1 bg-ivory/20" />
-                                <span className="font-serif italic text-ivory/60 text-sm tracking-widest whitespace-nowrap">Finalize Purchase</span>
+                                <span className="font-serif italic text-ivory/60 text-sm tracking-widest whitespace-nowrap">Proceed to Payment</span>
                                 <div className="h-[1px] flex-1 bg-ivory/20" />
                             </div>
 
