@@ -9,6 +9,7 @@ import { MapPin, Mail, Phone, Clock, Send } from 'lucide-react'
 import StickyHeader from '@/components/ui/StickyHeader'
 import { IMAGES } from '@/lib/images'
 import { faqItems } from '@/data/contactData'
+import { SubmitButton } from '@/components/auth'
 
 export default function ContactPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -284,25 +285,21 @@ export default function ContactPage() {
                                         {errors.message && <FormError message={errors.message} />}
                                     </div>
 
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting || submitStatus === 'success'}
-                                        className={`btn-primary w-full flex items-center justify-center space-x-3 transition-all duration-300 ${submitStatus === 'success'
-                                            ? 'cursor-default opacity-80'
-                                            : ''
-                                            }`}
+                                    <SubmitButton
+                                        loading={isSubmitting}
+                                        loadingText="Sending..."
+                                        disabled={submitStatus === 'success'}
+                                        className={submitStatus === 'success' ? 'cursor-default opacity-80' : ''}
                                     >
-                                        {isSubmitting ? (
-                                            <span className="animate-pulse">Sending...</span>
-                                        ) : submitStatus === 'success' ? (
+                                        {submitStatus === 'success' ? (
                                             <span>Message Sent Successfully</span>
                                         ) : (
-                                            <>
+                                            <div className="flex items-center justify-center gap-3">
                                                 <span>Send Message</span>
                                                 <Send size={18} />
-                                            </>
+                                            </div>
                                         )}
-                                    </button>
+                                    </SubmitButton>
                                 </form>
                             </motion.div>
                         </div>
