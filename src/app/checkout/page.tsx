@@ -218,7 +218,8 @@ export default function CheckoutPage() {
                             items={items.map(i => ({
                                 id: i.product._id,
                                 quantity: i.quantity,
-                                price: i.product.price || 0
+                                price: i.product.price || 0,
+                                selectedSize: i.selectedSize
                             }))}
                             shippingAddressId={selectedAddressId}
                             totalAmount={totalPrice}

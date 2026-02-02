@@ -111,10 +111,10 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
         // 4. Create Order Items
         const orderItems = items.map((item: any) => ({
             order_id: order.id,
-            product_id: item.id || item._id, // Handle Sanity _id
+            sanity_product_id: item.id || item._id, // Handle Sanity _id
             quantity: item.quantity,
-            unit_price: item.price,
-            subtotal: item.price * item.quantity
+            price: item.price,
+            selected_size: item.selectedSize || null
         }))
 
         const { error: itemsError } = await supabaseAdmin
