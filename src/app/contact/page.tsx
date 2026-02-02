@@ -295,8 +295,8 @@ export default function ContactPage() {
                                             <span>Message Sent Successfully</span>
                                         ) : (
                                             <div className="flex items-center justify-center gap-3">
-                                                <span>Send Message</span>
                                                 <Send size={18} />
+                                                <span>Send Message</span>
                                             </div>
                                         )}
                                     </SubmitButton>
