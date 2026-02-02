@@ -181,7 +181,7 @@ The Supabase JWT token contains:
 
 ### 1. Always Use HTTPS in Production
 ```bash
-NEXT_PUBLIC_SITE_URL=https://sivistudio.com
+NEXT_PUBLIC_SITE_URL=https://sivithecouturier.com
 ```
 
 ### 2. Token Expiration

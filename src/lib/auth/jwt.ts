@@ -61,13 +61,13 @@ export async function verifyAuth(request: NextRequest) {
  * })
  * ```
  */
-export function withAuth(
+export function withAuth<T = any>(
     handler: (
         request: NextRequest,
-        context: { user: { id: string; email: string; role?: string } }
+        context: T & { user: { id: string; email: string; role?: string } }
     ) => Promise<NextResponse>
 ) {
-    return async (request: NextRequest) => {
+    return async (request: NextRequest, context: T) => {
         const auth = await verifyAuth(request)
 
         if (!auth.authenticated || !auth.user) {
@@ -77,8 +77,8 @@ export function withAuth(
             )
         }
 
-        // Call the original handler with authenticated user
-        return handler(request, { user: auth.user })
+        // Call the original handler with authenticated user and original context
+        return handler(request, { ...context, user: auth.user })
     }
 }
 

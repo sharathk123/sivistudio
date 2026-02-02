@@ -19,20 +19,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     if (!product) {
         return {
-            title: 'Product Not Found | Sivi Studio',
+            title: 'Product Not Found | Sivi the Couturier',
         };
     }
 
     const imageUrl = product.images?.[0] ? urlFor(product.images[0]).width(1200).height(630).url() : '';
 
     return {
-        title: `${product.title} | Sivi Studio`,
-        description: product.description || `Discover the handcrafted ${product.title} from Sivi Studio.`,
+        title: `${product.title} | Sivi the Couturier`,
+        description: product.description || `Discover the handcrafted ${product.title} from Sivi the Couturier.`,
         openGraph: {
+            title: `${product.title} | Sivi the Couturier`,
+            description: product.description,
+            images: imageUrl ? [imageUrl] : [],
+            type: 'article',
+        },
+        twitter: {
+            card: 'summary_large_image',
             title: product.title,
             description: product.description,
             images: imageUrl ? [imageUrl] : [],
-        },
+        }
     };
 }
 
@@ -58,8 +65,35 @@ export default async function ProductPage({ params }: PageProps) {
         sold_out: 'text-ivory-300',
     };
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.title,
+        image: product.images?.map(img => urlFor(img).url()),
+        description: product.description,
+        brand: {
+            '@type': 'Brand',
+            name: 'Sivi the Couturier'
+        },
+        offers: {
+            '@type': 'Offer',
+            url: `https://sivithecouturier.com/products/${product.slug.current}`,
+            priceCurrency: 'INR',
+            price: product.price || 0,
+            availability: product.availability === 'in_stock'
+                ? 'https://schema.org/InStock'
+                : 'https://schema.org/PreOrder',
+        }
+    }
+
     return (
         <main className="min-h-screen bg-bone">
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+            </head>
             <StickyHeader theme="light" />
 
             {/* Product Hero */}

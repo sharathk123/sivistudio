@@ -181,9 +181,13 @@ export default function CartDrawer() {
                             </p>
 
                             {/* Checkout Button */}
-                            <button className="w-full bg-charcoal text-bone py-5 label-editorial hover:bg-sage transition-all duration-500 shadow-card">
+                            <Link
+                                href="/checkout"
+                                onClick={closeCart}
+                                className="w-full bg-charcoal text-bone py-5 label-editorial hover:bg-sage transition-all duration-500 shadow-card text-center block"
+                            >
                                 Proceed to Checkout
-                            </button>
+                            </Link>
 
                             {/* Continue Shopping */}
                             <button

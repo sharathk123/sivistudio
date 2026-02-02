@@ -104,6 +104,101 @@ class ApiClient {
         )
     }
 
+    async getOrder(id: string) {
+        return this.request<{ success: boolean; data: any }>(
+            `/api/orders/${id}`
+        )
+    }
+
+    // Address API
+    async getAddresses() {
+        return this.request<{ success: boolean; data: any[] }>('/api/addresses')
+    }
+
+    async createAddress(data: any) {
+        return this.request<{ success: boolean; data: any }>(
+            '/api/addresses',
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }
+        )
+    }
+
+    async updateAddress(id: string, data: any) {
+        return this.request<{ success: boolean; data: any }>(
+            `/api/addresses/${id}`,
+            {
+                method: 'PUT',
+                body: JSON.stringify(data),
+            }
+        )
+    }
+
+    async deleteAddress(id: string) {
+        return this.request<{ success: boolean }>(
+            `/api/addresses/${id}`,
+            {
+                method: 'DELETE',
+            }
+        )
+    }
+
+    // Wishlist API
+    async getWishlist() {
+        return this.request<{ success: boolean; data: any[] }>('/api/wishlist')
+    }
+
+    async addToWishlist(product_id: string) {
+        return this.request<{ success: boolean; data: any }>(
+            '/api/wishlist',
+            {
+                method: 'POST',
+                body: JSON.stringify({ product_id }),
+            }
+        )
+    }
+
+    async removeFromWishlist(id: string) {
+        return this.request<{ success: boolean }>(
+            `/api/wishlist/${id}`,
+            {
+                method: 'DELETE',
+            }
+        )
+    }
+
+    // Payment API
+    async createPaymentOrder(data: { items: any[], shipping_address_id: string }) {
+        return this.request<{
+            success: boolean;
+            orderId: string;
+            amount: number;
+            currency: string;
+            dbOrderId: string
+        }>(
+            '/api/payment/create-order',
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }
+        )
+    }
+
+    async verifyPayment(data: {
+        razorpay_order_id: string;
+        razorpay_payment_id: string;
+        razorpay_signature: string
+    }) {
+        return this.request<{ success: boolean }>(
+            '/api/payment/verify',
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+            }
+        )
+    }
+
     async createOrder(data: {
         items: Array<{
             product_id: string

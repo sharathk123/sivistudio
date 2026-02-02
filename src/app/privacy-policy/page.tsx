@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
 
                     <h3 className="font-serif text-2xl text-charcoal italic mt-12 mb-4">6. Contact Us</h3>
                     <p>
-                        If you have any questions regarding this privacy policy, you may contact us at <a href="mailto:privacy@sivistudio.com" className="text-sage hover:underline">privacy@sivistudio.com</a>.
+                        If you have any questions regarding this privacy policy, you may contact us at <a href="mailto:privacy@sivithecouturier.com" className="text-sage hover:underline">privacy@sivithecouturier.com</a>.
                     </p>
                 </div>
             </div>

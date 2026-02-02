@@ -9,6 +9,9 @@ import StickyHeader from '@/components/ui/StickyHeader'
 import NavButton from '@/components/account/NavButton'
 import OverviewTab from '@/components/account/OverviewTab'
 import OrdersTab from '@/components/account/OrdersTab'
+import SettingsTab from '@/components/account/SettingsTab'
+import AddressesTab from '@/components/account/AddressesTab'
+import WishlistTab from '@/components/account/WishlistTab'
 import PlaceholderTab from '@/components/account/PlaceholderTab'
 import { useAuth } from '@/context/AuthContext'
 
@@ -89,9 +92,9 @@ export default function AccountPage() {
                             >
                                 {activeTab === 'overview' && <OverviewTab />}
                                 {activeTab === 'orders' && <OrdersTab />}
-                                {activeTab === 'addresses' && <PlaceholderTab title="Saved Addresses" icon={MapPin} />}
-                                {activeTab === 'wishlist' && <PlaceholderTab title="My Wishlist" icon={Heart} />}
-                                {activeTab === 'settings' && <PlaceholderTab title="Account Settings" icon={Settings} />}
+                                {activeTab === 'addresses' && <AddressesTab />}
+                                {activeTab === 'wishlist' && <WishlistTab />}
+                                {activeTab === 'settings' && <SettingsTab />}
                             </motion.div>
                         </AnimatePresence>
                     </div>

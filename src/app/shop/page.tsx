@@ -1,75 +1,91 @@
-import { getProducts } from '@/lib/sanity/client'
-import ProductCard from '@/components/shop/ProductCard'
-import Link from 'next/link'
+import { getProducts, getCollections } from '@/lib/sanity/client'
 import StickyHeader from '@/components/ui/StickyHeader'
+import ShopDisplay from '@/components/shop/ShopDisplay'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
-export default async function ShopPage() {
-    const products = await getProducts()
+export default async function ShopPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ collection?: string; sort?: string }>
+}) {
+    const params = await searchParams
+    const collectionSlug = params.collection
+    const sortBy = params.sort
+
+    const [allProducts, collections] = await Promise.all([
+        getProducts(),
+        getCollections()
+    ])
+
+    // Server-side filtering
+    let products = [...allProducts]
+    if (collectionSlug && collectionSlug !== 'all') {
+        products = products.filter(p =>
+            p.collections?.some(c => c.slug.current === collectionSlug)
+        )
+    }
+
+    // Server-side sorting
+    const sortMethods: Record<string, (a: any, b: any) => number> = {
+        'price-low': (a, b) => (a.price || 0) - (b.price || 0),
+        'price-high': (a, b) => (b.price || 0) - (a.price || 0),
+        'title-az': (a, b) => a.title.localeCompare(b.title),
+        'newest': () => 0, // Default order
+    }
+
+    if (sortBy && sortMethods[sortBy]) {
+        products.sort(sortMethods[sortBy])
+    }
+
+    // JSON-LD ItemList Schema for Shop SEO
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'The Atelier | Sivi the Couturier',
+        description: 'Curated collection of handcrafted handloom garments.',
+        itemListElement: products.map((product, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: {
+                '@type': 'Product',
+                name: product.title,
+                url: `https://sivithecouturier.com/products/${product.slug.current}`,
+                description: product.description,
+                offers: {
+                    '@type': 'Offer',
+                    price: product.price || 0,
+                    priceCurrency: 'INR',
+                    availability: product.availability === 'in_stock'
+                        ? 'https://schema.org/InStock'
+                        : 'https://schema.org/PreOrder'
+                }
+            }
+        }))
+    }
 
     return (
         <div className="min-h-screen bg-bone">
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+            </head>
             <StickyHeader theme="light" />
+
             {/* Header */}
-            <div className="pt-32 pb-16 px-6 text-center">
-                <h1 className="font-serif text-5xl md:text-7xl text-charcoal italic mb-6">
+            <div className="pt-40 pb-12 px-6 text-center">
+                <h1 className="font-serif text-5xl md:text-8xl text-charcoal italic mb-8">
                     The Atelier
                 </h1>
-                <p className="max-w-2xl mx-auto text-charcoal-400 text-lg tracking-wide font-light">
+                <p className="max-w-xl mx-auto text-charcoal-400 text-lg tracking-wide font-light leading-relaxed">
                     Explore our curated collection of handcrafted garments, designed in Hyderabad with conscious luxury in mind.
                 </p>
             </div>
 
-            {/* Filter Placeholder */}
-            <div className="border-t border-b border-ivory-300 py-4 mb-16">
-                <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-sm tracking-widest text-charcoal-300 uppercase">
-                    <div>
-                        <span>All Items ({products.length})</span>
-                    </div>
-                    <div className="flex gap-4">
-                        <button className="btn-pill">Filter</button>
-                        <button className="btn-pill">Sort</button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Product Grid - Asymmetrical "Anti-Grid" */}
-            <div className="max-w-7xl mx-auto px-6 pb-24">
-                {products.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 auto-rows-auto">
-                        {products.map((product, index) => (
-                            <div
-                                key={product._id}
-                                className={`
-                                    ${index === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}
-                                    ${index % 5 === 2 ? 'lg:col-span-2' : ''}
-                                `}
-                            >
-                                <ProductCard product={product} />
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-center py-32 flex flex-col items-center">
-                        <div className="w-24 h-24 rounded-full bg-ivory-100 flex items-center justify-center mb-8">
-                            <span className="font-serif text-4xl text-sage italic">S</span>
-                        </div>
-                        <h2 className="font-serif text-4xl text-charcoal italic mb-4">
-                            The new collection is on the loom.
-                        </h2>
-                        <p className="text-charcoal-400 font-light max-w-lg mx-auto mb-8">
-                            Our artisans are crafting the next drop. The atelier will be replenished soon.
-                        </p>
-                        <Link
-                            href="/"
-                            className="inline-block px-8 py-3 bg-charcoal text-bone text-xs uppercase tracking-widest hover:bg-sage transition-all duration-300 shadow-lg"
-                        >
-                            Return Home
-                        </Link>
-                    </div>
-                )}
-            </div>
+            {/* Main Shop Interface */}
+            <ShopDisplay products={products} collections={collections} />
         </div>
     )
 }

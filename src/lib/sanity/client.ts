@@ -45,6 +45,19 @@ export async function getProduct(slug: string): Promise<Types.Product | null> {
   return client.fetch(Queries.productBySlugQuery, { slug })
 }
 
+export async function getProductsByIds(ids: string[]): Promise<Types.Product[]> {
+  if (!ids.length) return []
+  return client.fetch(`*[_type == "product" && _id in $ids]{
+        _id,
+        name,
+        slug,
+        price,
+        "mainImage": mainImage.asset->url,
+        "categoryId": category->_id,
+        "categorySlug": category->slug.current
+    }`, { ids })
+}
+
 // === CRAFT STORIES ===
 export async function getCraftStories(): Promise<Types.CraftStory[]> {
   return client.fetch(Queries.craftStoriesQuery)

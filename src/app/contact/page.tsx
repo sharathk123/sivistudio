@@ -151,7 +151,7 @@ export default function ContactPage() {
                                             <h3 className="font-serif text-xl text-charcoal italic mb-2">Contact</h3>
                                             <p className="text-charcoal-400 leading-relaxed font-light">
                                                 +91 98765 43210<br />
-                                                hello@sivistudio.com
+                                                hello@sivithecouturier.com
                                             </p>
                                         </div>
                                     </div>
