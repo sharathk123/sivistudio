@@ -6,6 +6,7 @@ import { urlFor } from '@/lib/sanity/image'
 import { Product } from '@/lib/sanity/client'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import WishlistButton from '@/components/ui/WishlistButton'
 
 interface ProductCardProps {
     product: Product
@@ -73,6 +74,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                     {/* Subtle Overlay */}
                     <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/5" />
+
+                    {/* Wishlist Button Overlay */}
+                    <div className="absolute top-4 right-4 z-20">
+                        <WishlistButton
+                            productId={product._id}
+                            className="bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-sm hover:bg-white transition-all transform hover:scale-105"
+                        />
+                    </div>
                 </div>
 
                 {/* Details */}

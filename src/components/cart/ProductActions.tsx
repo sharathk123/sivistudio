@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Product } from '@/lib/sanity/types';
 import AddToCartButton from './AddToCartButton';
 import Link from 'next/link';
+import WishlistButton from '@/components/ui/WishlistButton';
 
 export default function ProductActions({ product }: { product: Product }) {
     const [selectedSize, setSelectedSize] = useState<string | undefined>();
@@ -28,8 +29,8 @@ export default function ProductActions({ product }: { product: Product }) {
                                 key={size}
                                 onClick={() => setSelectedSize(size)}
                                 className={`min-w-[48px] h-12 px-4 flex items-center justify-center border label-editorial transition-all active:scale-95 ${selectedSize === size
-                                        ? 'border-charcoal bg-charcoal text-bone'
-                                        : 'border-ivory-300 hover:border-charcoal text-charcoal'
+                                    ? 'border-charcoal bg-charcoal text-bone'
+                                    : 'border-ivory-300 hover:border-charcoal text-charcoal'
                                     }`}
                             >
                                 {size}
@@ -46,11 +47,17 @@ export default function ProductActions({ product }: { product: Product }) {
 
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-ivory-100">
-                <div className="flex-1">
-                    <AddToCartButton
-                        product={product}
-                        selectedSize={selectedSize}
-                        disabled={hasSizes && !selectedSize}
+                <div className="flex-1 flex gap-3">
+                    <div className="flex-grow">
+                        <AddToCartButton
+                            product={product}
+                            selectedSize={selectedSize}
+                            disabled={hasSizes && !selectedSize}
+                        />
+                    </div>
+                    <WishlistButton
+                        productId={product._id}
+                        className="px-4 border border-charcoal text-charcoal hover:bg-ivory-100 transition-colors h-auto"
                     />
                 </div>
                 <Link

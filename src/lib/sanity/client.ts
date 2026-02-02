@@ -49,12 +49,14 @@ export async function getProductsByIds(ids: string[]): Promise<Types.Product[]> 
   if (!ids.length) return []
   return client.fetch(`*[_type == "product" && _id in $ids]{
         _id,
-        name,
+        title,
         slug,
         price,
-        "mainImage": mainImage.asset->url,
-        "categoryId": category->_id,
-        "categorySlug": category->slug.current
+        images,
+        priceDisplay,
+        availability,
+        "collections": collections[]->{title, slug},
+        "categorySlug": collections[0]->slug.current
     }`, { ids })
 }
 
