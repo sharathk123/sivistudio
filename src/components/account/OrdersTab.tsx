@@ -29,7 +29,7 @@ export default function OrdersTab() {
                         date: formatDate(order.created_at),
                         status: order.status || 'Pending',
                         total: `₹${order.total_amount?.toLocaleString() || '0'}`,
-                        items: order.order_items?.map((item: any) => `Product ${item.product_id?.slice(0, 5)}...`) || [`${order.order_items?.length || 0} Items`]
+                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || [`${order.order_items?.length || 0} Items`]
                     }))
                     setOrders(mappedOrders)
                 }

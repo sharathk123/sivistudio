@@ -18,16 +18,17 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
         *,
         order_items (
           id,
-          product_id,
+          sanity_product_id,
+          selected_size,
           quantity,
-          unit_price,
-          subtotal
+          price
         )
       `)
-            .eq('user_id', user.id)
+            .eq('profile_id', user.id)
             .order('created_at', { ascending: false })
 
         if (error) {
+            console.error('Fetch Orders Error:', error)
             return NextResponse.json(
                 { error: 'Failed to fetch orders' },
                 { status: 400 }
@@ -79,16 +80,17 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             .from('orders')
             .insert([
                 {
-                    user_id: user.id,
+                    profile_id: user.id,
                     total_amount,
                     shipping_address,
-                    status: 'pending',
+                    status: 'placed',
                 },
             ])
             .select()
             .single()
 
         if (orderError || !order) {
+            console.error('Order Creation Error:', orderError)
             return NextResponse.json(
                 { error: 'Failed to create order' },
                 { status: 400 }
@@ -98,10 +100,10 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
         // Create order items
         const orderItems = items.map((item: any) => ({
             order_id: order.id,
-            product_id: item.product_id,
+            sanity_product_id: item.product_id,
             quantity: item.quantity,
-            unit_price: item.unit_price,
-            subtotal: item.quantity * item.unit_price,
+            price: item.unit_price,
+            selected_size: item.selected_size || null
         }))
 
         const { error: itemsError } = await supabase
@@ -109,6 +111,7 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             .insert(orderItems)
 
         if (itemsError) {
+            console.error('Order Items Creation Error:', itemsError)
             // Rollback: delete the order if items creation fails
             await supabase.from('orders').delete().eq('id', order.id)
 
