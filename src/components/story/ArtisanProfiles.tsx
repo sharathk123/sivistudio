@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 const artisans = [
     {
@@ -10,7 +9,6 @@ const artisans = [
         region: "Pochampally, Telangana",
         specialty: "Double Ikat Weaving",
         quote: "Each thread tells a story of mathematical precision and ancestral memory.",
-        image: "/images/story-origins-workshop.png" // Placeholder, should be unique if possible
     },
     {
         id: 2,
@@ -18,7 +16,6 @@ const artisans = [
         region: "Burdwan, West Bengal",
         specialty: "Jamdani Muslin",
         quote: "To weave Jamdani is to paint with air. It requires patience that spans generations.",
-        image: "/images/story-jamdani-dress.png"
     },
     {
         id: 3,
@@ -26,7 +23,6 @@ const artisans = [
         region: "Gadwal, Telangana",
         specialty: "Silk-Cotton Blends",
         quote: "Weaving is our rhythm of life. The loom's sound is the heartbeat of our village.",
-        image: "/images/story-kanjivaram-outfit.png"
     }
 ];
 
@@ -42,7 +38,7 @@ export default function ArtisanProfiles() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                     {artisans.map((artisan, index) => (
                         <motion.div
                             key={artisan.id}
@@ -50,22 +46,22 @@ export default function ArtisanProfiles() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: index * 0.2 }}
-                            className="group"
+                            className="flex flex-col text-center p-8 md:p-10 bg-bone border border-ivory-300 hover:border-sage/30 hover:shadow-lg hover:shadow-sage/5 transition-all duration-500 group"
                         >
-                            <div className="aspect-[4/5] relative overflow-hidden bg-bone shadow-card mb-6 rounded-sm">
-                                {/* Use a placeholder div if image fails, but ideally mapping to real images */}
-                                <div className="absolute inset-0 bg-charcoal/5" />
-                                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-charcoal/80 to-transparent pt-20">
-                                    <p className="text-bone/90 font-serif italic text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
-                                        "{artisan.quote}"
-                                    </p>
-                                </div>
+                            <div className="mb-8 relative">
+                                <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl text-sage/20 font-serif leading-none select-none">"</span>
+                                <p className="font-serif text-xl md:text-2xl text-charcoal italic leading-relaxed relative z-10">
+                                    {artisan.quote}
+                                </p>
                             </div>
 
-                            <div className="text-center">
-                                <h3 className="font-serif text-2xl text-charcoal italic mb-1">{artisan.name}</h3>
-                                <p className="text-sage text-xs uppercase tracking-widest font-bold mb-3">{artisan.region}</p>
-                                <p className="text-sm text-charcoal-400 font-light border-t border-sage/20 pt-3 inline-block">
+                            <div className="mt-auto pt-6 border-t border-charcoal/10 relative">
+                                {/* Decorative knot/icon could go here */}
+                                <div className="w-1.5 h-1.5 bg-sage/50 rounded-full mx-auto mb-4" />
+
+                                <h3 className="font-serif text-lg text-charcoal mb-1 group-hover:text-sage transition-colors duration-300">{artisan.name}</h3>
+                                <p className="text-xs uppercase tracking-widest text-charcoal-400 mb-2">{artisan.region}</p>
+                                <p className="text-sm text-sage font-medium tracking-wide">
                                     {artisan.specialty}
                                 </p>
                             </div>
