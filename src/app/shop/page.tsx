@@ -1,6 +1,7 @@
 import { getProducts, getCollections } from '@/lib/sanity/client'
 import StickyHeader from '@/components/ui/StickyHeader'
 import ShopDisplay from '@/components/shop/ShopDisplay'
+import Script from 'next/script'
 
 export const revalidate = 60 // Revalidate every 60 seconds
 
@@ -66,12 +67,11 @@ export default async function ShopPage({
 
     return (
         <div className="min-h-screen bg-bone">
-            <head>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                />
-            </head>
+            <Script
+                id="shop-jsonld"
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <StickyHeader theme="light" />
 
             {/* Header */}

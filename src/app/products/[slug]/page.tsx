@@ -6,7 +6,7 @@ import StickyHeader from '@/components/ui/StickyHeader';
 import Footer from '@/components/ui/Footer';
 import { PortableText } from '@portabletext/react';
 import ProductActions from '@/components/cart/ProductActions';
-
+import Script from 'next/script';
 import { Metadata } from 'next';
 
 interface PageProps {
@@ -88,12 +88,11 @@ export default async function ProductPage({ params }: PageProps) {
 
     return (
         <main className="min-h-screen bg-bone">
-            <head>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                />
-            </head>
+            <Script
+                id={`product-jsonld-${product.slug.current}`}
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <StickyHeader theme="light" />
 
             {/* Product Hero */}

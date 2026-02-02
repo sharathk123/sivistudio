@@ -116,8 +116,7 @@ import Loader from '@/components/ui/Loader'
 
 import BoutiqueButton from '@/components/ui/BoutiqueButton'
 import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
-import { CartProvider } from '@/context/CartContext'
-import { AuthProvider } from '@/context/AuthContext'
+import { Providers } from '@/components/providers/Providers'
 import CartDrawer from '@/components/cart/CartDrawer'
 
 export default function RootLayout({
@@ -127,13 +126,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${bodoni.variable} ${allura.variable}`}>
-      <head>
-        <script
+      <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
+        <Script
+          id="organization-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
         <Script
           id="razorpay-checkout-js"
           src="https://checkout.razorpay.com/v1/checkout.js"
@@ -144,17 +142,15 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <AuthProvider>
-          <CartProvider>
-            <CartDrawer />
-            <BoutiqueButton />
-            <StyleConciergeButton />
-            <Loader />
-            <SmoothScroll>
-              {children}
-            </SmoothScroll>
-          </CartProvider>
-        </AuthProvider>
+        <Providers>
+          <CartDrawer />
+          <BoutiqueButton />
+          <StyleConciergeButton />
+          <Loader />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </Providers>
       </body>
     </html>
   )
