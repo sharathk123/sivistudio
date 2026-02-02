@@ -27,15 +27,15 @@ export default function OrdersTab() {
                         id: order.id.slice(0, 8).toUpperCase(), // Shortened ID for display
                         rawId: order.id,
                         date: formatDate(order.created_at),
-                        status: order.status || 'Pending',
-                        total: `₹${order.total_amount?.toLocaleString() || '0'}`,
-                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || [`${order.order_items?.length || 0} Items`]
+                        status: (order.status || 'Pending').toUpperCase(),
+                        total: `₹${Number(order.total_amount || 0).toLocaleString('en-IN')}`,
+                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || []
                     }))
                     setOrders(mappedOrders)
                 }
-            } catch (err) {
+            } catch (err: any) {
                 console.error('Failed to fetch orders:', err)
-                setError('Failed to load orders. Please try again.')
+                setError(err.message || 'Failed to load orders. Please try again.')
             } finally {
                 setIsLoading(false)
             }

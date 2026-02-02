@@ -33,10 +33,11 @@ export default function OverviewTab() {
                     // Map recent orders (take 3)
                     const recent = allOrders.slice(0, 3).map((order: any) => ({
                         id: order.id.slice(0, 8).toUpperCase(),
+                        rawId: order.id,
                         date: formatDate(order.created_at),
-                        status: order.status || 'Pending',
-                        total: `₹${order.total_amount?.toLocaleString() || '0'}`,
-                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || [`${order.order_items?.length || 0} Items`]
+                        status: (order.status || 'Pending').toUpperCase(),
+                        total: `₹${Number(order.total_amount || 0).toLocaleString('en-IN')}`,
+                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || []
                     }))
                     setOrders(recent)
                 }

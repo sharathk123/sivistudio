@@ -11,29 +11,30 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
     try {
         const supabase = await createClient()
 
+        console.log(`[API] Fetching orders for user: ${user.id}`)
+
         // Fetch user's orders with items
+        // Cleaning up select string to avoid potential PostgREST parsing issues
         const { data: orders, error } = await supabase
             .from('orders')
-            .select(`
-        *,
-        order_items (
-          id,
-          sanity_product_id,
-          selected_size,
-          quantity,
-          price
-        )
-      `)
+            .select('*, order_items(id, sanity_product_id, selected_size, quantity, price)')
             .eq('profile_id', user.id)
             .order('created_at', { ascending: false })
 
         if (error) {
-            console.error('Fetch Orders Error:', error)
+            console.error('[API] Supabase Fetch Orders Error:', {
+                message: error.message,
+                details: error.details,
+                hint: error.hint,
+                code: error.code
+            })
             return NextResponse.json(
-                { error: 'Failed to fetch orders' },
+                { error: `Failed to fetch orders: ${error.message}` },
                 { status: 400 }
             )
         }
+
+        console.log(`[API] Successfully fetched ${orders?.length || 0} orders`)
 
         return NextResponse.json({
             success: true,
@@ -41,8 +42,9 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
             count: orders?.length || 0,
         })
     } catch (error: any) {
+        console.error('[API] Unexpected Fetch Orders Error:', error)
         return NextResponse.json(
-            { error: error.message || 'Failed to fetch orders' },
+            { error: error.message || 'An unexpected error occurred while fetching orders' },
             { status: 500 }
         )
     }
