@@ -112,11 +112,6 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                             )}
                         </nav>
 
-                        <div className="mt-12 flex space-x-6 text-xs uppercase tracking-widest text-white/50">
-                            <span>Instagram</span>
-                            <span>Pinterest</span>
-                            <span>Support</span>
-                        </div>
                     </div>
 
                     {/* Right: Hover Reveal Image */}

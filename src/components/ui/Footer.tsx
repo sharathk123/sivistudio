@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, FormEvent } from 'react'
+import { Instagram, HelpCircle } from 'lucide-react'
 
 export default function Footer() {
     const [email, setEmail] = useState('')
@@ -66,6 +67,29 @@ export default function Footer() {
                             Indian handloom textile studio specializing in contemporary dresses,
                             modern outfits, and traditional sarees from Hyderabad.
                         </p>
+                        <div className="flex items-center gap-6 pt-2">
+                            <a href="https://instagram.com/sivithecouturier" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-sage transition-colors" aria-label="Instagram">
+                                <Instagram strokeWidth={1.5} size={20} />
+                            </a>
+                            <a href="https://in.pinterest.com/" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-sage transition-colors" aria-label="Pinterest">
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M8 12h5a2 2 0 0 0 0-4H8v9" />
+                                </svg>
+                            </a>
+                            <Link href="/contact" className="text-bone/70 hover:text-sage transition-colors" aria-label="Support">
+                                <HelpCircle strokeWidth={1.5} size={20} />
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Shop */}
