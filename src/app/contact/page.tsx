@@ -27,11 +27,64 @@ export default function ContactPage() {
         subject: '',
         message: ''
     })
+    const [errors, setErrors] = useState<Record<string, string>>({})
+    const [touched, setTouched] = useState<Record<string, boolean>>({})
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
+    const validateField = (name: string, value: string) => {
+        let error = ''
+        if (name === 'email') {
+            if (!value) error = 'Email is required'
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = 'Please enter a valid email address'
+        } else {
+            if (!value) error = 'This field is required'
+        }
+        return error
+    }
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setTouched(prev => ({ ...prev, [name]: true }))
+        const error = validateField(name, value)
+        setErrors(prev => ({ ...prev, [name]: error }))
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setFormState(prev => ({
+            ...prev,
+            [name]: value
+        }))
+
+        // Clear error when user modifies field
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: '' }))
+        }
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+
+        // Validate all fields
+        const newErrors: Record<string, string> = {}
+        Object.keys(formState).forEach(key => {
+            const error = validateField(key, formState[key as keyof typeof formState])
+            if (error) newErrors[key] = error
+        })
+
+        setErrors(newErrors)
+        setTouched({
+            name: true,
+            email: true,
+            subject: true,
+            message: true
+        })
+
+        if (Object.keys(newErrors).length > 0) {
+            return
+        }
+
         setIsSubmitting(true)
 
         // Simulate API call
@@ -40,13 +93,8 @@ export default function ContactPage() {
         setSubmitStatus('success')
         setIsSubmitting(false)
         setFormState({ name: '', email: '', subject: '', message: '' })
-    }
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormState(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }))
+        setTouched({})
+        setErrors({})
     }
 
     return (
@@ -170,7 +218,7 @@ export default function ContactPage() {
                                     Send a Message
                                 </h3>
 
-                                <form onSubmit={handleSubmit} className="space-y-6">
+                                <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
                                             <label htmlFor="name" className="text-xs uppercase tracking-widest text-charcoal-400">Name</label>
@@ -178,12 +226,13 @@ export default function ContactPage() {
                                                 type="text"
                                                 id="name"
                                                 name="name"
-                                                required
                                                 value={formState.name}
                                                 onChange={handleChange}
-                                                className="input-boutique"
+                                                onBlur={handleBlur}
+                                                className={`input-boutique ${errors.name ? 'border-madder focus:border-madder' : ''}`}
                                                 placeholder="Your name"
                                             />
+                                            {errors.name && <FormError message={errors.name} />}
                                         </div>
                                         <div className="space-y-2">
                                             <label htmlFor="email" className="text-xs uppercase tracking-widest text-charcoal-400">Email</label>
@@ -191,12 +240,13 @@ export default function ContactPage() {
                                                 type="email"
                                                 id="email"
                                                 name="email"
-                                                required
                                                 value={formState.email}
                                                 onChange={handleChange}
-                                                className="input-boutique"
+                                                onBlur={handleBlur}
+                                                className={`input-boutique ${errors.email ? 'border-madder focus:border-madder' : ''}`}
                                                 placeholder="your@email.com"
                                             />
+                                            {errors.email && <FormError message={errors.email} />}
                                         </div>
                                     </div>
 
@@ -205,10 +255,10 @@ export default function ContactPage() {
                                         <select
                                             id="subject"
                                             name="subject"
-                                            required
                                             value={formState.subject}
-                                            onChange={(e) => setFormState(prev => ({ ...prev, subject: e.target.value }))}
-                                            className="input-boutique cursor-pointer"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            className={`input-boutique cursor-pointer ${errors.subject ? 'border-madder focus:border-madder' : ''}`}
                                         >
                                             <option value="" disabled>Select a topic</option>
                                             <option value="General Inquiry">General Inquiry</option>
@@ -216,6 +266,7 @@ export default function ContactPage() {
                                             <option value="Order Status">Order Status</option>
                                             <option value="Collaboration">Collaboration</option>
                                         </select>
+                                        {errors.subject && <FormError message={errors.subject} />}
                                     </div>
 
                                     <div className="space-y-2">
@@ -223,13 +274,14 @@ export default function ContactPage() {
                                         <textarea
                                             id="message"
                                             name="message"
-                                            required
                                             rows={5}
                                             value={formState.message}
                                             onChange={handleChange}
-                                            className="input-boutique"
+                                            onBlur={handleBlur}
+                                            className={`input-boutique ${errors.message ? 'border-madder focus:border-madder' : ''}`}
                                             placeholder="How can we help you?"
                                         />
+                                        {errors.message && <FormError message={errors.message} />}
                                     </div>
 
                                     <button
@@ -284,6 +336,17 @@ export default function ContactPage() {
 
             <Footer />
         </main>
+    )
+}
+
+function FormError({ message }: { message: string }) {
+    return (
+        <p className="mt-2 text-sm text-madder flex items-start gap-1.5">
+            <svg className="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+            </svg>
+            <span>{message}</span>
+        </p>
     )
 }
 
