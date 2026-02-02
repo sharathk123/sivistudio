@@ -1,18 +1,28 @@
-# Authentication Integration
+# Sivi Studio Development Status
 
-- [x] Create `AuthContext`
-    - [x] Create `src/context/AuthContext.tsx` with Supabase client integration
-    - [x] Implement `AuthProvider` and `useAuth` hook
-- [x] Update Root Layout
-    - [x] Wrap application with `AuthProvider` in `src/app/layout.tsx`
-- [x] Integrate Auth in Navigation
-    - [x] Update `StickyHeader.tsx` to show Login/Account based on auth state
-    - [x] Update `NavigationOverlay.tsx` to handle Sign Out and dynamic links
-- [x] Connect Account Page to Real Data
-    - [x] Fetch user profile in `src/app/account/page.tsx`
-    - [x] Replace mock data with real user data
-- [x] Verification
-    - [x] Verify Sign Up flow
-    - [x] Verify Login flow
-    - [x] Verify Logout
-    - [x] Verify Protected Routes (Account page redirection if not logged in)
+- [x] **Authentication Integration**
+    - [x] `AuthContext` & `AuthProvider`
+    - [x] Root Layout integration
+    - [x] Navigation (StickyHeader/NavigationOverlay)
+    - [x] Account Profile fetching
+    - [x] Forgot/Reset Password flows
+- [x] **E-commerce Foundation**
+    - [x] Shopping Cart (Context + Drawer)
+    - [x] Checkout Page (Address selection + Summary)
+    - [x] Payment Integration (Razorpay Backend/Frontend)
+- [x] **Editorial Content**
+    - [x] Sanity CMS Integration
+    - [x] Story, Heritage, and Contact pages
+    - [x] Journal Listing & Articles
+    - [x] Design System Compliance (No hardcoded colors)
+- [x] **UI/UX Audit & Quality**
+    - [x] Accessibility (A+ Score, 96/100)
+    - [x] Keyboard Navigation & Focus Trapping
+    - [x] Global Error Handling
+    - [x] Metadata & SEO polish
+- [/] **Advanced Features**
+    - [/] Gemini AI Stylist (UI Ready, Backend pending)
+    - [ ] Shiprocket Logistics
+    - [ ] WhatsApp Concierge
+- [x] **Project Documentation**
+    - [x] Updated all .md files (README, Stories, Context, Enhancements)

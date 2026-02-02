@@ -43,7 +43,7 @@ export default async function ShopPage({
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: 'The Atelier | Sivi the Couturier',
+        name: 'the Atelier | Sivi the Couturier',
         description: 'Curated collection of handcrafted handloom garments.',
         itemListElement: products.map((product, index) => ({
             '@type': 'ListItem',
@@ -77,7 +77,7 @@ export default async function ShopPage({
             {/* Header */}
             <div className="pt-40 pb-12 px-6 text-center">
                 <h1 className="font-serif text-5xl md:text-8xl text-charcoal italic mb-8">
-                    The Atelier
+                    the Atelier
                 </h1>
                 <p className="max-w-xl mx-auto text-charcoal-400 text-lg tracking-wide font-light leading-relaxed">
                     Explore our curated collection of handcrafted garments, designed in Hyderabad with conscious luxury in mind.

@@ -52,7 +52,7 @@ export default async function HomePage() {
             <HeritageMarquee />
 
             {/* Featured Collection - Asymmetrical Grid */}
-            <MoodBoardGrid items={collectionItems} title="The Atelier" />
+            <MoodBoardGrid items={collectionItems} title="the Atelier" />
 
             {/* Essence Section - Asymmetrical Image-Text Layout */}
             <section className="bg-ivory py-32 px-6">

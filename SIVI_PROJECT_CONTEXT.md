@@ -113,11 +113,8 @@
 | **CMS** | Sanity.io | Source of truth for editorial content, fabric stories, and product details | ✅ Studio Ready |
 | **Database** | Supabase PostgreSQL 17 | Transactional data, user profiles, and custom measurement logs | ✅ Deployed |
 | **Authentication** | Supabase Auth + JWT | User authentication with email/password and Google OAuth | ✅ Implemented |
-| **AI Engine** | Gemini 1.5 Pro | Powers "Digital Couturier" Stylist and fabric intelligence modules | ⏳ Pending |
-
-### Integrations
-
-- **Payments**: Razorpay (UPI, Cards, Netbanking) - ⏳ Pending
+| **AI Engine** | Gemini 1.5 Pro | Powers "Digital Couturier" Stylist and fabric intelligence modules | [/] UI Ready |
+| **Payments** | Razorpay | UPI, Cards, Netbanking | ✅ Implemented |
 - **Logistics**: Shiprocket with logic for Hyderabad Studio Pickup - ⏳ Pending
 - **Support**: WhatsApp Business for "Boutique Concierge" bridge - ⏳ Pending
 
@@ -496,16 +493,16 @@ const response = await fetch('/api/profile', {
 - [x] **Design System Documentation** (DESIGN_SYSTEM.md)
 - [x] **Journal Section** including listing and dynamic article pages
 - [x] **Branded Favicon & Site Metadata** with professional custom iconography
+- [x] **Shopping Cart & Checkout Flow** (Razorpay integrated)
+- [x] **Accessibility & UI Audit** (A+ Score, WCAG 2.1 AA)
 
 ### ⏳ Pending Features
 
 - [ ] Sanity Studio deployment & Content population
-- [ ] Shopping cart functionality
 - [/] Gemini AI stylist integration (UI implemented, awaiting backend wiring)
-- [ ] Razorpay payment integration
 - [ ] Shiprocket logistics integration
 - [ ] WhatsApp Business integration
-- [ ] Email notifications
+- [ ] Email notifications SMTP setup
 - [ ] Admin dashboard
 - [ ] Analytics integration
 

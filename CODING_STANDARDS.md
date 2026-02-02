@@ -47,7 +47,9 @@ We use a loose **Repository Pattern** to decouple data fetching from UI componen
 ### Accessibility
 - **Semantic HTML**: Use `<button>` for actions and `<Link>` for navigation.
 - **Alt Text**: All images must have meaningful `alt` text.
-- **Focus Management**: (Future) Ensure drawers and modals trap focus.
+- **Focus Management**: All drawers and modals **MUST** trap focus and return it upon closing.
+- **Haptic Escape**: All overlays must listen for the `Escape` key.
+- **ARIA Live**: Use ARIA live regions for dynamic UI updates (e.g., Cart).
 
 ## 4. File Structure
 

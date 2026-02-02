@@ -164,7 +164,7 @@ export default function ShopDisplay({ products, collections }: ShopDisplayProps)
                             </p>
                             <button
                                 onClick={() => router.push('/shop')}
-                                className="inline-block px-8 py-3 bg-charcoal text-bone text-xs uppercase tracking-widest hover:bg-sage transition-all duration-300 shadow-lg"
+                                className="btn-primary shadow-lg"
                             >
                                 Clear All Filters
                             </button>

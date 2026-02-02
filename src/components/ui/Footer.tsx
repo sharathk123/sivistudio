@@ -129,23 +129,23 @@ export default function Footer() {
                         <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Studio</h4>
                         <ul className="space-y-3 text-[13px] font-normal text-bone/70">
                             <li>
-                                <Link href="/story" className="hover:text-white cursor-pointer transition-colors">
-                                    Our Philosophy
+                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                    the Atelier
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/heritage" className="hover:text-white cursor-pointer transition-colors">
-                                    The Heritage
+                                    the Heritage
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/story" className="hover:text-white cursor-pointer transition-colors">
+                                    the Story
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/journal" className="hover:text-white cursor-pointer transition-colors">
-                                    The Journal
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="hover:text-white cursor-pointer transition-colors">
-                                    Visit Us (Jubilee Hills)
+                                    the Journal
                                 </Link>
                             </li>
                             <li>

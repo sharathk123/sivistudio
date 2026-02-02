@@ -131,18 +131,6 @@ vercel --prod
 
 ## 🐛 Common Issues & Solutions
 
-### Issue: Images not loading
-- **Solution**: Check that images are in `/public/images/` not `/images/`
-
-### Issue: Environment variables not working
-- **Solution**: Redeploy after adding env vars in Vercel dashboard
-
-### Issue: 404 on refresh
-- **Solution**: Vercel handles this automatically with Next.js App Router
-
-### Issue: Slow initial load
-- **Solution**: Enable Vercel Analytics to identify bottlenecks
-
 ## ✨ Production Ready Status: YES
 
 Your application is production-ready! All images will be hosted on Vercel's CDN automatically.
