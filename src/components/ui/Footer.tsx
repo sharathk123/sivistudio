@@ -202,9 +202,15 @@ export default function Footer() {
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 0.1, y: 0 }}
+                        whileHover={{
+                            opacity: 0.8,
+                            color: '#9CA770',
+                            textShadow: '0 0 30px rgba(156, 167, 112, 0.5)',
+                            scale: 1.02
+                        }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1] }}
-                        className="flex flex-col items-center justify-center hover:opacity-20 transition-opacity duration-700 select-none pb-8 antialiased"
+                        className="flex flex-col items-center justify-center select-none pb-8 antialiased transition-all duration-700 cursor-default"
                         style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
                     >
                         <span className="text-[14vw] md:text-[12vw] leading-none uppercase tracking-editorial font-bold" style={{ fontFamily: 'var(--font-bodoni)', textRendering: 'geometricPrecision' }}>
