@@ -1,7 +1,7 @@
 # Sivi Studio - Project Context
 
 > **Global Manifest & Technical Specification**  
-> *Last Updated: 2026-01-31 19:46*
+> *Last Updated: 2026-02-02 23:54*
 
 ---
 
@@ -495,6 +495,8 @@ const response = await fetch('/api/profile', {
 - [x] **Branded Favicon & Site Metadata** with professional custom iconography
 - [x] **Shopping Cart & Checkout Flow** (Razorpay integrated)
 - [x] **Accessibility & UI Audit** (A+ Score, WCAG 2.1 AA)
+- [x] **Micro-Animations** (Cart Drawer, Success Page, Hover Effects)
+- [x] **Refined Typography** (Footer, Navigation, Buttons)
 
 ### ⏳ Pending Features
 

@@ -20,6 +20,8 @@
     - [x] Keyboard Navigation & Focus Trapping
     - [x] Global Error Handling
     - [x] Metadata & SEO polish
+    - [x] Refined Animations & Micro-interactions
+    - [x] Typography Standardization
 - [/] **Advanced Features**
     - [/] Gemini AI Stylist (UI Ready, Backend pending)
     - [ ] Shiprocket Logistics

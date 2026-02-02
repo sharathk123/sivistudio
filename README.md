@@ -67,9 +67,9 @@ sivi/
 
 2. **Fill in credentials**:
    - ✅ Sanity (configured)
-   - ⏳ Supabase (pending)
+   - ✅ Supabase (configured)
    - ⏳ Gemini API (pending)
-   - ⏳ Razorpay (pending)
+   - ✅ Razorpay (configured)
 
 ### Development
 
@@ -128,6 +128,7 @@ Sivi Studio uses a **comprehensive design system** with CSS variables and utilit
 - [x] Shopping cart functionality (CartContext + CartDrawer)
 - [x] Payment integration (Razorpay Backend + Frontend)
 - [x] UI/UX Audit & Accessibility Fixes (Score: 96/100)
+- [x] Micro-animations & Typography Refinements
 
 ### ⏳ In Progress
 - [/] Gemini AI stylist integration (UI ready, backend wiring ongoing)
