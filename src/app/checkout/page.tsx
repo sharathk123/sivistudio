@@ -8,7 +8,8 @@ import { api } from '@/lib/api/client'
 import PaymentButton from '@/components/checkout/PaymentButton'
 import StickyHeader from '@/components/ui/StickyHeader'
 import Footer from '@/components/ui/Footer'
-import { Loader2, Plus, MapPin, Lock as LockIcon } from 'lucide-react'
+import { LogoLoader } from '@/components/ui'
+import { Plus, MapPin, Lock as LockIcon } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/client'
@@ -93,7 +94,7 @@ export default function CheckoutPage() {
             <main className="min-h-screen bg-bone pt-28">
                 <StickyHeader theme="light" />
                 <div className="flex items-center justify-center h-[50vh]">
-                    <Loader2 className="animate-spin text-sage" size={32} />
+                    <LogoLoader variant="inline" />
                 </div>
             </main>
         )

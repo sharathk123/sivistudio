@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { validatePassword, validatePasswordConfirmation, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
+import { LogoLoader } from '@/components/ui'
 
 export default function ResetPasswordPage() {
     const [password, setPassword] = useState('')
@@ -105,8 +106,8 @@ export default function ResetPasswordPage() {
     if (checkingSession) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-bone px-4">
-                <div className="text-center">
-                    <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-sage"></div>
+                <div className="text-center flex flex-col items-center">
+                    <LogoLoader variant="inline" size="sm" />
                     <p className="mt-4 text-charcoal-400 font-light tracking-wide italic">Verifying reset link...</p>
                 </div>
             </div>

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Footer from '@/components/ui/Footer'
 import { User, Package, MapPin, Heart, LogOut, Settings } from 'lucide-react'
 import StickyHeader from '@/components/ui/StickyHeader'
+import { LogoLoader } from '@/components/ui'
 import NavButton from '@/components/account/NavButton'
 import OverviewTab from '@/components/account/OverviewTab'
 import OrdersTab from '@/components/account/OrdersTab'
@@ -47,9 +48,8 @@ function AccountContent() {
 
     if (isLoading || !user) {
         return (
-            <div className="animate-pulse flex flex-col items-center pt-20">
-                <div className="w-12 h-12 bg-gray-200 rounded-full mb-4"></div>
-                <div className="h-4 w-32 bg-gray-200 rounded"></div>
+            <div className="flex flex-col items-center pt-20">
+                <LogoLoader variant="inline" size="sm" />
             </div>
         )
     }
@@ -120,7 +120,7 @@ export default function AccountPage() {
             <StickyHeader theme="light" />
             <Suspense fallback={
                 <div className="flex items-center justify-center min-h-[60vh]">
-                    <div className="w-8 h-8 rounded-full border-2 border-charcoal border-t-transparent animate-spin" />
+                    <LogoLoader variant="inline" />
                 </div>
             }>
                 <AccountContent />

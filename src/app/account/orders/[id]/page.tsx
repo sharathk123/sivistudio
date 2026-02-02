@@ -6,7 +6,8 @@ import { api } from '@/lib/api/client'
 import { formatDate } from '@/lib/utils/dateUtils'
 import StickyHeader from '@/components/ui/StickyHeader'
 import Footer from '@/components/ui/Footer'
-import { ArrowLeft, Package, MapPin, CreditCard, Download, Loader2 } from 'lucide-react'
+import { LogoLoader } from '@/components/ui'
+import { ArrowLeft, Package, MapPin, CreditCard, Download } from 'lucide-react'
 import Link from 'next/link'
 
 export default function OrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
@@ -41,7 +42,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
             <main className="bg-bone min-h-screen pt-28">
                 <StickyHeader theme="light" />
                 <div className="flex items-center justify-center h-[50vh]">
-                    <Loader2 className="animate-spin text-sage" size={32} />
+                    <LogoLoader variant="inline" />
                 </div>
             </main>
         )
