@@ -225,11 +225,6 @@ export default function CheckoutPage() {
                             onSuccess={handleSuccess}
                             onError={handleError}
                         />
-
-                        <p className="text-center text-xs text-charcoal-300 mt-4 flex items-center justify-center gap-1">
-                            <LockIcon size={12} />
-                            Secure Payment via Razorpay
-                        </p>
                     </div>
                 </div>
             </div>
