@@ -70,10 +70,4 @@ export async function getCraftStory(slug: string): Promise<Types.CraftStory | nu
 }
 
 // === DEPRECATED: Category ===
-export async function getCategories(): Promise<Types.Category[]> {
-  return client.fetch(Queries.categoriesQuery)
-}
-
-export async function getCategory(slug: string): Promise<(Types.Category & { products: Types.Product[] }) | null> {
-  return client.fetch(Queries.categoryBySlugQuery, { slug })
-}
+// Functions removed as they are no longer used.

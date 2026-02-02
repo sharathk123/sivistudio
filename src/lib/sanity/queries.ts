@@ -132,25 +132,4 @@ export const craftStoryBySlugQuery = groq`*[_type == "craftStory" && slug.curren
 
 
 // === DEPRECATED: Category ===
-export const categoriesQuery = groq`*[_type == "category"] {
-  _id,
-  title,
-  slug,
-  description,
-  image
-}`
-
-export const categoryBySlugQuery = groq`*[_type == "category" && slug.current == $slug][0] {
-  _id,
-  title,
-  slug,
-  description,
-  image,
-  "products": *[_type == "product" && references(^._id)] {
-    _id,
-    title,
-    slug,
-    price,
-    images
-  }
-}`
+// Queries removed as they are no longer used.
