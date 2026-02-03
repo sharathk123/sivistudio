@@ -175,9 +175,9 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
 
                         <button
                             onClick={handleDownloadInvoice}
-                            className="w-full btn-secondary flex items-center justify-center space-x-2"
+                            className="w-full btn-secondary !flex flex-row items-center justify-center gap-3"
                         >
-                            <Download size={16} />
+                            <Download size={18} />
                             <span>Download Invoice</span>
                         </button>
                     </div>
