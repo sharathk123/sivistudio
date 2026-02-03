@@ -9,6 +9,7 @@ import Footer from '@/components/ui/Footer'
 import { LogoLoader } from '@/components/ui'
 import { ArrowLeft, Package, MapPin, CreditCard, Download } from 'lucide-react'
 import Link from 'next/link'
+import { generateInvoice } from '@/lib/utils/invoiceGenerator'
 
 export default function OrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -41,6 +42,16 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
 
         fetchOrder()
     }, [id])
+
+    const handleDownloadInvoice = () => {
+        if (!order) return
+        try {
+            generateInvoice(order)
+        } catch (err) {
+            console.error('Failed to generate invoice:', err)
+            alert('Failed to generate invoice. Please try again.')
+        }
+    }
 
     if (isLoading) {
         return (
@@ -162,7 +173,10 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
                             </p>
                         </div>
 
-                        <button className="w-full btn-secondary flex items-center justify-center space-x-2">
+                        <button
+                            onClick={handleDownloadInvoice}
+                            className="w-full btn-secondary flex items-center justify-center space-x-2"
+                        >
                             <Download size={16} />
                             <span>Download Invoice</span>
                         </button>
