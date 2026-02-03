@@ -200,13 +200,13 @@ export default function CartDrawer() {
                                 className="border-t border-ivory-200 p-6 space-y-4 bg-bone"
                             >
                                 {/* Subtotal */}
-                                <div className="flex justify-between items-baseline">
-                                    <span className="subtitle-editorial text-xl">Subtotal</span>
+                                <div className="flex justify-between items-center py-2 border-b border-ivory-200/50 mb-2">
+                                    <span className="subtitle-editorial text-lg opacity-60 uppercase tracking-widest">Subtotal</span>
                                     <motion.span
                                         key={totalPrice}
-                                        initial={{ scale: 1.1, color: 'var(--color-sage)' }}
-                                        animate={{ scale: 1, color: 'var(--color-charcoal)' }}
-                                        className="title-editorial text-2xl"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="font-serif italic text-3xl accent-charcoal"
                                     >
                                         ₹{totalPrice.toLocaleString('en-IN')}
                                     </motion.span>
