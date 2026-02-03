@@ -145,6 +145,9 @@
   --aspect-landscape: 4/3;
   /* Changed from 16/9 to show more vertical space for full outfits */
   --aspect-square: 1/1;
+
+  /* Custom Animations for @apply */
+  --animate-shimmer: shimmer 3s infinite linear;
 }
 
 @layer base {
