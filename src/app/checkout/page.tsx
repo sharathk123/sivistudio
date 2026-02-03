@@ -89,7 +89,7 @@ export default function CheckoutPage() {
         alert(error)
     }
 
-    if (isAuthLoading || (user && items.length > 0 && isLoadingAddresses)) {
+    if (isAuthLoading) {
         return (
             <main className="min-h-screen bg-bone pt-28">
                 <StickyHeader theme="light" />
@@ -126,7 +126,17 @@ export default function CheckoutPage() {
                             </Link>
                         </div>
 
-                        {addresses.length === 0 ? (
+                        {isLoadingAddresses ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {[1, 2].map((i) => (
+                                    <div key={i} className="border border-charcoal/10 bg-white/50 p-6 rounded-sm animate-shimmer relative overflow-hidden">
+                                        <div className="w-16 h-4 bg-charcoal/5 mb-4 rounded" />
+                                        <div className="w-3/4 h-5 bg-charcoal/10 mb-2 rounded" />
+                                        <div className="w-1/2 h-4 bg-charcoal/5 rounded" />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : addresses.length === 0 ? (
                             <div className="border border-dashed border-charcoal/20 bg-ivory p-8 text-center rounded-sm">
                                 <p className="text-charcoal-400 mb-4">No saved addresses found.</p>
                                 <Link href="/account" className="btn-secondary">Add an Address to Continue</Link>
