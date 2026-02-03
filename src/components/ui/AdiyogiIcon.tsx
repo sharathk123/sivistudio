@@ -32,53 +32,56 @@ export default function AdiyogiIcon({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                {/* Simplified Adiyogi Silhouette */}
+                {/* Simplified Adiyogi Silhouette - More iconic */}
                 <path
-                    d="M50 15C45 15 40 18 38 22C38 22 35 25 35 30C35 35 38 40 42 42V45C42 45 40 46 38 48C35 50 30 55 30 65C30 75 40 85 50 85C60 85 70 75 70 65C70 55 65 50 62 48C60 46 58 45 58 45V42C62 40 65 35 65 30C65 25 62 22 62 22C60 18 55 15 50 15Z"
+                    d="M50 15C42 15 35 22 35 31C35 38 38 41 42 43V46C38 49 30 54 30 65C30 78 39 88 50 88C61 88 70 78 70 65C70 54 62 49 58 46V43C62 41 65 38 65 31C65 22 58 15 50 15Z"
                     fill={color}
-                    fillOpacity="0.2"
+                    fillOpacity="0.15"
                 />
 
-                {/* Face & Features Detail */}
+                {/* Main Head & Features */}
                 <path
-                    d="M50 25C47.2386 25 45 27.2386 45 30C45 32.7614 47.2386 35 50 35C52.7614 35 55 32.7614 55 30C55 27.2386 52.7614 25 50 25Z"
-                    fill={color}
-                />
-
-                {/* Crescent Moon */}
-                <path
-                    d="M62 20C62 20 64 21 65 23C66 25 66 28 65 30C64 32 62 33 60 33C61 31 61 28 61 26C61 24 61 22 62 20Z"
+                    d="M50 22C46 22 43 25 43 30C43 35 46 38 50 38C54 38 57 35 57 30C57 25 54 22 50 22Z"
                     fill={color}
                 />
 
-                {/* Third Eye / Tilak */}
+                {/* Third Eye / Tilak - Bolder */}
                 <path
-                    d="M50 28V32"
-                    stroke={color}
-                    strokeWidth="1.5"
+                    d="M50 26V32"
+                    stroke="var(--color-bone)"
+                    strokeWidth="2"
                     strokeLinecap="round"
+                    className="opacity-80"
                 />
 
-                {/* Flowing Hair (Jata) simplified */}
+                {/* Crescent Moon - More distinct */}
                 <path
-                    d="M50 15C50 15 52 10 55 8C58 6 62 8 62 12M50 15C50 15 48 10 45 8C42 6 38 8 38 12"
-                    stroke={color}
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                />
-
-                {/* Subtle Breathing Animation Effect */}
-                <motion.path
-                    d="M35 70C40 75 60 75 65 70"
+                    d="M62 18C64 19 66 21 66 25C66 29 64 32 60 33C62 31 63 28 63 25C63 22 62 20 62 18Z"
+                    fill={color}
                     stroke={color}
                     strokeWidth="1"
+                />
+
+                {/* Top Jata (Hair knot) - Defined */}
+                <path
+                    d="M45 15L50 8L55 15"
+                    stroke={color}
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+
+                {/* Subtle Breathing Base */}
+                <motion.path
+                    d="M38 75C42 78 58 78 62 75"
+                    stroke={color}
+                    strokeWidth="2"
                     strokeLinecap="round"
                     animate={{
-                        opacity: [0.3, 0.7, 0.3],
-                        y: [0, -2, 0]
+                        opacity: [0.2, 0.6, 0.2],
                     }}
                     transition={{
-                        duration: 3,
+                        duration: 4,
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
