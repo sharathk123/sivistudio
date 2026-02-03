@@ -1,6 +1,6 @@
 # Sivi Studio Design System Documentation
 
-> **Version 2.1** — Updated January 31, 2026  
+> **Version 2.2** — Updated February 3, 2026  
 > Complete reference for the Sivi Studio editorial design system
 
 ---
@@ -164,7 +164,8 @@ Component Implementation
 ### Font Families
 
 ```css
---font-family-serif: 'Playfair Display', serif    /* Headings */
+--font-family-serif: 'Bodoni Moda', serif    /* Primary Headings & Brand */
+--font-family-serif-alt: 'Playfair Display', serif /* Secondary Headings */
 --font-family-sans: 'Inter', sans-serif           /* Body text */
 --font-family-mono: 'Courier New', monospace      /* Labels */
 ```
@@ -321,6 +322,23 @@ Component Implementation
 .animate-marquee                /* Marquee scrolling animation */
 .hover-scale                    /* Smooth scale transition on hover */
 .hover-shadow                   /* Shadow elevation on hover */
+
+### Reveal Component
+The `Reveal` component is the standard for triggering animations as the user scrolls into view.
+
+```tsx
+<Reveal variant="fade-up" delay={0.2}>
+  <h2 className="title-editorial">Standardized Reveal</h2>
+</Reveal>
+```
+
+**Variants**:
+- `fade-up`: Smooth upward entrance
+- `fade-in`: Simple opacity increase
+- `slide-in-right`: Lateral entrance from right
+- `scale`: Gentle expansion
+- `reveal-text`: Specialized masked text reveal
+
 ```
 
 ---
@@ -672,6 +690,6 @@ npm run dev
 
 ---
 
-**Last Updated**: January 31, 2026  
-**Version**: 2.0  
+**Last Updated**: February 3, 2026  
+**Version**: 2.1  
 **Maintained by**: Sivi Studio Development Team

@@ -164,6 +164,23 @@ World-class accessibility integrated into premium motion design.
 - ✅ **Semantic Navigation**: Proper landmark roles and skip-links for editorial grids.
 - ✅ **Lighthouse Perfected**: Audit score achieved **96/100** for accessibility.
 
+### 13. **Cinematic Reveal System** 🎬
+Advanced scroll-triggered entrance animations for editorial narrative flow.
+
+**Component:**
+- `Reveal.tsx` - Powered by Framer Motion and Intersection Observer.
+
+**Features:**
+- Staggered entrances for text blocks and images.
+- Multiple variants: `fade-up`, `fade-in`, `scale`, `slide-in`.
+- Standardized cross-page animation language.
+
+**Where Used:**
+- Homepage Sections (Philosophy, Essence).
+- Story Page Chapters.
+- Heritage Page Weave Details.
+
+
 ## 🎯 Design System Updates
 
 ### New Color Tokens

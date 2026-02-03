@@ -11,32 +11,34 @@ Following the comprehensive UI Audit, we have implemented a series of "Polish" u
 
 ## ✨ Key Improvements
 
-### 1. Micro-Animations
-- **Cart Drawer**: Implemented smoother entrance/exit transitions and improved backdrop blur effects. The drawer now feels more grounded and responsive.
-- **Checkout Success**: Enhanced the post-purchase experience with refined success state animations, ensuring a celebratory but elegant feedback loop.
-- **Hover States**: Added subtle scaling and shadow transitions to interactive cards (Product Cards, Category Cards) to improve tactile feel.
+### February 3, 2026: Luxury Mastery & Consistency
+- **Luxury Refinements**: Switched to **Bodoni Moda** as the primary serif font. Its higher contrast and sharper serifs deliver a superior editorial feel compared to Playfair Display.
+- **Cinematic Reveals**: Standardized the `Reveal` component across the Homepage, Story, and Heritage pages, replacing ad-hoc `motion.div` implementations with a cohesive animation system.
+- **Consistency Audit & Fixes**: 
+  - Standardized all button styles to a unified system (`.btn-luxury`, `.btn-primary`, `.btn-secondary`, `.btn-outline`).
+  - Refactored Account tabs (Addresses, Settings) to use global design tokens for forms and inputs.
+- **Interaction Polishing**: Fixed image flickering in the Navigation menu by optimizing `AnimatePresence` and ensuring image persistence.
+- **Product Card Upgrade**: Added "Quick View" and "Add to Cart" hover interactions to improve conversion parity with high-end boutiques.
 
-### 2. Typography Standardization
-- **Navigation Links**: Standardized capitalization to the "Editorial" style (lowercase articles, e.g., "The Story", "The Atelier") to match the brand voice.
-- **Footer Typography**: Resolved rendering issues (pixelation) and standardized font weights/sizes for better legibility on all devices.
-- **Button Styles**: Unified button heights, padding, and hover states across the application, specifically targeting the "Clear All Filters" and secondary action buttons.
-
-### 3. Visual Consistency
-- **No Data States**: polished "Empty State" views for Cart, Wishlist, and Search Results to be more visually appealing and helpful, rather than just empty voids.
+### February 2, 2026: Interaction Basics
+- **Cart Drawer**: Implemented smoother entrance/exit transitions.
+- **Checkout Success**: Enhanced success state animations.
+- **Typography**: Standardized navigation link capitalization.
 
 ---
 
-## 📁 Files Modified
+## 📁 Files Modified (Recent)
 
-- `src/components/shop/CartDrawer.tsx`
-- `src/app/checkout/success/page.tsx`
-- `src/components/ui/Footer.tsx`
-- `src/components/ui/StickyHeader.tsx`
-- `src/components/shop/ShopDisplay.tsx`
-- `src/components/story/ArtisanProfiles.tsx`
+- `src/components/ui/NavigationOverlay.tsx`
+- `src/components/ui/Reveal.tsx`
+- `src/app/globals.css`
+- `src/app/(editorial)/story/page.tsx`
+- `src/app/(editorial)/heritage/page.tsx`
+- `src/components/account/AddressesTab.tsx`
+- `src/components/account/SettingsTab.tsx`
 
 ---
 
 ## 🎯 Impact
+The transition to **Bodoni Moda** and the implementation of **Cinematic Reveals** has moved the site into the "Mastery" category of editorial design. Every page now flows with a rhythmic, storytelling motion typical of luxury digital experiences.
 
-These changes contribute to the "Quiet Luxury" aesthetic by ensuring that every interaction—no matter how small—feels intentional and crafted. The consistency in typography reinforces the editorial brand identity.

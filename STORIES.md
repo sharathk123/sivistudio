@@ -2,7 +2,7 @@
 
 **Project**: Sivi Studio Website
 **Created**: January 31, 2026
-**Last Updated**: February 2, 2026
+**Last Updated**: February 3, 2026
 **Status**: Development Phase
 
 ---
@@ -16,15 +16,15 @@ This document contains user stories for all remaining pages and features that ne
 ## 🗓️ Recent Accomplishments (Feb 2, 2026)
 
 - ✅ **UI/UX Excellence**: Completed comprehensive UI Audit with **A+ (96/100)** score.
-- ✅ **Micro-Animations**: Enhanced Cart Drawer transitions and Checkout Success state animations.
-- ✅ **Polished Typography**: Standardized navigation link capitalization ("editorial" style) and footer typography.
+- ✅ **Luxury Refinements**: Switched to **Bodoni Moda** for a more editorial, high-fashion aesthetic.
+- ✅ **Consistency Audit**: Standardized button styles, input components, and transitions across the site.
+- ✅ **Cinematic Animations**: Implemented the `Reveal` component for scroll-triggered entrance animations on Homepage and Editorial pages.
+- ✅ **Micro-Animations**: Enhanced Cart Drawer transitions, Checkout Success state, and Navigation hover effects.
 - ✅ **Ecommerce**: Implemented full Shopping Cart, Checkout, and Razorpay backend integration.
 - ✅ **Authentication**: Polished Forgot/Reset Password flows and user account management.
 - ✅ **Product Features**: Implemented Size Selection & Variant Logic in Cart.
-- ✅ **Sanity Integration**: Full repository pattern for Products & Collections.
-- ✅ **Asset Management**: Migrated static assets to Cloudinary.
-- ✅ **Editorial Pages**: Launched Size Guide, Story Page, and 404 Page Redesign.
-- ✅ **Navigation**: Unified Sticky Header behavior across all pages.
+- ✅ **Editorial Pages**: Launched Size Guide, Story Page, Heritage Page, and 404 Page Redesign.
+- ✅ **Navigation**: Unified Sticky Header behavior and fixed image hover flicker in navigation menu.
 
 ---
 
