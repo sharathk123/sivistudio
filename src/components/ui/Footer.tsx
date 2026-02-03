@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState, FormEvent } from 'react'
 import { Instagram, HelpCircle } from 'lucide-react'
-import AdiyogiIcon from './AdiyogiIcon'
 
 export default function Footer() {
     const [email, setEmail] = useState('')
@@ -224,7 +223,6 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t border-bone/10 text-[10px] uppercase tracking-widest text-bone/50">
                     <div className="flex items-center gap-4 order-2 sm:order-1">
-                        <AdiyogiIcon size={24} className="opacity-50 hover:opacity-100 transition-opacity" />
                         <span>© {new Date().getFullYear()} Sivi Studio. All Rights Reserved.</span>
                     </div>
                     <div className="flex gap-6">
