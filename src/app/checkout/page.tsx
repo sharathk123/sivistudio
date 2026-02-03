@@ -103,10 +103,10 @@ export default function CheckoutPage() {
     if (!user || items.length === 0) return null
 
     return (
-        <main className="min-h-screen bg-bone pt-28 pb-24">
+        <main className="min-h-screen bg-bone pt-28">
             <StickyHeader theme="light" />
 
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12 mb-32">
 
                 {/* Left Column: Shipping & Review */}
                 <div className="lg:col-span-2 space-y-12">

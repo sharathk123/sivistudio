@@ -221,7 +221,7 @@ export default function CartDrawer() {
                                 <Link
                                     href="/checkout"
                                     onClick={closeCart}
-                                    className="w-full bg-sage text-bone py-4 label-editorial hover:bg-sage-600 transition-all duration-500 shadow-lg text-center block group relative overflow-hidden"
+                                    className="w-full bg-charcoal text-bone py-4 label-editorial hover:bg-sage transition-all duration-500 shadow-lg text-center block group relative overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center justify-center gap-2">
                                         Proceed to Checkout
