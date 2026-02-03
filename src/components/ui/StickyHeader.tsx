@@ -38,8 +38,8 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
         scrollY,
         [0, 100],
         theme === 'dark'
-            ? ['#FDFCFB', '#1A1A1A'] // Bone -> Charcoal (Dark Text on Sage BG)
-            : ['#1A1A1A', '#1A1A1A'] // Charcoal -> Charcoal (Stay Dark)
+            ? ['var(--color-bone)', 'var(--color-charcoal)'] // Bone -> Charcoal (Dark Text on Sage BG)
+            : ['var(--color-charcoal)', 'var(--color-charcoal)'] // Charcoal -> Charcoal (Stay Dark)
     )
 
     // Hide header on scroll down, show on scroll up

@@ -204,8 +204,8 @@ export default function CartDrawer() {
                                     <span className="subtitle-editorial text-xl">Subtotal</span>
                                     <motion.span
                                         key={totalPrice}
-                                        initial={{ scale: 1.1, color: '#9CA770' }}
-                                        animate={{ scale: 1, color: '#1A1A1A' }}
+                                        initial={{ scale: 1.1, color: 'var(--color-sage)' }}
+                                        animate={{ scale: 1, color: 'var(--color-charcoal)' }}
                                         className="title-editorial text-2xl"
                                     >
                                         ₹{totalPrice.toLocaleString('en-IN')}

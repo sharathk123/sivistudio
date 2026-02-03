@@ -48,7 +48,7 @@ function SuccessContent() {
                     initial={{ scale: 0.5, rotate: -20, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
                     transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
-                    className="w-24 h-24 mx-auto bg-gradient-to-br from-sage to-[#8A9660] rounded-full flex items-center justify-center text-bone shadow-2xl mb-8"
+                    className="w-24 h-24 mx-auto bg-gradient-to-br from-sage to-[var(--color-sage-600)] rounded-full flex items-center justify-center text-bone shadow-2xl mb-8"
                 >
                     <CheckCircle size={48} strokeWidth={1.5} />
                 </motion.div>

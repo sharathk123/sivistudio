@@ -166,41 +166,41 @@ export default function AddressesTab() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Full Name</label>
-                                    <input {...register('full_name', { required: true })} className="input-field" placeholder="Recipient Name" />
+                                    <input {...register('full_name', { required: true })} className="input-boutique" placeholder="Recipient Name" />
                                     {errors.full_name && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Phone Number</label>
-                                    <input {...register('phone_number', { required: true })} className="input-field" placeholder="Contact Number" />
+                                    <input {...register('phone_number', { required: true })} className="input-boutique" placeholder="Contact Number" />
                                     {errors.phone_number && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="md:col-span-2 space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Address Line 1</label>
-                                    <input {...register('address_line1', { required: true })} className="input-field" placeholder="House No, Building, Street" />
+                                    <input {...register('address_line1', { required: true })} className="input-boutique" placeholder="House No, Building, Street" />
                                     {errors.address_line1 && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="md:col-span-2 space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Address Line 2 (Optional)</label>
-                                    <input {...register('address_line2')} className="input-field" placeholder="Landmark, Area" />
+                                    <input {...register('address_line2')} className="input-boutique" placeholder="Landmark, Area" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">City</label>
-                                    <input {...register('city', { required: true })} className="input-field" />
+                                    <input {...register('city', { required: true })} className="input-boutique" />
                                     {errors.city && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">State</label>
-                                    <input {...register('state', { required: true })} className="input-field" />
+                                    <input {...register('state', { required: true })} className="input-boutique" />
                                     {errors.state && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Zip Code</label>
-                                    <input {...register('zip_code', { required: true })} className="input-field" />
+                                    <input {...register('zip_code', { required: true })} className="input-boutique" />
                                     {errors.zip_code && <span className="text-red-500 text-xs">Required</span>}
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Address Type</label>
-                                    <select {...register('type')} className="input-field">
+                                    <select {...register('type')} className="input-boutique">
                                         <option value="home">Home</option>
                                         <option value="work">Work</option>
                                         <option value="other">Other</option>
@@ -286,20 +286,6 @@ export default function AddressesTab() {
                 )}
             </AnimatePresence>
 
-            <style jsx global>{`
-                .input-field {
-                    width: 100%;
-                    padding: 0.75rem;
-                    background-color: var(--color-ivory);
-                    border: 1px solid rgba(26, 26, 26, 0.1);
-                    outline: none;
-                    font-family: var(--font-serif);
-                    transition: border-color 0.2s;
-                }
-                .input-field:focus {
-                    border-color: var(--color-sage);
-                }
-            `}</style>
         </div>
     )
 }

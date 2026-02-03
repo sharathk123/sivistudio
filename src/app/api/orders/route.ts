@@ -11,7 +11,7 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
     try {
         const supabase = await createClient()
 
-        console.log(`[API] Fetching orders for user: ${user.id}`)
+
 
         // Fetch user's orders with items
         // Cleaning up select string to avoid potential PostgREST parsing issues
@@ -22,19 +22,14 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
             .order('created_at', { ascending: false })
 
         if (error) {
-            console.error('[API] Supabase Fetch Orders Error:', {
-                message: error.message,
-                details: error.details,
-                hint: error.hint,
-                code: error.code
-            })
+            // Error handled below
             return NextResponse.json(
                 { error: `Failed to fetch orders: ${error.message}` },
                 { status: 400 }
             )
         }
 
-        console.log(`[API] Successfully fetched ${orders?.length || 0} orders`)
+
 
         return NextResponse.json({
             success: true,
@@ -42,7 +37,7 @@ export const GET = withAuth(async (request: NextRequest, { user }) => {
             count: orders?.length || 0,
         })
     } catch (error: any) {
-        console.error('[API] Unexpected Fetch Orders Error:', error)
+
         return NextResponse.json(
             { error: error.message || 'An unexpected error occurred while fetching orders' },
             { status: 500 }
@@ -92,7 +87,7 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             .single()
 
         if (orderError || !order) {
-            console.error('Order Creation Error:', orderError)
+
             return NextResponse.json(
                 { error: 'Failed to create order' },
                 { status: 400 }
@@ -113,7 +108,7 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             .insert(orderItems)
 
         if (itemsError) {
-            console.error('Order Items Creation Error:', itemsError)
+
             // Rollback: delete the order if items creation fails
             await supabase.from('orders').delete().eq('id', order.id)
 

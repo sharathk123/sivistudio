@@ -25,7 +25,7 @@ const menuItems = [
 ]
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
-    const [activeImage, setActiveImage] = useState<string | null>(null)
+    const [activeImage, setActiveImage] = useState<string | null>(menuItems[0].image)
     const overlayRef = useRef<HTMLDivElement>(null)
     const firstFocusableRef = useRef<HTMLAnchorElement>(null)
     const { user, signOut } = useAuth()
@@ -80,7 +80,6 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                         animate={{ x: 0, opacity: 1 }}
                                         transition={{ delay: 0.2 + (index * 0.1), duration: 0.5 }}
                                         onMouseEnter={() => setActiveImage(item.image)}
-                                        onMouseLeave={() => setActiveImage(null)}
                                     >
                                         <Link
                                             ref={index === 0 ? firstFocusableRef : null}
@@ -116,7 +115,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
 
                     {/* Right: Hover Reveal Image */}
                     <div className="hidden md:block w-1/2 h-full relative overflow-hidden bg-black/20">
-                        <AnimatePresence mode="wait">
+                        <AnimatePresence>
                             {activeImage && (
                                 <motion.div
                                     key={activeImage}
@@ -130,8 +129,9 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                         src={activeImage}
                                         alt="Menu Preview"
                                         fill
-                                        className="object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover opacity-60"
                                         sizes="50vw"
+                                        priority
                                     />
                                 </motion.div>
                             )}

@@ -87,7 +87,7 @@ export default function PaymentButton({
 
                 // Styling to match Sivi Brand (Sage/Charcoal)
                 theme: {
-                    color: '#849279' // Sage color
+                    color: 'var(--color-sage)' // Sage color
                 },
 
                 // Pre-fill user details if available (can accept these as props later)

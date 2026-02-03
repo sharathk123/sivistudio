@@ -7,6 +7,7 @@ import { Product } from '@/lib/sanity/client'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import WishlistButton from '@/components/ui/WishlistButton'
+import { Eye, ShoppingBag } from 'lucide-react'
 
 interface ProductCardProps {
     product: Product
@@ -72,8 +73,23 @@ export default function ProductCard({ product }: ProductCardProps) {
                         </div>
                     )}
 
-                    {/* Subtle Overlay */}
-                    <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/5" />
+                    {/* Subtle Overlay & Quick Actions */}
+                    <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <div className="flex gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <button
+                                className="bg-bone text-charcoal p-3 rounded-full shadow-card hover:bg-sage hover:text-bone transition-colors"
+                                aria-label="Quick View"
+                            >
+                                <Eye size={20} />
+                            </button>
+                            <button
+                                className="bg-bone text-charcoal p-3 rounded-full shadow-card hover:bg-sage hover:text-bone transition-colors"
+                                aria-label="Add to Cart"
+                            >
+                                <ShoppingBag size={20} />
+                            </button>
+                        </div>
+                    </div>
 
                     {/* Wishlist Button Overlay */}
                     <div className="absolute top-4 right-4 z-20">

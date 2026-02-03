@@ -8,6 +8,7 @@ import Footer from '@/components/ui/Footer'
 import StickyHeader from '@/components/ui/StickyHeader'
 import { IMAGES } from '@/lib/images'
 import ArtisanProfiles from '@/components/story/ArtisanProfiles'
+import Reveal from '@/components/ui/Reveal'
 
 export default function StoryPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -72,53 +73,53 @@ export default function StoryPage() {
             </section>
 
             {/* Origins Section - Ivory Background */}
-            <ChromaticWrapper startColor="#FDFCFB" endColor="#FDFCFB">
+            <ChromaticWrapper startColor="var(--color-bone)" endColor="var(--color-bone)">
                 <section className="py-32 px-6">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                             {/* Text Block */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8 }}
-                                className="space-y-8"
-                            >
-                                <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
-                                    Chapter I
-                                </span>
-                                <h2 className="font-serif text-5xl md:text-6xl text-charcoal italic leading-tight">
-                                    Where Craft <br />Meets Couture
-                                </h2>
-                                <div className="w-24 h-1 bg-sage" />
-                                <p className="text-charcoal-400 text-lg leading-relaxed font-light">
-                                    Across India, from the villages of Telangana to the workshops of Bengal, Odisha, and Tamil Nadu,
-                                    master weavers continue their ancient craft. Pochampally Ikat, Jamdani, Sambalpuri, Kanjivaram—each
-                                    a testament to centuries of textile wisdom passed down through generations.
-                                </p>
-                                <p className="text-charcoal-400 text-lg leading-relaxed font-light">
-                                    Sivi was born from a simple belief: that these heritage techniques deserved to evolve,
-                                    not fade. That handloom fabrics could be transformed into contemporary dresses, modern outfits,
-                                    and traditional sarees that honor both heritage and modern aesthetics.
-                                </p>
-                            </motion.div>
+                            <div className="space-y-8">
+                                <Reveal>
+                                    <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
+                                        Chapter I
+                                    </span>
+                                </Reveal>
+                                <Reveal delay={0.4}>
+                                    <h2 className="font-serif text-5xl md:text-6xl text-charcoal italic leading-tight">
+                                        Where Craft <br />Meets Couture
+                                    </h2>
+                                </Reveal>
+                                <Reveal delay={0.5}>
+                                    <div className="w-24 h-1 bg-sage" />
+                                </Reveal>
+                                <Reveal delay={0.6}>
+                                    <p className="text-charcoal-400 text-lg leading-relaxed font-light">
+                                        Across India, from the villages of Telangana to the workshops of Bengal, Odisha, and Tamil Nadu,
+                                        master weavers continue their ancient craft. Pochampally Ikat, Jamdani, Sambalpuri, Kanjivaram—each
+                                        a testament to centuries of textile wisdom passed down through generations.
+                                    </p>
+                                </Reveal>
+                                <Reveal delay={0.7}>
+                                    <p className="text-charcoal-400 text-lg leading-relaxed font-light">
+                                        Sivi was born from a simple belief: that these heritage techniques deserved to evolve,
+                                        not fade. That handloom fabrics could be transformed into contemporary dresses, modern outfits,
+                                        and traditional sarees that honor both heritage and modern aesthetics.
+                                    </p>
+                                </Reveal>
+                            </div>
 
                             {/* Image Block */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
-                                className="relative h-[600px] rounded-sm overflow-hidden"
-                            >
-                                <Image
-                                    src={IMAGES.storyOrigins}
-                                    alt="Handloom Heritage Workshop"
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
-                                />
-                            </motion.div>
+                            <Reveal variant="fade-in" delay={0.4} className="w-full">
+                                <div className="relative h-[600px] rounded-sm overflow-hidden">
+                                    <Image
+                                        src={IMAGES.storyOrigins}
+                                        alt="Handloom Heritage Workshop"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
+                                    />
+                                </div>
+                            </Reveal>
                         </div>
                     </div>
                 </section>
@@ -128,7 +129,7 @@ export default function StoryPage() {
             <ArtisanProfiles />
 
             {/* Pull Quote - Charcoal Transition */}
-            <ChromaticWrapper startColor="#FDFCFB" endColor="#1A1A1A">
+            <ChromaticWrapper startColor="var(--color-bone)" endColor="var(--color-charcoal)">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.blockquote
@@ -193,44 +194,50 @@ export default function StoryPage() {
                         </div>
 
                         {/* Text Content */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="space-y-8 lg:sticky lg:top-32"
-                        >
-                            <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
-                                Chapter II
-                            </span>
-                            <h2 className="font-serif text-5xl md:text-6xl text-bone italic leading-tight">
-                                Innovation in <br />Every Thread
-                            </h2>
-                            <div className="w-24 h-1 bg-sage" />
+                        <div className="space-y-8 lg:sticky lg:top-32">
+                            <Reveal>
+                                <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
+                                    Chapter II
+                                </span>
+                            </Reveal>
+                            <Reveal delay={0.4}>
+                                <h2 className="font-serif text-5xl md:text-6xl text-bone italic leading-tight">
+                                    Innovation in <br />Every Thread
+                                </h2>
+                            </Reveal>
+                            <Reveal delay={0.5}>
+                                <div className="w-24 h-1 bg-sage" />
+                            </Reveal>
                             <div className="space-y-6 text-ivory-200 text-lg leading-relaxed font-light">
-                                <p>
-                                    From Pochampally's geometric Ikat patterns to Jamdani's delicate motifs, from Sambalpuri's
-                                    traditional borders to Kanjivaram's lustrous silk—we source the finest handlooms from across India.
-                                    Each region brings its unique heritage and technique.
-                                </p>
-                                <p>
-                                    But we don't stop at tradition. Our Hyderabad design studio reimagines these heritage fabrics
-                                    into contemporary silhouettes: asymmetric dresses, layered ensembles, modern outfits that fit
-                                    today's lifestyles while honoring centuries of craftsmanship.
-                                </p>
-                                <p>
-                                    Every piece is a collaboration between master weavers and modern designers, between ancestral
-                                    wisdom and innovative vision. This is how handlooms evolve—not by abandoning tradition,
-                                    but by giving it new life.
-                                </p>
+                                <Reveal delay={0.6}>
+                                    <p>
+                                        From Pochampally's geometric Ikat patterns to Jamdani's delicate motifs, from Sambalpuri's
+                                        traditional borders to Kanjivaram's lustrous silk—we source the finest handlooms from across India.
+                                        Each region brings its unique heritage and technique.
+                                    </p>
+                                </Reveal>
+                                <Reveal delay={0.7}>
+                                    <p>
+                                        But we don't stop at tradition. Our Hyderabad design studio reimagines these heritage fabrics
+                                        into contemporary silhouettes: asymmetric dresses, layered ensembles, modern outfits that fit
+                                        today's lifestyles while honoring centuries of craftsmanship.
+                                    </p>
+                                </Reveal>
+                                <Reveal delay={0.8}>
+                                    <p>
+                                        Every piece is a collaboration between master weavers and modern designers, between ancestral
+                                        wisdom and innovative vision. This is how handlooms evolve—not by abandoning tradition,
+                                        but by giving it new life.
+                                    </p>
+                                </Reveal>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Philosophy Section - Return to Light */}
-            <ChromaticWrapper startColor="#1A1A1A" endColor="#FDFCFB">
+            <ChromaticWrapper startColor="var(--color-charcoal)" endColor="var(--color-bone)">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center space-y-12">
                         <motion.div

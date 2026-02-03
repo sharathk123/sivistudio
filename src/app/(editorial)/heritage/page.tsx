@@ -9,6 +9,7 @@ import StickyHeader from '@/components/ui/StickyHeader'
 
 import { IMAGES } from '@/lib/images'
 import { weaves } from '@/data/heritageData'
+import Reveal from '@/components/ui/Reveal'
 
 export default function HeritagePage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -77,28 +78,29 @@ export default function HeritagePage() {
             </section>
 
             {/* Introduction Section */}
-            <ChromaticWrapper startColor="#FDFCFB" endColor="#E4E4DE">
+            <ChromaticWrapper startColor="var(--color-bone)" endColor="var(--color-ivory)">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center space-y-8">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
+                        <Reveal width="100%">
                             <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
                                 Living Traditions
                             </span>
+                        </Reveal>
+                        <Reveal width="100%" delay={0.4}>
                             <h2 className="font-serif text-5xl md:text-6xl text-charcoal italic leading-tight mt-6 mb-8">
                                 Six Weaves, <br />Six Legacies
                             </h2>
+                        </Reveal>
+                        <Reveal width="100%" delay={0.5}>
                             <div className="w-24 h-1 bg-sage mx-auto mb-8" />
+                        </Reveal>
+                        <Reveal width="100%" delay={0.6}>
                             <p className="text-charcoal-400 text-lg leading-relaxed font-light max-w-3xl mx-auto">
                                 India's handloom heritage is a tapestry of regional techniques, each with its own
                                 history, symbolism, and artistry. At Sivi, we celebrate these diverse traditions
                                 by sourcing authentic handlooms and transforming them into contemporary designs.
                             </p>
-                        </motion.div>
+                        </Reveal>
                     </div>
                 </section>
             </ChromaticWrapper>
@@ -148,32 +150,40 @@ export default function HeritagePage() {
                         {/* Content */}
                         <div className="space-y-8 order-1 lg:order-2">
                             <div>
-                                <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
-                                    {activeWeaveData.region}
-                                </span>
-                                <h3 className="font-serif text-5xl md:text-6xl text-charcoal italic leading-tight mt-4">
-                                    {activeWeaveData.name}
-                                </h3>
-                                <div className="w-24 h-1 bg-sage mt-6" />
+                                <Reveal>
+                                    <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
+                                        {activeWeaveData.region}
+                                    </span>
+                                </Reveal>
+                                <Reveal delay={0.4}>
+                                    <h3 className="font-serif text-5xl md:text-6xl text-charcoal italic leading-tight mt-4">
+                                        {activeWeaveData.name}
+                                    </h3>
+                                </Reveal>
+                                <Reveal delay={0.5}>
+                                    <div className="w-24 h-1 bg-sage mt-6" />
+                                </Reveal>
                             </div>
 
-                            <p className="text-charcoal-400 text-lg leading-relaxed font-light">
-                                {activeWeaveData.description}
-                            </p>
+                            <Reveal delay={0.6}>
+                                <p className="text-charcoal-400 text-lg leading-relaxed font-light">
+                                    {activeWeaveData.description}
+                                </p>
+                            </Reveal>
 
                             <div className="space-y-4">
-                                <div>
+                                <Reveal delay={0.7}>
                                     <h4 className="font-serif text-xl text-sage italic mb-2">Technique</h4>
                                     <p className="text-charcoal-400 leading-relaxed">
                                         {activeWeaveData.technique}
                                     </p>
-                                </div>
-                                <div>
+                                </Reveal>
+                                <Reveal delay={0.8}>
                                     <h4 className="font-serif text-xl text-sage italic mb-2">Characteristics</h4>
                                     <p className="text-charcoal-400 leading-relaxed">
                                         {activeWeaveData.characteristics}
                                     </p>
-                                </div>
+                                </Reveal>
                             </div>
                         </div>
                     </motion.div>
@@ -181,7 +191,7 @@ export default function HeritagePage() {
             </section>
 
             {/* Pull Quote */}
-            <ChromaticWrapper startColor="#E4E4DE" endColor="#1A1A1A">
+            <ChromaticWrapper startColor="var(--color-ivory)" endColor="var(--color-charcoal)">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.blockquote
@@ -208,7 +218,7 @@ export default function HeritagePage() {
             </ChromaticWrapper>
 
             {/* Preservation Section */}
-            <ChromaticWrapper startColor="#1A1A1A" endColor="#FDFCFB">
+            <ChromaticWrapper startColor="var(--color-charcoal)" endColor="var(--color-bone)">
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center space-y-12">
                         <motion.div

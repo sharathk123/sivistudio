@@ -66,7 +66,7 @@ export default function SettingsTab() {
                         <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Full Name</label>
                         <input
                             {...register('full_name', { required: true })}
-                            className="w-full p-3 bg-ivory border border-charcoal/10 focus:border-sage outline-none transition-colors font-serif"
+                            className="input-boutique"
                         />
                     </div>
                     <div className="space-y-2">
@@ -74,7 +74,7 @@ export default function SettingsTab() {
                         <input
                             {...register('email')}
                             disabled
-                            className="w-full p-3 bg-ivory-100 border border-charcoal/10 text-charcoal-400 cursor-not-allowed font-serif"
+                            className="input-boutique opacity-50 cursor-not-allowed"
                         />
                     </div>
                 </div>
@@ -84,7 +84,7 @@ export default function SettingsTab() {
                     <input
                         {...register('hyderabad_locality')}
                         placeholder="e.g. Banjara Hills, Jubilee Hills"
-                        className="w-full p-3 bg-ivory border border-charcoal/10 focus:border-sage outline-none transition-colors font-serif"
+                        className="input-boutique"
                     />
                 </div>
 

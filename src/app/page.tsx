@@ -2,6 +2,7 @@ import EditorialHero from '@/components/editorial/EditorialHero'
 import MoodBoardGrid from '@/components/editorial/MoodBoardGrid'
 import JournalTeaser from '@/components/editorial/JournalTeaser'
 import Footer from '@/components/ui/Footer'
+import Reveal from '@/components/ui/Reveal'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -23,13 +24,19 @@ export default async function HomePage() {
             <section className="bg-charcoal text-bone py-32 px-6">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
                     <div className="space-y-6 sticky top-32">
-                        <span className="text-sage text-xs font-bold tracking-[0.2em] uppercase">
-                            Our Heritage
-                        </span>
-                        <h2 className="font-serif text-5xl md:text-7xl italic text-sage-100 leading-tight">
-                            Woven with <br /> Intention
-                        </h2>
-                        <div className="w-24 h-1 bg-sage" />
+                        <Reveal width="100%">
+                            <span className="text-sage text-xs font-bold tracking-[0.2em] uppercase">
+                                Our Heritage
+                            </span>
+                        </Reveal>
+                        <Reveal width="100%" delay={0.4}>
+                            <h2 className="font-serif text-5xl md:text-7xl italic text-sage-100 leading-tight">
+                                Woven with <br /> Intention
+                            </h2>
+                        </Reveal>
+                        <Reveal width="100%" delay={0.5}>
+                            <div className="w-24 h-1 bg-sage" />
+                        </Reveal>
                     </div>
                     <div className="space-y-12 text-lg md:text-xl font-light text-ivory-200 leading-relaxed font-sans">
                         <p>
@@ -72,13 +79,19 @@ export default async function HomePage() {
                         {/* Staggered Text Blocks - 40% width */}
                         <div className="lg:col-span-2 space-y-12">
                             <div className="space-y-4">
-                                <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
-                                    The Essence
-                                </span>
-                                <h2 className="font-serif text-4xl md:text-5xl text-charcoal italic leading-tight">
-                                    Crafted for <br />the Conscious
-                                </h2>
-                                <div className="w-16 h-1 bg-sage" />
+                                <Reveal>
+                                    <span className="text-sage text-xs uppercase tracking-[0.3em] font-bold">
+                                        The Essence
+                                    </span>
+                                </Reveal>
+                                <Reveal delay={0.4}>
+                                    <h2 className="font-serif text-4xl md:text-5xl text-charcoal italic leading-tight">
+                                        Crafted for <br />the Conscious
+                                    </h2>
+                                </Reveal>
+                                <Reveal delay={0.5}>
+                                    <div className="w-16 h-1 bg-sage" />
+                                </Reveal>
                             </div>
 
                             <blockquote className="font-serif text-2xl md:text-3xl text-sage-700 italic leading-relaxed border-l-2 border-sage pl-6">

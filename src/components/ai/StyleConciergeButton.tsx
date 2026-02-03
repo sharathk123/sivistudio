@@ -40,8 +40,8 @@ export default function StyleConciergeButton() {
                     >
                         <div
                             style={{
-                                backgroundColor: '#1A1A1A',
-                                color: '#FDFCFB',
+                                backgroundColor: 'var(--color-charcoal)',
+                                color: 'var(--color-bone)',
                                 padding: '8px 16px',
                                 borderRadius: '8px',
                                 fontSize: '14px',
@@ -66,7 +66,7 @@ export default function StyleConciergeButton() {
                                         height: 0,
                                         borderTop: '8px solid transparent',
                                         borderBottom: '8px solid transparent',
-                                        borderRight: '8px solid #1A1A1A',
+                                        borderRight: '8px solid var(--color-charcoal)',
                                     }}
                                 />
                             </div>
@@ -87,7 +87,7 @@ export default function StyleConciergeButton() {
                             width: '64px',
                             height: '64px',
                             borderRadius: '50%',
-                            backgroundColor: '#1A1A1A',
+                            backgroundColor: 'var(--color-charcoal)',
                             boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
                             transition: 'background-color 300ms',
                             cursor: 'pointer',
@@ -96,10 +96,10 @@ export default function StyleConciergeButton() {
                             overflow: 'hidden',
                         }}
                         onMouseOver={(e) => {
-                            e.currentTarget.style.backgroundColor = '#9CA770'
+                            e.currentTarget.style.backgroundColor = 'var(--color-sage)'
                         }}
                         onMouseOut={(e) => {
-                            e.currentTarget.style.backgroundColor = '#1A1A1A'
+                            e.currentTarget.style.backgroundColor = 'var(--color-charcoal)'
                         }}
                     >
                         {/* AI Sparkle Icon */}

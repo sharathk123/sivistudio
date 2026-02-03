@@ -202,7 +202,7 @@ export default function Footer() {
                         whileInView={{ opacity: 0.1, y: 0 }}
                         whileHover={{
                             opacity: 0.8,
-                            color: '#9CA770',
+                            color: 'var(--color-sage)',
                             textShadow: '0 0 30px rgba(156, 167, 112, 0.5)',
                             scale: 1.02
                         }}

@@ -40,8 +40,18 @@
   --color-charcoal-transparent: rgba(26, 26, 26, 0);
   --color-charcoal-overlay: rgba(26, 26, 26, 1);
 
+  /* Google Brand Colors */
+  --color-google-blue: #4285F4;
+  --color-google-green: #34A853;
+  --color-google-yellow: #FBBC05;
+  --color-google-red: #EA4335;
+
+  /* Social Media Brand Colors */
+  --color-whatsapp: #25D366;
+
+
   /* Typography */
-  --font-family-serif: 'Playfair Display', serif;
+  --font-family-serif: var(--font-bodoni), serif;
   --font-family-sans: 'Inter', sans-serif;
   --font-family-mono: 'Courier New', monospace;
   --font-family-bodoni: var(--font-bodoni);
@@ -139,8 +149,8 @@
 
 @layer base {
   :root {
-    --font-playfair: 'Playfair Display', serif;
-    --font-inter: 'Inter', sans-serif;
+    --font-family-serif: var(--font-bodoni), serif;
+    --font-family-sans: var(--font-inter), sans-serif;
   }
 
   html,
@@ -235,6 +245,7 @@
     0% {
       background-position: -200% 0;
     }
+
     100% {
       background-position: 200% 0;
     }
@@ -871,6 +882,45 @@
 
   .btn-primary:hover {
     background-color: var(--color-sage-700);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    transition: all 400ms ease;
+    border: 1px solid rgba(26, 26, 26, 0.05);
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-ivory-200);
+    border-color: rgba(26, 26, 26, 0.2);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    color: var(--color-charcoal);
+    padding: 1.25rem 2.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    transition: all 400ms ease;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-bone);
+    border-color: var(--color-charcoal);
   }
 
   .btn-pill {
