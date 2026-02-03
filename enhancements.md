@@ -39,6 +39,15 @@ This document outlines the strategic business features and technological enhance
 *   **The Sivi Muse Lookbook**: A user-generated content section in the *Journal* where patrons can share their styled looks.
 *   **Studio Events Integration**: Booking for physical workshops or private viewings at the Hyderabad studio.
 
+## 6. 🏛️ Back Office & Operations (The Digital Atelier)
+*Minimal, high-impact internal tools for studio management.*
+
+*   **Production Pipeline Dashboard**: Tracking luxury order states: `Measurement Verified` → `Fabric Sourced` → `In Cutting` → `At Stitching` → `Quality Check` → `Ready for Studio Pickup`.
+*   **Digital Workshop Sheets (Job Cards)**: Auto-generated PDFs for tailors combining customer measurements with specific fabric technical specs (e.g., "60s Count Cotton").
+*   **Minimal Metrage Tracking**: Simple inventory management to track available meters of rare handloom batches to prevent over-selling.
+*   **Studio Pickup & Trial Manager**: Internal calendar view for managing Hyderabad studio trials and physical garment handovers.
+*   **Artisan Ledger**: A reporting view to track craft distribution and manage payout transparency for weavers and artisans.
+
 ---
 
 ## 🚀 Immediate Technical Priorities (Roadmap)
