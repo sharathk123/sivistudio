@@ -98,7 +98,7 @@ function SuccessContent() {
                         href="/shop"
                         className="w-full sm:w-auto px-8 py-4 bg-charcoal text-bone uppercase tracking-widest text-xs hover:bg-sage transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg"
                     >
-                        <span>Continue Shopping</span>
+                        <span>Return to the Atelier</span>
                         <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                     </Link>
                 </motion.div>
