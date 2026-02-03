@@ -130,8 +130,28 @@ export default function StoryPage() {
 
             {/* Pull Quote - Charcoal Transition */}
             <ChromaticWrapper startColor="var(--color-bone)" endColor="var(--color-charcoal)">
-                <section className="py-32 px-6">
-                    <div className="max-w-4xl mx-auto text-center">
+                <section className="relative py-32 px-6 overflow-hidden">
+                    {/* Background Visual Anchor */}
+                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                        <motion.div
+                            initial={{ scale: 1.1, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+                            className="w-full h-full relative"
+                        >
+                            <Image
+                                src="/brain/288c89dd-bda1-477a-84f4-5c383ae6344c/adiyogi_editorial_heritage_1770135655877.png"
+                                alt="Adiyogi Spiritual Heritage"
+                                fill
+                                className="object-cover"
+                                sizes="100vw"
+                            />
+                            <div className="absolute inset-0 bg-charcoal/40" />
+                        </motion.div>
+                    </div>
+
+                    <div className="relative z-10 max-w-4xl mx-auto text-center">
                         <motion.blockquote
                             initial={{ opacity: 0.2, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
