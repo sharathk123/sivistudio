@@ -8,7 +8,8 @@ import { NextRequest, NextResponse } from 'next/server'
  */
 export const DELETE = withAuth(async (request: NextRequest, { params, user }) => {
     try {
-        const id = params.id
+        const resolvedParams = await params
+        const id = resolvedParams.id
         const supabase = await createClient()
 
         const { error } = await supabase

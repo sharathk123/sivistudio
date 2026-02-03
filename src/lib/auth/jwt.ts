@@ -52,14 +52,6 @@ export async function verifyAuth(request: NextRequest) {
 /**
  * Higher-order function to protect API routes
  * Wraps your API handler with JWT authentication
- * 
- * @example
- * ```typescript
- * export const GET = withAuth(async (request, { user }) => {
- *   // user is guaranteed to exist here
- *   return NextResponse.json({ userId: user.id })
- * })
- * ```
  */
 export function withAuth<T = any>(
     handler: (
@@ -77,14 +69,18 @@ export function withAuth<T = any>(
             )
         }
 
-        // Call the original handler with authenticated user and original context
-        return handler(request, { ...context, user: auth.user })
+        // Safely merge user into context. 
+        // We use Object.create to preserve the original context (including its params Promise/Proxy)
+        // while adding the authenticated user info.
+        const authenticatedContext = Object.create(context as object)
+        authenticatedContext.user = auth.user
+
+        return handler(request, authenticatedContext)
     }
 }
 
 /**
  * Extract and verify JWT token from Authorization header
- * Alternative method if you need manual token verification
  */
 export async function verifyJWT(token: string) {
     try {
@@ -127,7 +123,6 @@ export function getAuthToken(request: NextRequest): string | null {
         return null
     }
 
-    // Support both "Bearer token" and "token" formats
     const token = authHeader.startsWith('Bearer ')
         ? authHeader.substring(7)
         : authHeader

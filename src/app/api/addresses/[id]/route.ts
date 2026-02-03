@@ -8,7 +8,8 @@ import { NextRequest, NextResponse } from 'next/server'
  */
 export const PUT = withAuth(async (request: NextRequest, { params, user }) => {
     try {
-        const addressId = params.id
+        const resolvedParams = await params
+        const addressId = resolvedParams.id
         const body = await request.json()
 
         const supabase = await createClient()
@@ -40,7 +41,8 @@ export const PUT = withAuth(async (request: NextRequest, { params, user }) => {
  */
 export const DELETE = withAuth(async (request: NextRequest, { params, user }) => {
     try {
-        const addressId = params.id
+        const resolvedParams = await params
+        const addressId = resolvedParams.id
         const supabase = await createClient()
 
         const { error } = await supabase

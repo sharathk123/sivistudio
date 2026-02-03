@@ -20,6 +20,11 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
     useEffect(() => {
         const fetchOrder = async () => {
             try {
+                if (!id) {
+                    setError('Order ID is missing.')
+                    setIsLoading(false)
+                    return
+                }
                 const response = await api.getOrder(id)
                 if (response.success && response.data) {
                     setOrder(response.data)

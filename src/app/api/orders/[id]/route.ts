@@ -8,14 +8,16 @@ import { NextRequest, NextResponse } from 'next/server'
  */
 export const GET = withAuth(async (request: NextRequest, { params, user }) => {
     try {
-        const orderId = params.id
+        const resolvedParams = await params
+        const orderId = resolvedParams?.id || request.nextUrl.pathname.split('/').pop()
 
-        if (!orderId) {
-            return NextResponse.json({ error: 'Order ID is required' }, { status: 400 })
+        if (!orderId || orderId === 'orders' || orderId === 'undefined' || orderId === 'api') {
+            return NextResponse.json({
+                error: 'Order ID is required'
+            }, { status: 400 })
         }
 
         const supabase = await createClient()
-
         const { data: order, error } = await supabase
             .from('orders')
             .select('*, order_items(id, sanity_product_id, selected_size, quantity, price)')
@@ -24,7 +26,6 @@ export const GET = withAuth(async (request: NextRequest, { params, user }) => {
             .single()
 
         if (error || !order) {
-            console.error('[API] Order Detail Fetch Error:', error)
             return NextResponse.json({ error: 'Order not found' }, { status: 404 })
         }
 
