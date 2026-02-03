@@ -145,11 +145,11 @@ export default function PaymentButton({
                             </div>
 
                             <div className="flex flex-col items-center gap-1">
-                                <span className="text-3xl font-light tracking-tight font-serif italic text-sage-300">
+                                <span className="text-3xl font-light tracking-tight font-serif italic text-white">
                                     ₹{totalAmount.toLocaleString('en-IN')}
                                 </span>
-                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-ivory/40">
-                                    <Lock size={10} className="text-sage-500" />
+                                <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/60">
+                                    <Lock size={10} className="text-white" />
                                     <span>Fully Encrypted Transaction</span>
                                 </div>
                             </div>
