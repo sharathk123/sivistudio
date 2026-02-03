@@ -5,6 +5,8 @@
 @theme {
   /* Color Palette - Base */
   --color-sage: #9CA770;
+  --color-sage-100: #E9EDDC;
+  --color-sage-300: #D1D9B9;
   --color-sage-600: #8A9560;
   --color-sage-700: #788450;
   --color-ivory: #E4E4DE;
