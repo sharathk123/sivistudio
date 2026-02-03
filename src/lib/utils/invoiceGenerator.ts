@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import autoTable from 'jspdf-autotable'
 import { formatDate } from './dateUtils'
 
 interface OrderItem {
@@ -87,17 +87,19 @@ export const generateInvoice = (order: OrderData) => {
         `INR ${(item.price * item.quantity).toLocaleString('en-IN')}`
     ])
 
-        ; (doc as any).autoTable({
-            startY: 95,
-            head: [['#', 'Item Description', 'Unit Price', 'Qty', 'Total']],
-            body: tableData,
-            theme: 'striped',
-            headStyles: { fillColor: [26, 26, 26], textColor: [255, 255, 255] },
-            alternateRowStyles: { fillColor: [249, 249, 247] },
-            margin: { left: 20, right: 20 }
-        })
+    // Use the explicit autoTable function instead of doc.autoTable
+    autoTable(doc, {
+        startY: 95,
+        head: [['#', 'Item Description', 'Unit Price', 'Qty', 'Total']],
+        body: tableData,
+        theme: 'striped',
+        headStyles: { fillColor: [26, 26, 26], textColor: [255, 255, 255] },
+        alternateRowStyles: { fillColor: [249, 249, 247] },
+        margin: { left: 20, right: 20 }
+    })
 
     // --- Totals ---
+    // Use (doc as any).lastAutoTable.finalY or the return value of autoTable
     const finalY = (doc as any).lastAutoTable.finalY + 10
     doc.setFont('helvetica', 'bold')
     doc.text('Summary', 20, finalY)
