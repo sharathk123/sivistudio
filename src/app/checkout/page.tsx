@@ -164,26 +164,34 @@ export default function CheckoutPage() {
                     {/* Order Review */}
                     <div>
                         <h2 className="font-serif text-2xl text-charcoal mb-6 border-b border-charcoal/10 pb-4">Order Items ({totalItems})</h2>
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             {items.map((item) => (
-                                <div key={item.variantId} className="flex gap-6">
-                                    <div className="relative w-20 h-28 bg-gray-100 flex-shrink-0">
+                                <div key={item.variantId} className="flex gap-8 group">
+                                    <div className="relative w-32 h-44 bg-ivory flex-shrink-0 overflow-hidden rounded-sm shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
                                         {item.product.images && item.product.images[0] && (
                                             <Image
-                                                src={urlFor(item.product.images[0]).width(100).url()}
+                                                src={urlFor(item.product.images[0]).width(256).url()}
                                                 alt={item.product.title}
                                                 fill
                                                 className="object-cover"
                                             />
                                         )}
                                     </div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between items-start">
-                                            <h3 className="font-serif text-lg text-charcoal">{item.product.title}</h3>
-                                            <p className="font-bold text-charcoal">₹{((item.product.price || 0) * item.quantity).toLocaleString()}</p>
+                                    <div className="flex-1 flex flex-col pt-2">
+                                        <div className="flex justify-between items-start mb-2">
+                                            <h3 className="font-serif text-xl text-charcoal leading-tight">{item.product.title}</h3>
+                                            <p className="font-bold text-charcoal text-lg">₹{((item.product.price || 0) * item.quantity).toLocaleString('en-IN')}</p>
                                         </div>
-                                        <p className="text-sm text-charcoal-400 mt-1">Size: {item.selectedSize || 'Standard'}</p>
-                                        <p className="text-sm text-charcoal-400">Qty: {item.quantity}</p>
+                                        <div className="space-y-2 mt-auto pb-4">
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[10px] uppercase tracking-widest text-charcoal-400">Size</span>
+                                                <span className="text-xs font-medium text-sage uppercase">{item.selectedSize || 'Standard'}</span>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[10px] uppercase tracking-widest text-charcoal-400">Quantity</span>
+                                                <span className="text-xs font-medium text-charcoal">{item.quantity}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
