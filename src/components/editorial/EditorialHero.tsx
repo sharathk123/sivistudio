@@ -11,14 +11,21 @@ export default function EditorialHero() {
         >
             {/* Hero Background Image */}
             <div className="absolute inset-0 z-0">
-                <Image
-                    src={IMAGES.heroIkat}
-                    alt="Pochampally Ikat Fabric"
-                    fill
-                    priority
-                    className="object-cover opacity-70"
-                    sizes="100vw"
-                />
+                <motion.div
+                    initial={{ scale: 1.15 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full h-full relative"
+                >
+                    <Image
+                        src={IMAGES.heroIkat}
+                        alt="Pochampally Ikat Fabric"
+                        fill
+                        priority
+                        className="object-cover opacity-70"
+                        sizes="100vw"
+                    />
+                </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/80" />
             </div>
 
@@ -29,8 +36,8 @@ export default function EditorialHero() {
                 <motion.span
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-xs uppercase tracking-[0.3em] text-sage-300 mb-8"
+                    transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-xs uppercase tracking-[0.3em] text-sage-300 mb-8 font-medium"
                 >
                     Hyderabad • Telangana Looms
                 </motion.span>
@@ -39,7 +46,7 @@ export default function EditorialHero() {
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 1 }}
+                    transition={{ delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] mb-8"
                 >
                     <div className="italic text-bone">
@@ -54,7 +61,7 @@ export default function EditorialHero() {
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8, duration: 1 }}
+                    transition={{ delay: 1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     className="max-w-md text-sm md:text-base font-light tracking-wide text-ivory-300 leading-relaxed"
                 >
                     Handlooms from across India. <br />

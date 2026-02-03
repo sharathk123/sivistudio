@@ -23,9 +23,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     return (
         <Link href={`/products/${product.slug.current}`} className="group block">
             <motion.div
-                whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-4"
+                whileHover={{ y: -8, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
+                className="space-y-4 group/card"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -35,8 +34,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                         <>
                             {/* Lifestyle Image */}
                             <motion.div
-                                animate={{ opacity: isHovered ? 0 : 1 }}
-                                transition={{ duration: 0.5 }}
+                                animate={{
+                                    opacity: isHovered ? 0 : 1,
+                                    scale: isHovered ? 1.05 : 1
+                                }}
+                                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                 className="absolute inset-0"
                             >
                                 <Image
@@ -51,8 +53,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                             {/* Macro/Detail Image */}
                             {macroImage && (
                                 <motion.div
-                                    animate={{ opacity: isHovered ? 1 : 0 }}
-                                    transition={{ duration: 0.5 }}
+                                    animate={{
+                                        opacity: isHovered ? 1 : 0,
+                                        scale: isHovered ? 1.05 : 1.1 // Start slightly larger for macro
+                                    }}
+                                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     className="absolute inset-0"
                                 >
                                     <Image

@@ -156,13 +156,13 @@ function MoodBoardCard({ item, index }: { item: MoodBoardItem, index: number }) 
     return (
         <motion.article
             ref={cardRef}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{
-                duration: 0.9,
+                duration: 1,
                 delay: index * 0.15,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                ease: [0.22, 1, 0.36, 1]
             }}
             className="group cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}

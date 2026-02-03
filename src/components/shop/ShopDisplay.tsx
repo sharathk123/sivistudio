@@ -129,14 +129,28 @@ export default function ShopDisplay({ products, collections }: ShopDisplayProps)
                     {products.length > 0 ? (
                         <motion.div
                             layout
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: {
+                                        staggerChildren: 0.1,
+                                        delayChildren: 0.2
+                                    }
+                                }
+                            }}
+                            initial="hidden"
+                            animate="visible"
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 auto-rows-auto"
                         >
                             {products.map((product, index) => (
                                 <motion.div
                                     layout
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+                                        exit: { opacity: 0, scale: 0.95, transition: { duration: 0.3 } }
+                                    }}
                                     key={product._id}
                                     className={`
                                         ${index % 5 === 0 ? 'lg:col-span-2 lg:row-span-2' : ''}

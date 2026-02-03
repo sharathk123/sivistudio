@@ -16,7 +16,7 @@ export default function Reveal({
     children,
     width = 'fit-content',
     delay = 0.25,
-    duration = 0.5,
+    duration = 0.8,
     className = "",
     variant = 'fade-up'
 }: RevealProps) {
@@ -50,8 +50,8 @@ export default function Reveal({
             case 'fade-up':
             default:
                 return {
-                    hidden: { opacity: 0, y: 75 },
-                    visible: { opacity: 1, y: 0, transition: { duration, delay, ease: "easeOut" } }
+                    hidden: { opacity: 0, y: 40 },
+                    visible: { opacity: 1, y: 0, transition: { duration, delay, ease: [0.22, 1, 0.36, 1] } }
                 }
         }
     }
