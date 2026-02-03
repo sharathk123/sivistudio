@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { api } from '@/lib/api/client'
 import { useRouter } from 'next/navigation'
 import { Loader2, Lock } from 'lucide-react'
+import { useAuth } from '@/context/AuthContext'
 
 // Define the global Razorpay interface
 declare global {
@@ -29,6 +30,7 @@ export default function PaymentButton({
 }: PaymentButtonProps) {
     const [isProcessing, setIsProcessing] = useState(false)
     const router = useRouter()
+    const { user, profile } = useAuth()
 
     const handlePayment = async () => {
         if (!shippingAddressId) {
@@ -90,12 +92,11 @@ export default function PaymentButton({
                     color: '#9CA770' // Sage Green hex code
                 },
 
-                // Pre-fill user details if available (can accept these as props later)
-                // prefill: {
-                //     name: "Gaurav Kumar",
-                //     email: "gaurav.kumar@example.com",
-                //     contact: "9000090000"
-                // }
+                // Pre-fill user details from Auth Context
+                prefill: {
+                    name: profile?.full_name || '',
+                    email: user?.email || '',
+                }
             }
 
             const rzp1 = new window.Razorpay(options)
