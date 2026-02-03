@@ -125,10 +125,10 @@ export default function PaymentButton({
             <button
                 onClick={handlePayment}
                 disabled={isProcessing}
-                className="group w-full relative overflow-hidden bg-charcoal text-ivory disabled:bg-charcoal-400 disabled:cursor-not-allowed transition-all duration-500 py-6 px-8 rounded-sm shadow-xl hover:shadow-2xl active:scale-[0.98]"
+                className="btn-payment"
             >
                 {/* Background Shimmer Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-700 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%] animate-shimmer" />
+                <div className="btn-payment-shimmer" />
 
                 <div className="relative z-10 flex flex-col items-center justify-center">
                     {isProcessing ? (
@@ -158,7 +158,7 @@ export default function PaymentButton({
                 </div>
 
                 {/* Subtle Border Glow */}
-                <div className="absolute inset-0 border border-ivory/5 group-hover:border-sage/30 transition-colors duration-500 rounded-sm" />
+                <div className="btn-payment-glow" />
             </button>
 
             <div className="flex items-center justify-center gap-2 opacity-60">
