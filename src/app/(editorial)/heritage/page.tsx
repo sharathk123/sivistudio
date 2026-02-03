@@ -195,7 +195,7 @@ export default function HeritagePage() {
                 <section className="py-32 px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <motion.blockquote
-                            initial={{ opacity: 0, scale: 0.95 }}
+                            initial={{ opacity: 0.2, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1 }}
@@ -205,7 +205,7 @@ export default function HeritagePage() {
                             of a thousand hands."
                         </motion.blockquote>
                         <motion.p
-                            initial={{ opacity: 0 }}
+                            initial={{ opacity: 0.2 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5, duration: 0.8 }}
