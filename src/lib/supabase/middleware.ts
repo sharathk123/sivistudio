@@ -36,14 +36,29 @@ export async function updateSession(request: NextRequest) {
     } = await supabase.auth.getUser()
 
     // Protect routes that require authentication
-    if (
-        !user &&
-        !request.nextUrl.pathname.startsWith('/login') &&
-        !request.nextUrl.pathname.startsWith('/signup') &&
-        !request.nextUrl.pathname.startsWith('/auth') &&
-        !request.nextUrl.pathname.startsWith('/shop')
-    ) {
-        // No user, potentially respond by redirecting the user to the login page
+    const publicPaths = [
+        '/',
+        '/login',
+        '/signup',
+        '/auth',
+        '/shop',
+        '/heritage',
+        '/story',
+        '/journal',
+        '/contact',
+        '/gallery',
+        '/size-guide',
+        '/shipping-policy',
+        '/privacy-policy',
+        '/terms-of-service'
+    ]
+
+    const isPublicPath = publicPaths.some(path =>
+        request.nextUrl.pathname === path || request.nextUrl.pathname.startsWith(`${path}/`)
+    )
+
+    if (!user && !isPublicPath) {
+        // No user and not a public path, redirect to login
         const url = request.nextUrl.clone()
         url.pathname = '/login'
         return NextResponse.redirect(url)

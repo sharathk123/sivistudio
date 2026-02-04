@@ -77,7 +77,7 @@ export default async function ProductPage({ params }: PageProps) {
         },
         offers: {
             '@type': 'Offer',
-            url: `https://sivithecouturier.com/products/${product.slug.current}`,
+            url: `https://sivithecouturier.com/products/${product.slug?.current || product._id}`,
             priceCurrency: 'INR',
             price: product.price || 0,
             availability: product.availability === 'in_stock'
@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: PageProps) {
     return (
         <main className="min-h-screen bg-bone">
             <Script
-                id={`product-jsonld-${product.slug.current}`}
+                id={`product-jsonld-${product.slug?.current || product._id}`}
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: PageProps) {
                                     <div className="aspect-[3/4] relative overflow-hidden bg-ivory-200 shadow-card">
                                         <Image
                                             src={urlFor(product.images[0]).width(1200).height(1600).url()}
-                                            alt={product.images[0].alt || product.title}
+                                            alt={product.images[0].alt || product.title || 'Product Image'}
                                             fill
                                             className="object-cover object-center"
                                             priority
@@ -124,7 +124,7 @@ export default async function ProductPage({ params }: PageProps) {
                                                 >
                                                     <Image
                                                         src={urlFor(image).width(400).height(400).url()}
-                                                        alt={image.alt || `${product.title} - View ${index + 2}`}
+                                                        alt={image.alt || `${product.title || 'Product'} - View ${index + 2}`}
                                                         fill
                                                         className="object-cover"
                                                     />
@@ -144,7 +144,7 @@ export default async function ProductPage({ params }: PageProps) {
                             <div className="flex items-center gap-2 caption-editorial text-ivory-300">
                                 <Link href="/" className="hover:text-sage transition-colors">Home</Link>
                                 <span>/</span>
-                                {product.collections && product.collections[0] && (
+                                {product.collections && product.collections[0] && product.collections[0].slug && (
                                     <>
                                         <Link
                                             href={`/collections/${product.collections[0].slug.current}`}
@@ -167,8 +167,8 @@ export default async function ProductPage({ params }: PageProps) {
                                     ) : (
                                         <p className="subtitle-editorial text-2xl text-sage">Price on Request</p>
                                     )}
-                                    <span className={`caption-editorial ${availabilityColors[product.availability]}`}>
-                                        {availabilityLabels[product.availability]}
+                                    <span className={`caption-editorial ${availabilityColors[product.availability || 'in_stock']}`}>
+                                        {availabilityLabels[product.availability || 'in_stock']}
                                     </span>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@ export default async function ProductPage({ params }: PageProps) {
                                 <div className="border-t border-ivory-200 pt-6">
                                     <p className="caption-editorial mb-3">Part of Collections</p>
                                     <div className="flex flex-wrap gap-2">
-                                        {product.collections.map((collection) => (
+                                        {product.collections.map((collection) => collection.slug && (
                                             <Link
                                                 key={collection._id}
                                                 href={`/collections/${collection.slug.current}`}
@@ -252,7 +252,7 @@ export default async function ProductPage({ params }: PageProps) {
                     <div className="max-w-7xl mx-auto">
                         <h2 className="subtitle-editorial text-3xl mb-12">Related Heritage Stories</h2>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {product.craftStories.map((story) => (
+                            {product.craftStories.map((story) => story.slug && (
                                 <Link
                                     key={story._id}
                                     href={`/heritage/${story.slug.current}`}

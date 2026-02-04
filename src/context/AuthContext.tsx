@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { User, Session } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
@@ -37,44 +37,61 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [session, setSession] = useState<Session | null>(null)
     const [profile, setProfile] = useState<Profile | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const lastUserIdRef = useRef<string | null>(null)
     const router = useRouter()
     const supabase = createClient()
 
     useEffect(() => {
+        let mounted = true
+
         const fetchSession = async () => {
             try {
                 const { data: { session: currentSession } } = await supabase.auth.getSession()
-                setSession(currentSession)
-                setUser(currentSession?.user ?? null)
+
+                if (mounted) {
+                    setSession(currentSession)
+                    setUser(currentSession?.user ?? null)
+                }
 
                 if (currentSession?.user) {
-                    await fetchProfile(currentSession.user.id)
+                    // Check if we need to fetch profile (using ref to avoid stale closure issues)
+                    if (currentSession.user.id !== lastUserIdRef.current) {
+                        await fetchProfile(currentSession.user.id)
+                    }
                 }
             } catch (error) {
                 console.error('Error fetching session:', error)
             } finally {
-                setIsLoading(false)
+                if (mounted) setIsLoading(false)
             }
         }
 
         fetchSession()
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
-            setSession(currentSession)
-            setUser(currentSession?.user ?? null)
+            if (mounted) {
+                setSession(currentSession)
+                setUser(currentSession?.user ?? null)
+            }
 
             if (currentSession?.user) {
-                // If we don't have a profile yet or the user changed, fetch it
-                if (!profile || profile.id !== currentSession.user.id) {
+                // Using ref to ensure we only fetch when the user IS DIFFERENT than the last one we fetched
+                // This prevents re-fetching on every token refresh ('TOKEN_REFRESHED')
+                if (currentSession.user.id !== lastUserIdRef.current) {
                     await fetchProfile(currentSession.user.id)
                 }
             } else {
-                setProfile(null)
+                if (mounted) {
+                    setProfile(null)
+                    lastUserIdRef.current = null
+                }
             }
-            setIsLoading(false)
+
+            if (mounted) setIsLoading(false)
         })
 
         return () => {
+            mounted = false
             subscription.unsubscribe()
         }
     }, [])
@@ -100,6 +117,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 }
             } else {
                 setProfile(data)
+                lastUserIdRef.current = userId
             }
         } catch (error) {
             console.error('Error in fetchProfile:', error)

@@ -172,9 +172,8 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="font-serif text-xl text-charcoal italic mb-2">Address</h3>
                                             <p className="text-charcoal-400 leading-relaxed font-light">
-                                                Plot 45, Jubilee Hills, Road No. 10<br />
-                                                Hyderabad, Telangana 500033<br />
-                                                India
+                                                Dilsukhnagar, Hyderabad - 500060<br />
+                                                Telangana, India
                                             </p>
                                         </div>
                                     </div>
@@ -199,8 +198,8 @@ export default function ContactPage() {
                                         <div>
                                             <h3 className="font-serif text-xl text-charcoal italic mb-2">Contact</h3>
                                             <p className="text-charcoal-400 leading-relaxed font-light">
-                                                +91 98765 43210<br />
-                                                hello@sivithecouturier.com
+                                                +91 91210 04481<br />
+                                                sivihandloom@gmail.com
                                             </p>
                                         </div>
                                     </div>

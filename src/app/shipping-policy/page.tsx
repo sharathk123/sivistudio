@@ -48,7 +48,7 @@ export default function ShippingPolicyPage() {
                     <h3 className="font-serif text-2xl text-charcoal italic mt-12 mb-4">5. Returns & Exchanges</h3>
                     <p>
                         We accept returns for unworn, unwashed items with tags intact within 7 days of delivery. Custom-tailored items
-                        are non-refundable but can be altered for fit issues. To initiate a return, please contact us at support@sivithecouturier.com.
+                        are non-refundable but can be altered for fit issues. To initiate a return, please contact us at sivihandloom@gmail.com.
                     </p>
 
                     <h3 className="font-serif text-2xl text-charcoal italic mt-12 mb-4">6. Lost or Damaged Packages</h3>

@@ -14,16 +14,16 @@ export default async function ShopPage({
     const collectionSlug = params.collection
     const sortBy = params.sort
 
-    const [allProducts, collections] = await Promise.all([
-        getProducts(),
-        getCollections()
+    const [allProducts = [], collections = []] = await Promise.all([
+        getProducts().catch(() => []),
+        getCollections().catch(() => [])
     ])
 
     // Server-side filtering
-    let products = [...allProducts]
+    let products = Array.isArray(allProducts) ? [...allProducts] : []
     if (collectionSlug && collectionSlug !== 'all') {
         products = products.filter(p =>
-            p.collections?.some(c => c.slug.current === collectionSlug)
+            p.collections?.some(c => c.slug?.current === collectionSlug)
         )
     }
 
@@ -31,7 +31,7 @@ export default async function ShopPage({
     const sortMethods: Record<string, (a: any, b: any) => number> = {
         'price-low': (a, b) => (a.price || 0) - (b.price || 0),
         'price-high': (a, b) => (b.price || 0) - (a.price || 0),
-        'title-az': (a, b) => a.title.localeCompare(b.title),
+        'title-az': (a, b) => (a.title || '').localeCompare(b.title || ''),
         'newest': () => 0, // Default order
     }
 
@@ -50,9 +50,9 @@ export default async function ShopPage({
             position: index + 1,
             item: {
                 '@type': 'Product',
-                name: product.title,
-                url: `https://sivithecouturier.com/products/${product.slug.current}`,
-                description: product.description,
+                name: product.title || 'Product',
+                url: `https://sivithecouturier.com/products/${product.slug?.current || 'id'}`,
+                description: product.description || '',
                 offers: {
                     '@type': 'Offer',
                     price: product.price || 0,

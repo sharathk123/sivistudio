@@ -43,6 +43,7 @@ export const generateInvoice = (order: OrderData) => {
     doc.setFontSize(10)
     doc.setTextColor(100)
     doc.text('Heritage Handlooms | Digital Atelier', pageWidth / 2, 28, { align: 'center' })
+    doc.text('sivihandloom@gmail.com | +91 91210 04481', pageWidth / 2, 33, { align: 'center' })
 
     // Divider
     doc.setDrawColor(156, 167, 112) // Sage color

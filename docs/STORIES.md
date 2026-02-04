@@ -2,7 +2,7 @@
 
 **Project**: Sivi Studio Website
 **Created**: January 31, 2026
-**Last Updated**: February 3, 2026
+**Last Updated**: February 4, 2026
 **Status**: Development Phase
 
 ---
@@ -12,6 +12,13 @@
 This document contains user stories for all remaining pages and features that need to be implemented for the Sivi Studio website. The Collections page is excluded as it will fetch data from Sanity CMS.
 
 ---
+
+## 🗓️ Recent Accomplishments (Feb 4, 2026)
+
+- ✅ **Iconography & Motion**: Refined the **Adiyogi icon** with simplified SVG paths for clarity at small sizes and high-end motion graphics for the footer.
+- ✅ **Dev Experience**: Resolved critical "signal is aborted" errors occurring in **Next.js 16 / Turbopack** environments, ensuring development stability.
+- ✅ **Documentation Architecture**: Successfully reorganized all project-wide `.md` files into a managed `/docs` directory and performed a deep cleanup of obsolete reports and redundant guides.
+- ✅ **UI Fixes**: Resolved the navigation overlay image hover flicker/glitch that occurred during menu interactions.
 
 ## 🗓️ Recent Accomplishments (Feb 2, 2026)
 

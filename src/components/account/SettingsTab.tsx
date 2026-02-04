@@ -83,7 +83,7 @@ export default function SettingsTab() {
                     <label className="text-xs font-bold uppercase tracking-widest text-charcoal-400">Hyderabad Locality (for delivery)</label>
                     <input
                         {...register('hyderabad_locality')}
-                        placeholder="e.g. Banjara Hills, Jubilee Hills"
+                        placeholder="e.g. Banjara Hills, Dilsukhnagar"
                         className="input-boutique"
                     />
                 </div>

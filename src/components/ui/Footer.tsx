@@ -68,7 +68,7 @@ export default function Footer() {
                             modern outfits, and traditional sarees from Hyderabad.
                         </p>
                         <div className="flex items-center gap-6 pt-2">
-                            <a href="https://instagram.com/sivithecouturier" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-sage transition-colors" aria-label="Instagram">
+                            <a href="https://www.instagram.com/sivi_the_couturier/" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-sage transition-colors" aria-label="Instagram">
                                 <Instagram strokeWidth={1.5} size={20} />
                             </a>
                             <a href="https://in.pinterest.com/" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-sage transition-colors" aria-label="Pinterest">

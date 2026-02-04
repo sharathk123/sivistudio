@@ -2,6 +2,11 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Playfair_Display, Inter, Bodoni_Moda, Allura } from 'next/font/google'
 import './globals.css'
+import SmoothScroll from '@/components/ui/SmoothScroll'
+import Loader from '@/components/ui/Loader'
+import BoutiqueButton from '@/components/ui/BoutiqueButton'
+import { Providers } from '@/components/providers/Providers'
+import CartDrawer from '@/components/cart/CartDrawer'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -102,22 +107,14 @@ const jsonLd = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+91-XXXXXXXXXX',
+    telephone: '+91-9121004481',
     contactType: 'customer service'
   },
   sameAs: [
-    'https://instagram.com/sivithecouturier',
+    'https://www.instagram.com/sivi_the_couturier/',
     'https://facebook.com/sivithecouturier'
   ]
 }
-
-import SmoothScroll from '@/components/ui/SmoothScroll'
-import Loader from '@/components/ui/Loader'
-
-import BoutiqueButton from '@/components/ui/BoutiqueButton'
-import StyleConciergeButton from '@/components/ai/StyleConciergeButton'
-import { Providers } from '@/components/providers/Providers'
-import CartDrawer from '@/components/cart/CartDrawer'
 
 export default function RootLayout({
   children,
@@ -125,8 +122,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${bodoni.variable} ${allura.variable}`}>
-      <body className="font-sans antialiased bg-bone text-charcoal" suppressHydrationWarning>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} ${bodoni.variable} ${allura.variable}`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-bone text-charcoal">
         <Script
           id="organization-jsonld"
           type="application/ld+json"
@@ -142,10 +139,10 @@ export default function RootLayout({
           Skip to main content
         </a>
 
+
         <Providers>
           <CartDrawer />
           <BoutiqueButton />
-          <StyleConciergeButton />
           <Loader />
           <SmoothScroll>
             {children}

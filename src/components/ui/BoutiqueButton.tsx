@@ -9,7 +9,7 @@ import { IMAGES } from '@/lib/images'
  */
 export default function BoutiqueButton() {
     // TODO: Replace with actual WhatsApp business number
-    const whatsappNumber = '919876543210'
+    const whatsappNumber = '919121004481'
     const message = encodeURIComponent('Hello Sivi! I would like to consult about your collection.')
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`
 

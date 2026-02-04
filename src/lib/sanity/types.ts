@@ -10,6 +10,7 @@ export interface SanityImage {
 // === COLLECTION (v1) ===
 export interface Collection {
     _id: string
+    _updatedAt?: string
     title: string
     slug: { current: string }
     description?: string
@@ -25,6 +26,7 @@ export interface Collection {
 // === PRODUCT (v1) ===
 export interface Product {
     _id: string
+    _updatedAt?: string
     title: string
     slug: { current: string }
     description: string
@@ -45,6 +47,7 @@ export interface Product {
 // === CRAFT STORY (v1) ===
 export interface CraftStory {
     _id: string
+    _updatedAt?: string
     title: string
     slug: { current: string }
     category: 'weaving' | 'heritage' | 'materials' | 'regional' | 'innovation'
