@@ -51,7 +51,7 @@ export default function PaymentButton({
                 throw new Error('Failed to initiate payment')
             }
 
-            const { orderId, amount, currency, dbOrderId } = orderResponse
+            const { orderId, amount, currency, dbOrderId } = orderResponse.data
 
             // 2. Initialize Razorpay Checkout
             if (!window.Razorpay) {

@@ -3,6 +3,7 @@
 import { Heart } from 'lucide-react';
 import { useWishlist } from '@/context/WishlistContext';
 import { motion } from 'framer-motion';
+import { useHaptic } from '@/hooks/useHaptic';
 
 interface WishlistButtonProps {
     productId: string;
@@ -18,6 +19,7 @@ export default function WishlistButton({
     showLabel = false
 }: WishlistButtonProps) {
     const { isInWishlist, toggleWishlist } = useWishlist();
+    const haptic = useHaptic();
     const isWishlisted = isInWishlist(productId);
 
     return (
@@ -25,6 +27,7 @@ export default function WishlistButton({
             onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                haptic(isWishlisted ? 'light' : 'success');
                 toggleWishlist(productId);
             }}
             className={`group flex items-center justify-center gap-2 transition-all duration-300 ${className}`}
@@ -37,8 +40,8 @@ export default function WishlistButton({
                 <Heart
                     size={iconSize}
                     className={`transition-colors duration-300 ${isWishlisted
-                            ? "fill-red-500 text-red-500"
-                            : "text-charcoal group-hover:text-red-500"
+                        ? "fill-red-500 text-red-500"
+                        : "text-charcoal group-hover:text-red-500"
                         }`}
                 />
             </motion.div>

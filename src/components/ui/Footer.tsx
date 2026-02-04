@@ -97,27 +97,27 @@ export default function Footer() {
                         <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Shop</h4>
                         <ul className="space-y-3 text-[13px] font-normal text-bone/70">
                             <li>
-                                <Link href="/collections/handloom-sarees" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/handloom-sarees" className="hover:text-sage cursor-pointer transition-colors">
                                     Handloom Sarees
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/collections/cotton-kurtas" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/cotton-kurtas" className="hover:text-sage cursor-pointer transition-colors">
                                     Cotton Kurtas
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/collections/silk-dupattas" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/collections/silk-dupattas" className="hover:text-sage cursor-pointer transition-colors">
                                     Silk Dupattas
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/custom-tailoring" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/custom-tailoring" className="hover:text-sage cursor-pointer transition-colors">
                                     Bespoke Tailoring
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/shop" className="hover:text-sage cursor-pointer transition-colors">
                                     All Collections
                                 </Link>
                             </li>
@@ -129,27 +129,32 @@ export default function Footer() {
                         <h4 className="text-xs uppercase tracking-widest text-sage font-semibold">Studio</h4>
                         <ul className="space-y-3 text-[13px] font-normal text-bone/70">
                             <li>
-                                <Link href="/shop" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/shop" className="hover:text-sage cursor-pointer transition-colors">
                                     the Atelier
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/heritage" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/heritage" className="hover:text-sage cursor-pointer transition-colors">
                                     the Heritage
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/story" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/story" className="hover:text-sage cursor-pointer transition-colors">
                                     the Story
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/journal" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/gallery" className="hover:text-sage cursor-pointer transition-colors">
+                                    the Archive
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/journal" className="hover:text-sage cursor-pointer transition-colors">
                                     the Journal
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/contact" className="hover:text-white cursor-pointer transition-colors">
+                                <Link href="/contact" className="hover:text-sage cursor-pointer transition-colors">
                                     Contact
                                 </Link>
                             </li>

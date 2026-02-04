@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { IMAGES } from '@/lib/images'
+import { useSafeMotion } from '@/hooks/useSafeMotion'
 
 export default function EditorialHero() {
+    const isSafeMotion = useSafeMotion()
+
     return (
         <section
             className="relative h-screen w-full overflow-hidden bg-charcoal text-bone flex items-center justify-center"
@@ -12,9 +15,9 @@ export default function EditorialHero() {
             {/* Hero Background Image */}
             <div className="absolute inset-0 z-0">
                 <motion.div
-                    initial={{ scale: 1.15 }}
+                    initial={isSafeMotion ? { scale: 1.15 } : { scale: 1 }}
                     animate={{ scale: 1 }}
-                    transition={{ duration: 3, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: isSafeMotion ? 3 : 0, ease: [0.22, 1, 0.36, 1] }}
                     className="w-full h-full relative"
                 >
                     <Image
@@ -34,9 +37,9 @@ export default function EditorialHero() {
 
                 {/* Top Label */}
                 <motion.span
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={isSafeMotion ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ delay: isSafeMotion ? 0.3 : 0, duration: isSafeMotion ? 1 : 0, ease: [0.22, 1, 0.36, 1] }}
                     className="text-xs uppercase tracking-[0.3em] text-sage-300 mb-8 font-medium"
                 >
                     Hyderabad • Telangana Looms
@@ -44,9 +47,9 @@ export default function EditorialHero() {
 
                 {/* Main Title */}
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={isSafeMotion ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ delay: isSafeMotion ? 0.5 : 0, duration: isSafeMotion ? 1.2 : 0, ease: [0.22, 1, 0.36, 1] }}
                     className="font-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] mb-8"
                 >
                     <div className="italic text-bone">
@@ -59,9 +62,9 @@ export default function EditorialHero() {
 
                 {/* Bottom Description */}
                 <motion.p
-                    initial={{ opacity: 0 }}
+                    initial={isSafeMotion ? { opacity: 0 } : { opacity: 1 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ delay: isSafeMotion ? 1 : 0, duration: isSafeMotion ? 1.2 : 0, ease: [0.22, 1, 0.36, 1] }}
                     className="max-w-md text-sm md:text-base font-light tracking-wide text-ivory-300 leading-relaxed"
                 >
                     Handlooms from across India. <br />
@@ -71,8 +74,8 @@ export default function EditorialHero() {
 
             {/* Scroll Indicator */}
             <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                animate={isSafeMotion ? { y: [0, 10, 0] } : {}}
+                transition={isSafeMotion ? { duration: 2, repeat: Infinity } : {}}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest text-white/50"
             >
                 Scroll to Explore

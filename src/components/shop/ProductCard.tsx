@@ -1,13 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import SiviImage from '@/components/ui/SiviImage'
 import { urlFor } from '@/lib/sanity/image'
 import { Product } from '@/lib/sanity/client'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import WishlistButton from '@/components/ui/WishlistButton'
-import { Eye, ShoppingBag } from 'lucide-react'
+import { Eye, ShoppingBag, Check } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
 
 interface ProductCardProps {
     product: Product
@@ -15,6 +16,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
     const [isHovered, setIsHovered] = useState(false)
+    const [localIsAdding, setLocalIsAdding] = useState(false)
+    const { addToCart } = useCart()
 
     // Use second image as macro shot if available, otherwise use first image
     const lifestyleImage = product.images?.[0]
@@ -41,11 +44,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                 className="absolute inset-0"
                             >
-                                <Image
+                                <SiviImage
                                     src={urlFor(lifestyleImage).width(600).height(800).url()}
                                     alt={product.title}
                                     fill
-                                    className="object-cover"
+                                    aspectRatio="portrait"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             </motion.div>
@@ -60,11 +63,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                     className="absolute inset-0"
                                 >
-                                    <Image
+                                    <SiviImage
                                         src={urlFor(macroImage).width(600).height(800).url()}
                                         alt={`${product.title} - Detail`}
                                         fill
-                                        className="object-cover"
+                                        aspectRatio="portrait"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
                                 </motion.div>
@@ -82,16 +85,32 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10 flex items-center justify-center opacity-0 group-hover:opacity-100">
                         <div className="flex gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                             <button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    // Optional: Open a quick view modal or navigate
+                                    window.location.href = `/products/${product.slug.current}`;
+                                }}
                                 className="bg-bone text-charcoal p-3 rounded-full shadow-card hover:bg-sage hover:text-bone transition-colors"
                                 aria-label="Quick View"
                             >
                                 <Eye size={20} />
                             </button>
                             <button
-                                className="bg-bone text-charcoal p-3 rounded-full shadow-card hover:bg-sage hover:text-bone transition-colors"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    addToCart(product, 1);
+                                    setLocalIsAdding(true);
+                                    setTimeout(() => setLocalIsAdding(false), 1500);
+                                }}
+                                disabled={localIsAdding}
+                                className={`p-3 rounded-full shadow-card transition-all duration-300 ${localIsAdding
+                                    ? 'bg-sage text-bone rotate-[360deg]'
+                                    : 'bg-bone text-charcoal hover:bg-sage hover:text-bone'
+                                    }`}
                                 aria-label="Add to Cart"
                             >
-                                <ShoppingBag size={20} />
+                                {localIsAdding ? <Check size={20} /> : <ShoppingBag size={20} />}
                             </button>
                         </div>
                     </div>

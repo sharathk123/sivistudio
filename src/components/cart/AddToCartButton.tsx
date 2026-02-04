@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { Product } from '@/lib/sanity/client';
+import { useHaptic } from '@/hooks/useHaptic';
 
 interface AddToCartButtonProps {
     product: Product;
@@ -13,8 +14,10 @@ interface AddToCartButtonProps {
 export default function AddToCartButton({ product, selectedSize, disabled = false }: AddToCartButtonProps) {
     const { addToCart, isCartOpen } = useCart();
     const [isAdding, setIsAdding] = useState(false);
+    const haptic = useHaptic();
 
     const handleAddToCart = () => {
+        haptic('success');
         setIsAdding(true);
         addToCart(product, 1, selectedSize);
 
