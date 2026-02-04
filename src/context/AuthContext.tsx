@@ -10,6 +10,7 @@ interface Profile {
     full_name: string | null
     email: string | null
     hyderabad_locality?: string | null
+    role?: 'customer' | 'admin'
     // Add other profile fields as needed
 }
 
@@ -87,7 +88,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 .single()
 
             if (error) {
-                console.error('Error fetching profile:', error)
+                // Supabase sometimes returns a generic error object or PGRST116 when no rows found
+                const isNoRowsError = error.code === 'PGRST116' ||
+                    (typeof error === 'object' && Object.keys(error).length === 0) ||
+                    JSON.stringify(error) === '{}'
+
+                if (isNoRowsError) {
+                    setProfile(null)
+                } else {
+                    console.error('Error fetching profile:', error)
+                }
             } else {
                 setProfile(data)
             }
@@ -103,12 +113,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     const signOut = async () => {
-        await supabase.auth.signOut()
-        setUser(null)
-        setSession(null)
-        setProfile(null)
-        router.push('/login')
-        router.refresh()
+        try {
+            await supabase.auth.signOut()
+        } catch (error) {
+            console.error('Error signing out:', error)
+        } finally {
+            setUser(null)
+            setSession(null)
+            setProfile(null)
+            // Using window.location.href to force a full page reload and clear any client-side state/cache
+            window.location.href = '/login'
+        }
     }
 
     return (

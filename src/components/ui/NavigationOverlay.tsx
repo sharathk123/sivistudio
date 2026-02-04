@@ -28,18 +28,30 @@ const MENU_ITEMS = [
 
 export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlayProps) {
     const [activeImage, setActiveImage] = useState<string | null>(MENU_ITEMS[0].image)
-    const { user, signOut } = useAuth()
+    const { user, signOut, profile } = useAuth()
     const isSafeMotion = useSafeMotion()
     const overlayRef = useRef<HTMLDivElement>(null)
 
     // Derived menu items with dynamic labels
     const displayItems = useMemo(() => {
-        return MENU_ITEMS.map(item => ({
+        const items = MENU_ITEMS.map(item => ({
             ...item,
             displayLabel: (item.label === 'Account' && !user) ? 'Log In' : item.label,
             displayHref: (item.label === 'Account' && !user) ? '/login' : item.href
         }))
-    }, [user])
+
+        if (profile?.role === 'admin') {
+            items.splice(items.length - 2, 0, { // Insert before Account
+                label: 'Admin',
+                href: '/admin',
+                image: IMAGES.heroIkat,
+                displayLabel: 'Dashboard',
+                displayHref: '/admin'
+            })
+        }
+
+        return items
+    }, [user, profile])
 
     // Keyboard navigation and Focus Trapping
     useEffect(() => {
