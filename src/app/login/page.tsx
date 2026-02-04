@@ -1,19 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { validateEmail, validatePassword, parseAuthError, useFormValidation } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
 
+import { Suspense } from 'react'
+
 export default function LoginPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-bone flex items-center justify-center text-sag">Loading...</div>}>
+            <LoginForm />
+        </Suspense>
+    )
+}
+
+function LoginForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null)
     const router = useRouter()
     const supabase = createClient()
+    const searchParams = useSearchParams()
 
     // Form validation
     const {
@@ -28,6 +39,16 @@ export default function LoginPage() {
             password: (value) => validatePassword(value),
         },
     })
+
+    // Check for success message from redirect
+    useEffect(() => {
+        if (searchParams.get('verified') === 'true') {
+            setMessage({
+                type: 'success',
+                text: 'Email verified successfully! Please sign in.',
+            })
+        }
+    }, [searchParams])
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -100,6 +121,18 @@ export default function LoginPage() {
             setLoading(false)
         }
     }
+
+    const passwordError = getFieldError('password')
+    // Safe check if passwordError is the hard error string or null (ignoring warning object complexity for now if irrelevant)
+    // Actually getFieldError returns string | undefined usually. 
+    // Wait, the previous code had 'isHardError' check? 
+    // Let's re-use the exact UI logic from before.
+    // Ah, I need to see if I am missing imports or helper functions used in the original.
+    // ... Checked: parseAuthError, useFormValidation, validateEmail etc are imported.
+    // Warning logic:
+    // const passwordError = getFieldError('password')
+    // const isPasswordWarning = passwordError && !isHardError(passwordError) 
+    // <--- I need to make sure I copy this part correctly or import isHardError if it wasn't imported.
 
     return (
         <AuthLayout

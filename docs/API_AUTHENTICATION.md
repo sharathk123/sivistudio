@@ -8,7 +8,21 @@ Every API request must include a valid JWT token in the Authorization header. Th
 
 ## Authentication Flow
 
-1. User signs in via `/login` or `/signup`
+### 1. Unified Signup (OTP-based)
+1. User submits signup form (`/signup`)
+2. Backend (`/api/auth/signup`) creates a `PENDING` user in Supabase Auth
+3. Backend generates a 6-digit OTP and stores it in the `otp_codes` table
+4. User receives an email with the verification code
+5. User is redirected to `/auth/verify` to enter the code
+
+### 2. OTP Verification
+1. User enters 6-digit code
+2. Backend (`/api/auth/verify`) validates code against `otp_codes`
+3. If valid, backend confirms user email in Supabase Auth (Admin API)
+4. User is redirected to `/login?verified=true`
+
+### 3. Standards Token Flow
+1. User signs in via `/login`
 2. Supabase generates a JWT token
 3. Token is stored in cookies (handled by Supabase client)
 4. Client includes token in API requests

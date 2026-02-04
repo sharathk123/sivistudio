@@ -209,10 +209,10 @@ Stores JSONB logs of Gemini Stylist interactions for long-term personalization.
 
 | Method | Status | Description |
 |--------|--------|-------------|
-| **Email/Password** | ✅ Implemented | Traditional signup and login |
+| **6-Digit OTP** | ✅ Implemented | Primary signup & verification flow |
+| **Email/Password** | ✅ Implemented | Traditional login after verification |
 | **Google OAuth** | ✅ Implemented | One-click sign-in with Google |
-| **Magic Link** | ⏳ Future | Passwordless email authentication |
-| **Phone/SMS** | ⏳ Future | SMS-based authentication |
+| **Magic Link** | ⏳ Removed | Replaced by OTP for better reliability |
 
 ### JWT Security
 
@@ -498,6 +498,7 @@ const response = await fetch('/api/profile', {
 - [x] **Micro-Animations** (Cart Drawer, Success Page, Hover Effects)
 - [x] **Refined Typography** (Footer, Navigation, Buttons)
 - [x] **Brand Iconography** (Optimized Adiyogi SVG paths & Motion Graphics)
+- [x] **6-Digit OTP Authentication Flow** (Stable Signup & Verification)
 - [x] **Core Stability** (Resolved Next.js 16/Turbopack "aborted signal" issues)
 - [x] **Knowledge Base** (Centralized and cleaned project documentation in `/docs`)
 

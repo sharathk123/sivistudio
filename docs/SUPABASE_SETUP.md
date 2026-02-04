@@ -89,6 +89,7 @@ After applying migrations, verify in the Supabase dashboard:
    - ✅ `orders`
    - ✅ `order_items`
    - ✅ `ai_consultations`
+   - ✅ `otp_codes`
 
 3. Go to **Authentication** → **Policies**
 4. Verify RLS (Row Level Security) is enabled on all tables
@@ -124,6 +125,11 @@ After applying migrations, verify in the Supabase dashboard:
 - Stores Gemini AI Stylist conversation logs
 - JSONB format for flexibility
 - **RLS**: Users can only access their own consultations
+
+#### `otp_codes`
+- Stores temporary 6-digit verification codes
+- Columns: `email`, `code`, `user_id`, `expires_at`
+- **Security**: Managed via Service Role in backend; no public RLS permissions
 
 ---
 

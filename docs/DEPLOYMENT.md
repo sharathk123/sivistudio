@@ -48,6 +48,7 @@ npm run start
 - [ ] Account (/account)
 - [ ] Custom Tailoring (/custom-tailoring)
 - [ ] Contact (/contact)
+- [ ] Verification (/auth/verify)
 - [ ] Journal (/journal)
 - [ ] Legal Pages (/privacy-policy, /terms-of-service, /shipping-policy)
 

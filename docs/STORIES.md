@@ -15,6 +15,8 @@ This document contains user stories for all remaining pages and features that ne
 
 ## 🗓️ Recent Accomplishments (Feb 4, 2026)
 
+- ✅ **Authentication Upgrade**: Transitioned from link-based verification to a robust **6-digit OTP (One Time Password)** system to eliminate "Link Expired" errors and improve user reliability.
+- ✅ **OTP Infrastructure**: Implemented `otp_codes` database table, automated OTP generation/validation APIs, and a cinematic 6-digit input UI.
 - ✅ **Iconography & Motion**: Refined the **Adiyogi icon** with simplified SVG paths for clarity at small sizes and high-end motion graphics for the footer.
 - ✅ **Dev Experience**: Resolved critical "signal is aborted" errors occurring in **Next.js 16 / Turbopack** environments, ensuring development stability.
 - ✅ **Documentation Architecture**: Successfully reorganized all project-wide `.md` files into a managed `/docs` directory and performed a deep cleanup of obsolete reports and redundant guides.

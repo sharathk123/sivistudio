@@ -116,6 +116,10 @@ const jsonLd = {
   ]
 }
 
+import AuthListener from '@/components/auth/AuthListener'
+
+// ... existing imports
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -139,8 +143,8 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-
         <Providers>
+          <AuthListener />
           <CartDrawer />
           <BoutiqueButton />
           <Loader />

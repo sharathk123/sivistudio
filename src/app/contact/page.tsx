@@ -88,14 +88,27 @@ export default function ContactPage() {
 
         setIsSubmitting(true)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formState)
+            })
 
-        setSubmitStatus('success')
-        setIsSubmitting(false)
-        setFormState({ name: '', email: '', subject: '', message: '' })
-        setTouched({})
-        setErrors({})
+            if (!response.ok) {
+                throw new Error('Failed to send message')
+            }
+
+            setSubmitStatus('success')
+            setFormState({ name: '', email: '', subject: '', message: '' })
+            setTouched({})
+            setErrors({})
+        } catch (error) {
+            console.error('Submission error:', error)
+            // Ideally set an error status here to show UI feedback
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (

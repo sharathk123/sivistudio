@@ -50,40 +50,32 @@ export default function SignUpPage() {
         }
 
         try {
-            const { data, error } = await supabase.auth.signUp({
-                email: email.trim(),
-                password,
-                options: {
-                    data: {
-                        full_name: fullName.trim(),
-                    },
-                    emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+            // Call the custom signup API route
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
+                body: JSON.stringify({
+                    email: email.trim(),
+                    password,
+                    fullName: fullName.trim(),
+                }),
             })
 
-            if (error) throw error
+            const data = await response.json()
 
-            if (data.user) {
-                setMessage({
-                    type: 'success',
-                    text: 'Account created successfully! Please check your email inbox (and spam) to verify your account.',
-                })
-
-                // Clear form
-                setEmail('')
-                setPassword('')
-                setFullName('')
-
-                // Redirect to login after a delay
-                setTimeout(() => {
-                    router.push('/login')
-                }, 4000)
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to sign up')
             }
+
+            // Redirect to OTP Verification
+            router.push(`/auth/verify?email=${encodeURIComponent(email)}`)
+
         } catch (error: any) {
-            const errorMessage = parseAuthError(error)
             setMessage({
                 type: 'error',
-                text: errorMessage,
+                text: error.message,
             })
         } finally {
             setLoading(false)

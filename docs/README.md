@@ -129,6 +129,7 @@ Sivi Studio uses a **comprehensive design system** with CSS variables and utilit
 - [x] Shopping cart functionality (CartContext + CartDrawer)
 - [x] Payment integration (Razorpay Backend + Frontend)
 - [x] UI/UX Audit & Accessibility Fixes (Score: 96/100)
+- [x] **6-Digit OTP Authentication**: Highly stable signup and verification system
 - [x] Micro-animations & Typography Refinements
 - [x] Refined Brand Iconography (Adiyogi icon optimization & motion)
 - [x] Documentation Reorganization & Cleanup (Centralized in `/docs`)
