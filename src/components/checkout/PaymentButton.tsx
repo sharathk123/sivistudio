@@ -5,6 +5,7 @@ import { api } from '@/lib/api/client'
 import { useRouter } from 'next/navigation'
 import { Loader2, Lock } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
+import { IMAGES } from '@/lib/images'
 
 // Define the global Razorpay interface
 declare global {
@@ -64,7 +65,7 @@ export default function PaymentButton({
                 currency: currency,
                 name: 'Sivi Studio',
                 description: 'Order Payment',
-                image: '/logo-square.png', // Fallback or use a specific logo URL
+                image: IMAGES.logoSquare, // Use Cloudinary logo
                 order_id: orderId, // This is the order_id created in the backend
 
                 // Handler for successful payment

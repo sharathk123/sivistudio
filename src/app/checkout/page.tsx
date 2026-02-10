@@ -175,15 +175,17 @@ export default function CheckoutPage() {
                     <div>
                         <h2 className="font-serif text-2xl text-charcoal mb-6 border-b border-charcoal/10 pb-4">Order Items ({totalItems})</h2>
                         <div className="space-y-8">
-                            {items.map((item) => (
+                            {items.map((item, index) => (
                                 <div key={item.variantId} className="flex gap-8 group">
                                     <div className="relative w-32 h-44 bg-ivory flex-shrink-0 overflow-hidden rounded-sm shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
                                         {item.product.images && item.product.images[0] && (
                                             <Image
-                                                src={urlFor(item.product.images[0]).width(256).url()}
+                                                src={urlFor(item.product.images[0]).width(400).url()}
                                                 alt={item.product.title}
                                                 fill
                                                 className="object-cover"
+                                                sizes="(max-width: 768px) 30vw, 15vw"
+                                                priority={index < 2}
                                             />
                                         )}
                                     </div>

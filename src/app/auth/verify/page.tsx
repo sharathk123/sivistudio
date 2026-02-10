@@ -148,7 +148,10 @@ function VerifyForm() {
                                     onChange={(e) => handleChange(index, e.target.value)}
                                     onKeyDown={(e) => handleKeyDown(index, e)}
                                     onPaste={handlePaste}
-                                    className="w-12 h-14 text-center text-xl font-serif border border-ivory-200 bg-white focus:border-sage focus:ring-1 focus:ring-sage outline-none transition-colors rounded-sm"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
+                                    autoComplete="one-time-code"
+                                    className="w-full h-14 text-center text-xl font-serif border border-ivory-200 bg-white focus:border-sage focus:ring-1 focus:ring-sage outline-none transition-colors rounded-sm"
                                 />
                             ))}
                         </div>

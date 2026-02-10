@@ -106,14 +106,21 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: isSafeMotion ? 0.5 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="fixed inset-0 z-[var(--z-header)] bg-charcoal text-bone flex"
+                    className="fixed inset-0 z-[100] bg-charcoal text-bone flex"
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(e, { offset, velocity }) => {
+                        if (offset.x > 100 || velocity.x > 500) {
+                            onClose()
+                        }
+                    }}
                     role="dialog"
                     aria-modal="true"
                     aria-label="Navigation menu"
                 >
                     {/* Left: Navigation Links */}
-                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative">
-                        <nav className="flex flex-col space-y-2 pointer-events-auto" aria-label="Main navigation">
+                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative overflow-y-auto pt-24 pb-32">
+                        <nav className="flex flex-col space-y-1 pointer-events-auto" aria-label="Main navigation">
                             {displayItems.map((item, index) => (
                                 <motion.div
                                     key={item.label}
@@ -129,7 +136,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                     <Link
                                         href={item.displayHref}
                                         onClick={onClose}
-                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-all duration-300 block py-2 focus:outline-none focus:text-sage focus:pl-4"
+                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-all duration-300 block py-4 md:py-2 focus:outline-none focus:text-sage focus:pl-4"
                                     >
                                         {item.displayLabel}
                                     </Link>

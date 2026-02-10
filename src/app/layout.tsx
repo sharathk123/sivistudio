@@ -97,7 +97,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'Sivi the Couturier',
   url: 'https://sivithecouturier.com',
-  logo: 'https://sivithecouturier.com/logo.png',
+  logo: 'https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/logo-icon',
   description: 'Premium Hyderabad-based couturier specializing in handloom heritage and bespoke tailoring.',
   address: {
     '@type': 'PostalAddress',

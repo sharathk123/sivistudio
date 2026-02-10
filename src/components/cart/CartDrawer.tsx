@@ -42,7 +42,15 @@ export default function CartDrawer() {
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed top-0 right-0 h-full w-full md:w-[var(--width-drawer)] bg-bone shadow-2xl z-[var(--z-drawer)] flex flex-col"
+                        className="fixed top-0 right-0 h-full w-full md:w-[var(--width-drawer)] bg-bone shadow-2xl z-[100] flex flex-col"
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={0.1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                            if (offset.x > 100 || velocity.x > 500) {
+                                closeCart()
+                            }
+                        }}
                     >
                         {/* Header */}
                         <div className="border-b border-ivory-200 p-6">
@@ -197,7 +205,7 @@ export default function CartDrawer() {
                         {items.length > 0 && (
                             <motion.div
                                 layout
-                                className="border-t border-ivory-200 p-6 space-y-4 bg-bone"
+                                className="border-t border-ivory-200 p-6 pb-12 md:pb-6 space-y-4 bg-bone"
                             >
                                 {/* Subtotal */}
                                 <div className="flex justify-between items-center py-2 border-b border-ivory-200/50 mb-2">

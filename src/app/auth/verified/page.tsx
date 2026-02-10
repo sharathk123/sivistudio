@@ -12,7 +12,7 @@ export default function VerifiedPage() {
             {/* Visual Side */}
             <div className="relative hidden lg:block h-full bg-bone border-r border-ivory-200">
                 <Image
-                    src={IMAGES.heritage.ikat} // Reusing a nice heritage image
+                    src={IMAGES.heroIkat} // Reusing a nice heritage image
                     alt="Sivi Atelier Detail"
                     fill
                     className="object-cover opacity-90"

@@ -7,7 +7,7 @@ import NavigationOverlay from './NavigationOverlay'
 import { useWishlist } from '@/context/WishlistContext'
 import { useAuth } from '@/context/AuthContext'
 import CartButton from '@/components/cart/CartButton'
-import { Heart } from 'lucide-react'
+import { Heart, User as UserIcon } from 'lucide-react'
 
 interface StickyHeaderProps {
     theme?: 'dark' | 'light'
@@ -87,27 +87,27 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                 </motion.div>
 
                 {/* Actions */}
-                <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto">
-                    <motion.div style={{ color: textColor }}>
+                <div className="flex items-center space-x-4 md:space-x-8 z-50 ml-auto h-8">
+                    <motion.div style={{ color: textColor }} className="flex items-center">
                         <Link
                             href="/account?tab=wishlist"
                             className="relative group text-current block hover:text-sage transition-colors duration-300"
                             aria-label={`Wishlist (${wishlistItems.length} items)`}
                         >
-                            <Heart className="w-6 h-6 transition-transform group-hover:scale-110" strokeWidth={1.5} />
+                            <Heart className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:scale-110" strokeWidth={1.5} />
                             {wishlistItems.length > 0 && (
-                                <span className="absolute -top-2 -right-2 w-5 h-5 bg-copper text-bone text-[10px] font-mono flex items-center justify-center rounded-full shadow-sm">
+                                <span className="absolute -top-2 -right-2 w-4 h-4 md:w-5 md:h-5 bg-copper text-bone text-[8px] md:text-[10px] font-mono flex items-center justify-center rounded-full shadow-sm">
                                     {wishlistItems.length > 9 ? '9+' : wishlistItems.length}
                                 </span>
                             )}
                         </Link>
                     </motion.div>
 
-                    <motion.div style={{ color: textColor }}>
+                    <motion.div style={{ color: textColor }} className="flex items-center">
                         <CartButton />
                     </motion.div>
 
-                    <motion.div style={{ color: textColor }}>
+                    <motion.div style={{ color: textColor }} className="flex items-center">
                         <button
                             onClick={() => setIsMenuOpen(true)}
                             className="uppercase text-[10px] md:text-xs tracking-nav text-current hover:text-sage transition-colors duration-300"
@@ -118,12 +118,18 @@ export default function StickyHeader({ theme = 'dark' }: StickyHeaderProps) {
                         </button>
                     </motion.div>
 
-                    <motion.div style={{ color: textColor }} className="hidden md:block">
+                    <motion.div style={{ color: textColor }} className="flex items-center">
                         <Link
                             href={user ? "/account" : "/login"}
-                            className="uppercase text-[10px] md:text-xs tracking-nav text-current hover:text-sage transition-colors duration-300"
+                            className="relative group text-current block hover:text-sage transition-colors duration-300"
+                            aria-label={user ? 'Account' : 'Login'}
                         >
-                            {user ? 'Account' : 'Login'}
+                            {/* Mobile: Icon */}
+                            <UserIcon className="w-5 h-5 md:hidden transition-transform group-hover:scale-110" strokeWidth={1.5} />
+                            {/* Desktop: Text */}
+                            <span className="hidden md:block uppercase text-xs tracking-nav font-medium">
+                                {user ? 'Account' : 'Login'}
+                            </span>
                         </Link>
                     </motion.div>
                 </div>

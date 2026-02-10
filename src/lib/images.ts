@@ -61,9 +61,11 @@ export const IMAGES = {
     sareeEditorial: cloudinaryUrl('saree-editorial'),
     ikatFabricCloseup: cloudinaryUrl('ikat-fabric-closeup'),
 
-    // --- Functional Pages ---
+    // --- Functional Pages & Assets ---
     account: cloudinaryUrl('account'),
     contact: cloudinaryUrl('contact'),
+    logo: cloudinaryUrl('logo-icon'),
+    logoSquare: cloudinaryUrl('logo-square'),
 
     // --- Modern & Hybrid Designs ---
     modernIkatWrap: cloudinaryUrl('modern-ikat-dress-floating'),

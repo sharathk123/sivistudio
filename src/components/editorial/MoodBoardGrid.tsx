@@ -54,13 +54,13 @@ export default function MoodBoardGrid({ items, title }: MoodBoardGridProps) {
             {title && <MoodBoardHeader title={title} />}
 
             <div className="grid-editorial items-start relative z-10">
-                <motion.div style={{ y: y1 }} className="flex flex-col gap-16 md:gap-32">
+                <motion.div style={{ y: y1 }} className="flex flex-col gap-12 md:gap-32">
                     {col1.map((item, index) => (
                         <MoodBoardCard key={item.id} item={item} index={index} />
                     ))}
                 </motion.div>
 
-                <motion.div style={{ y: y2 }} className="flex flex-col gap-16 md:gap-32 md:pt-48">
+                <motion.div style={{ y: y2 }} className="flex flex-col gap-12 md:gap-32 md:pt-48">
                     {col2.map((item, index) => (
                         <MoodBoardCard key={item.id} item={item} index={index + col1.length} />
                     ))}
