@@ -50,13 +50,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 if (mounted) {
                     setIsLoading(false)
                 }
-            }, 5000)
+            }, 3000)
 
             try {
                 const { data: { session: currentSession }, error } = await supabase.auth.getSession()
 
                 if (error) {
-                    // Handle specific error like 'signal is aborted' or others
                     if (error.message?.includes('aborted')) {
                         console.warn('Auth session fetch was aborted, will retry on auth state change')
                     } else {
@@ -69,14 +68,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     setUser(currentSession?.user ?? null)
 
                     if (currentSession?.user) {
-                        // Check if we need to fetch profile (using ref to avoid stale closure issues)
-                        if (currentSession.user.id !== lastUserIdRef.current) {
-                            await fetchProfile(currentSession.user.id)
-                        }
+                        // Don't await profile fetch to avoid blocking the UI loading state
+                        fetchProfile(currentSession.user.id)
                     }
                 }
             } catch (error: any) {
-                // Catch any unexpected runtime errors
                 if (error?.name === 'AbortError' || error?.message?.includes('aborted')) {
                     console.warn('Auth session fetch aborted caught in catch block')
                 } else {
@@ -91,8 +87,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         fetchSession()
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
-            // Log auth events for debugging
-            console.log('Auth State Change:', event)
+            // Log auth events for debugging in development
+            if (process.env.NODE_ENV === 'development') {
+                console.log('Auth State Change:', event)
+            }
 
             if (mounted) {
                 setSession(currentSession)
@@ -100,10 +98,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
 
             if (currentSession?.user) {
-                // Using ref to ensure we only fetch when the user IS DIFFERENT than the last one we fetched
-                // This prevents re-fetching on every token refresh ('TOKEN_REFRESHED')
+                // Fetch profile if it's a new user or a refresh
                 if (currentSession.user.id !== lastUserIdRef.current) {
-                    await fetchProfile(currentSession.user.id)
+                    fetchProfile(currentSession.user.id)
                 }
             } else {
                 if (mounted) {

@@ -44,7 +44,11 @@ class ApiClient {
     private baseUrl: string
 
     constructor() {
-        this.baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+        // Use relative URLs in the browser to avoid CORS/domain mismatch issues
+        // Use absolute URLs for server-side or if NEXT_PUBLIC_SITE_URL is provided
+        this.baseUrl = typeof window !== 'undefined'
+            ? ''
+            : (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000')
     }
 
     /**
@@ -52,11 +56,29 @@ class ApiClient {
      */
     private async getToken(): Promise<string | null> {
         const supabase = createClient()
-        const {
-            data: { session },
-        } = await supabase.auth.getSession()
 
-        return session?.access_token || null
+        try {
+            // Add a timeout to session fetching to prevent hanging
+            const sessionPromise = supabase.auth.getSession()
+            const timeoutPromise = new Promise<{ data: { session: null }, error: any }>((_, reject) =>
+                setTimeout(() => reject(new Error('Session fetch timeout')), 5000)
+            )
+
+            const { data: { session }, error } = await Promise.race([
+                sessionPromise,
+                timeoutPromise as any
+            ])
+
+            if (error) {
+                console.error('ApiClient: Error fetching session:', error)
+                return null
+            }
+
+            return session?.access_token || null
+        } catch (err) {
+            console.error('ApiClient: getToken failed:', err)
+            return null
+        }
     }
 
     /**

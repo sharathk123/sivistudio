@@ -37,7 +37,9 @@ export default function OverviewTab() {
                         date: formatDate(order.created_at),
                         status: (order.status || 'Pending').toUpperCase(),
                         total: `₹${Number(order.total_amount || 0).toLocaleString('en-IN')}`,
-                        items: order.order_items?.map((item: any) => `Product ${item.sanity_product_id?.slice(0, 5)}...`) || []
+                        items: order.order_items?.map((item: any) =>
+                            item.sanity_product_id ? `Product ${item.sanity_product_id.slice(0, 5)}...` : 'Unnamed Product'
+                        ) || []
                     }))
                     setOrders(recent)
                 }
