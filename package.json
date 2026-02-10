@@ -54,6 +54,14 @@
     "typescript": "^5"
   },
   "overrides": {
-    "undici": "^6.23.0"
+    "undici": "^6.23.0",
+    "@react-three/fiber": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@react-three/drei": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }

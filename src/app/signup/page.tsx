@@ -2,19 +2,39 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useEffect, Suspense } from 'react'
 import { validateEmail, validatePassword, validateFullName, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
 
 export default function SignUpPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-bone flex items-center justify-center text-sage">Loading...</div>}>
+            <SignUpForm />
+        </Suspense>
+    )
+}
+
+function SignUpForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [fullName, setFullName] = useState('')
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null)
     const router = useRouter()
+    const searchParams = useSearchParams()
     const supabase = createClient()
+
+    useEffect(() => {
+        const error = searchParams.get('error')
+        if (error) {
+            setMessage({
+                type: 'error',
+                text: error,
+            })
+        }
+    }, [searchParams])
 
     // Form validation
     const {
@@ -81,7 +101,6 @@ export default function SignUpPage() {
             setLoading(false)
         }
     }
-
     const handleGoogleSignUp = async () => {
         setLoading(true)
         setMessage(null)
@@ -90,12 +109,13 @@ export default function SignUpPage() {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+                    redirectTo: `${window.location.origin}/auth/callback`,
                 },
             })
 
             if (error) throw error
         } catch (error: any) {
+            console.error('Google Sign Up Error:', error)
             const errorMessage = parseAuthError(error)
             setMessage({
                 type: 'error',
@@ -104,6 +124,7 @@ export default function SignUpPage() {
             setLoading(false)
         }
     }
+
 
     const passwordError = getFieldError('password')
     const isPasswordWarning = passwordError && !isHardError(passwordError)
@@ -151,7 +172,6 @@ export default function SignUpPage() {
                         <span className="px-4 bg-bone text-charcoal-400 italic">Or continue with email</span>
                     </div>
                 </div>
-
                 {/* Registration Form */}
                 <form onSubmit={handleSignUp} className="space-y-5" noValidate>
                     <FormInput

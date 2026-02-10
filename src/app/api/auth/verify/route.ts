@@ -1,9 +1,24 @@
-
 import { createAdminClient } from '@/lib/supabase/admin'
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimit, rateLimiters } from '@/lib/middleware/rate-limiter'
+import { getClientIP } from '@/lib/security/logger'
 
 export async function POST(request: NextRequest) {
     try {
+        // 0. Apply rate limiting (Max 10 attempts/minute per IP)
+        const ip = getClientIP(request)
+        const rateLimitResponse = await rateLimit(
+            request,
+            ip,
+            {
+                ...rateLimiters.moderate,
+                identifier: 'auth-verify',
+            }
+        )
+
+        if (rateLimitResponse) {
+            return rateLimitResponse
+        }
         const body = await request.json()
         const { email, code } = body
 
@@ -46,14 +61,29 @@ export async function POST(request: NextRequest) {
         }
 
         // 3. Confirm User
-        const { error: updateUserError } = await supabase.auth.admin.updateUserById(
+        const { data: { user }, error: updateUserError } = await supabase.auth.admin.updateUserById(
             otpRecord.user_id,
             { email_confirm: true }
         )
 
-        if (updateUserError) {
+        if (updateUserError || !user) {
             console.error('Failed to confirm user:', updateUserError)
-            throw updateUserError
+            throw updateUserError || new Error('User not found after confirmation')
+        }
+
+        // 3.5 Create User Profile (since trigger is removed to enforce manual registration)
+        // We use upsert in case they attempt to re-verify for some reason
+        const { error: profileError } = await supabase
+            .from('profiles')
+            .upsert({
+                id: user.id,
+                email: user.email,
+                full_name: user.user_metadata?.full_name || user.email?.split('@')[0],
+            })
+
+        if (profileError) {
+            console.error('Failed to create profile:', profileError)
+            throw profileError
         }
 
         // 4. Cleanup used OTP

@@ -40,12 +40,19 @@ function LoginForm() {
         },
     })
 
-    // Check for success message from redirect
+    // Check for success or error message from redirect
     useEffect(() => {
         if (searchParams.get('verified') === 'true') {
             setMessage({
                 type: 'success',
                 text: 'Email verified successfully! Please sign in.',
+            })
+        }
+        const error = searchParams.get('error')
+        if (error) {
+            setMessage({
+                type: 'error',
+                text: error,
             })
         }
     }, [searchParams])
@@ -98,7 +105,6 @@ function LoginForm() {
             setLoading(false)
         }
     }
-
     const handleGoogleLogin = async () => {
         setLoading(true)
         setMessage(null)
@@ -107,7 +113,7 @@ function LoginForm() {
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+                    redirectTo: `${window.location.origin}/auth/callback`,
                 },
             })
 
@@ -121,6 +127,7 @@ function LoginForm() {
             setLoading(false)
         }
     }
+
 
     const passwordError = getFieldError('password')
     // Safe check if passwordError is the hard error string or null (ignoring warning object complexity for now if irrelevant)

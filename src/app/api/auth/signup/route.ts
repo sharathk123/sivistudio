@@ -1,9 +1,27 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 import { EmailService } from '@/lib/email-service'
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimit, rateLimiters } from '@/lib/middleware/rate-limiter'
+import { getClientIP } from '@/lib/security/logger'
 
 export async function POST(request: NextRequest) {
     try {
+        // 0. Apply rate limiting (Max 5 signups/hour per IP - strict for security)
+        const ip = getClientIP(request)
+        const rateLimitResponse = await rateLimit(
+            request,
+            ip,
+            {
+                ...rateLimiters.strict,
+                limit: 5,
+                windowMs: 60 * 60 * 1000, // 1 hour
+                identifier: 'auth-signup',
+            }
+        )
+
+        if (rateLimitResponse) {
+            return rateLimitResponse
+        }
         const body = await request.json()
         const { email, password, fullName } = body
 

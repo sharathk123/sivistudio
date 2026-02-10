@@ -9,12 +9,28 @@ export async function GET(request: Request) {
 
     if (code) {
         const supabase = await createClient()
-        const { error } = await supabase.auth.exchangeCodeForSession(code)
+        const { data: { session }, error } = await supabase.auth.exchangeCodeForSession(code)
 
-        if (!error) {
-            // In Vercel, 'origin' will correctly be the deployment URL
+        if (!error && session?.user) {
+            // Check if profile exists in public.profiles
+            const { data: profile } = await supabase
+                .from('profiles')
+                .select('id')
+                .eq('id', session.user.id)
+                .single()
+
+            if (!profile) {
+                // No profile found - sign them out and redirect to signup
+                await supabase.auth.signOut()
+                return NextResponse.redirect(
+                    `${origin}/signup?error=${encodeURIComponent(
+                        'No Sivi account found for this email. Please register first.'
+                    )}`
+                )
+            }
+
             return NextResponse.redirect(`${origin}${next}`)
-        } else {
+        } else if (error) {
             console.error('Auth Error during code exchange:', error)
         }
     }
