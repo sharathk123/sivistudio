@@ -34,7 +34,7 @@ const allura = Allura({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sivistudio.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sivithecouturier.com'),
   title: {
     default: 'Sivi the Couturière | Handloom Heritage & Custom Tailoring',
     template: '%s | Sivi the Couturier'
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_IN',
-    url: 'https://sivistudio.vercel.app',
+    url: 'https://sivithecouturier.com',
     siteName: 'Sivi the Couturier',
     title: 'Sivi the Couturière | Handloom Heritage & Custom Tailoring',
     description: 'Bespoke tailoring and authentic Indian handlooms reimagined for the modern conscious woman.',
@@ -96,7 +96,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Sivi the Couturier',
-  url: 'https://sivistudio.vercel.app',
+  url: 'https://sivithecouturier.com',
   logo: 'https://res.cloudinary.com/dj3a6c22e/image/upload/f_auto,q_auto/sivi-studio/logo-icon',
   description: 'Premium Hyderabad-based couturier specializing in handloom heritage and bespoke tailoring.',
   address: {
