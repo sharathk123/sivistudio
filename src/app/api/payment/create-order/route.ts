@@ -2,16 +2,34 @@ import { withAuth } from '@/lib/auth/jwt'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { razorpay } from '@/lib/razorpay/client'
 import { NextRequest, NextResponse } from 'next/server'
+import { validateCartPrices, calculateValidatedTotal, formatValidationResult } from '@/lib/payment/validate-prices'
+import { logPriceTampering, getClientIP } from '@/lib/security/logger'
+import { rateLimit, rateLimiters } from '@/lib/middleware/rate-limiter'
 
 /**
  * POST /api/payment/create-order
- * 1. Validates the cart items (prices) from source (Sanity/DB) - SKIPPING SANITY VALIDATION FOR NOW FOR SPEED
- *    (In a real app, you MUST verify prices from the DB to prevent tampering)
+ * 1. Validates the cart items (prices) from Sanity CMS to prevent tampering
  * 2. Creates a Razorpay Order
  * 3. Creates a Supabase Order with 'pending' status
+ *
+ * Rate limited to 5 requests per minute per user
  */
 export const POST = withAuth(async (request: NextRequest, { user }) => {
     try {
+        // Apply rate limiting
+        const rateLimitResponse = await rateLimit(
+            request,
+            user.id,
+            {
+                ...rateLimiters.strict,
+                identifier: 'payment-create-order',
+            }
+        )
+
+        if (rateLimitResponse) {
+            return rateLimitResponse
+        }
+
         const body = await request.json()
         const { items, shipping_address_id } = body // Expecting items array and address ID
 
@@ -23,15 +41,42 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             return NextResponse.json({ error: 'Shipping Address is required' }, { status: 400 })
         }
 
-        // 1. Calculate Total Amount
-        // NOTE: Ideally, fetch product prices from Sanity here to ensure data integrity.
-        // For this implementation, we will trust the total passed for simplicity, 
-        // BUT strict validation is recommended for production.
-        // Let's assume 'items' contains { price, quantity }
-        let totalAmount = 0
-        items.forEach((item: any) => {
-            totalAmount += (item.price * item.quantity)
-        })
+        // 1. Validate prices against database to prevent tampering
+        const validation = await validateCartPrices(items)
+
+        if (!validation.valid) {
+            // Log price tampering attempt
+            const ipAddress = getClientIP(request)
+            for (const item of validation.validatedItems) {
+                if (!item.isValid && item.cartPrice !== null && item.dbPrice !== null && item.dbPrice !== undefined && item.cartPrice !== item.dbPrice) {
+                    await logPriceTampering(
+                        user.id,
+                        item.productId,
+                        item.cartPrice,
+                        item.dbPrice,
+                        ipAddress
+                    )
+                }
+            }
+
+            console.error('Price validation failed:', formatValidationResult(validation))
+            return NextResponse.json(
+                {
+                    error: 'Price validation failed',
+                    details: validation.errors,
+                    warnings: validation.warnings
+                },
+                { status: 400 }
+            )
+        }
+
+        // Log warnings if any (e.g., out of stock items)
+        if (validation.warnings.length > 0) {
+            console.warn('Price validation warnings:', validation.warnings)
+        }
+
+        // 2. Calculate Total Amount from validated prices
+        const totalAmount = calculateValidatedTotal(validation.validatedItems)
 
         // Razorpay accepts amount in paise (1 INR = 100 paise)
         const amountInPaise = Math.round(totalAmount * 100)
@@ -108,12 +153,12 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
             return NextResponse.json({ error: 'Failed to create order record', details: orderError }, { status: 500 })
         }
 
-        // 4. Create Order Items
-        const orderItems = items.map((item: any) => ({
+        // 4. Create Order Items using validated prices
+        const orderItems = validation.validatedItems.map((item) => ({
             order_id: order.id,
-            sanity_product_id: item.id || item._id, // Handle Sanity _id
+            sanity_product_id: item.productId,
             quantity: item.quantity,
-            price: item.price,
+            price: item.dbPrice || 0, // Use validated database price
             selected_size: item.selectedSize || null
         }))
 

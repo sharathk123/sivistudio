@@ -18,12 +18,14 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
+  // Note: Variable font axes are automatically available for Inter
 })
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
   variable: '--font-bodoni',
   display: 'swap',
+  // Note: Variable font axes are automatically available for Bodoni Moda
 })
 
 const allura = Allura({
@@ -55,6 +57,12 @@ export const metadata: Metadata = {
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Sivi',
   },
   openGraph: {
     type: 'website',

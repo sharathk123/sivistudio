@@ -6,9 +6,13 @@ import Link from 'next/link';
 import { urlFor } from '@/lib/sanity/client';
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 export default function CartDrawer() {
     const { items, removeFromCart, updateQuantity, totalItems, totalPrice, isCartOpen, closeCart } = useCart();
+
+    // Focus trap for keyboard navigation
+    const drawerRef = useFocusTrap({ isActive: isCartOpen });
 
     // Prevent body scroll when cart is open
     useEffect(() => {
@@ -21,6 +25,23 @@ export default function CartDrawer() {
             document.body.style.overflow = 'unset';
         };
     }, [isCartOpen]);
+
+    // Handle Escape key to close cart
+    useEffect(() => {
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isCartOpen) {
+                closeCart();
+            }
+        };
+
+        if (isCartOpen) {
+            document.addEventListener('keydown', handleEscape);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscape);
+        };
+    }, [isCartOpen, closeCart]);
 
     return (
         <AnimatePresence>
@@ -38,6 +59,7 @@ export default function CartDrawer() {
 
                     {/* Drawer */}
                     <motion.div
+                        ref={drawerRef as any}
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
@@ -51,6 +73,9 @@ export default function CartDrawer() {
                                 closeCart()
                             }
                         }}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Shopping cart"
                     >
                         {/* Header */}
                         <div className="border-b border-ivory-200 p-6">

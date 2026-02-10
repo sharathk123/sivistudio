@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import { Product } from '@/lib/sanity/client';
+import { announceCartUpdate } from '@/lib/utils/accessibility';
 
 // Define a leaner product type for storage to avoid localStorage quota limits
 export type CompactProduct = Pick<
@@ -83,13 +84,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             const existingItem = prevItems.find((item) => item.variantId === variantId);
 
             if (existingItem) {
+                const newQuantity = existingItem.quantity + quantity;
+                // Announce quantity update
+                announceCartUpdate('updated', product.title, newQuantity);
                 return prevItems.map((item) =>
                     item.variantId === variantId
-                        ? { ...item, quantity: item.quantity + quantity }
+                        ? { ...item, quantity: newQuantity }
                         : item
                 );
             }
 
+            // Announce new item added
+            announceCartUpdate('added', product.title, quantity);
             return [...prevItems, {
                 product: compactProduct,
                 quantity,
@@ -101,7 +107,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     };
 
     const removeFromCart = (variantId: string) => {
-        setItems((prevItems) => prevItems.filter((item) => item.variantId !== variantId));
+        setItems((prevItems) => {
+            const itemToRemove = prevItems.find((item) => item.variantId === variantId);
+            if (itemToRemove) {
+                // Announce item removal
+                announceCartUpdate('removed', itemToRemove.product.title);
+            }
+            return prevItems.filter((item) => item.variantId !== variantId);
+        });
     };
 
     const updateQuantity = (variantId: string, quantity: number) => {
@@ -110,11 +123,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             return;
         }
 
-        setItems((prevItems) =>
-            prevItems.map((item) =>
+        setItems((prevItems) => {
+            const item = prevItems.find((i) => i.variantId === variantId);
+            if (item && item.quantity !== quantity) {
+                // Announce quantity update
+                announceCartUpdate('updated', item.product.title, quantity);
+            }
+            return prevItems.map((item) =>
                 item.variantId === variantId ? { ...item, quantity } : item
-            )
-        );
+            );
+        });
     };
 
     const clearCart = () => {

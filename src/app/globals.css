@@ -197,6 +197,51 @@
     letter-spacing: var(--tracking-nav);
   }
 
+  /* Accessibility Utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-sage);
+    color: var(--color-bone);
+    padding: 8px 16px;
+    z-index: 100;
+    transition: top 0.3s;
+  }
+
+  .skip-to-main:focus {
+    top: 0;
+  }
+
+  /* Variable Font Utilities */
+  .font-variable {
+    font-variation-settings: 'wght' var(--font-weight, 400), 'opsz' var(--font-size, 16);
+  }
+
+  .font-variable-display {
+    font-variation-settings: 'wght' var(--font-weight, 400), 'opsz' 48;
+  }
+
+  .font-variable-body {
+    font-variation-settings: 'wght' var(--font-weight, 400), 'opsz' 16;
+  }
+
+  .font-variable-caption {
+    font-variation-settings: 'wght' var(--font-weight, 400), 'opsz' 12;
+  }
+
   /* Animation Utilities */
   @keyframes marquee {
     0% {
