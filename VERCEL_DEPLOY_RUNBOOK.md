@@ -26,7 +26,7 @@ You **must** configure the following variables in the Vercel Project Settings be
 
 | Service | Key | Value / Source |
 | :--- | :--- | :--- |
-| **Site** | `NEXT_PUBLIC_SITE_URL` | Your production URL (e.g., `https://sivithecouturier.com`) |
+| **Site** | `NEXT_PUBLIC_SITE_URL` | **⚠️ CRITICAL**: Set to your actual domain (e.g., `https://sivi.vercel.app` or `https://sivithecouturier.com`). **Do NOT use localhost.** |
 | **Sanity** | `NEXT_PUBLIC_SANITY_PROJECT_ID` | From Sanity Manage |
 | | `NEXT_PUBLIC_SANITY_DATASET` | `production` |
 | | `SANITY_API_TOKEN` | Sanity Write Token |
