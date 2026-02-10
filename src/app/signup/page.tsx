@@ -2,12 +2,21 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useEffect, Suspense } from 'react'
 import { validateEmail, validatePassword, validateFullName, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
 
 export default function SignUpPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-bone flex items-center justify-center text-sage">Loading...</div>}>
+            <SignUpForm />
+        </Suspense>
+    )
+}
+
+function SignUpForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [fullName, setFullName] = useState('')
@@ -15,6 +24,19 @@ export default function SignUpPage() {
     const [message, setMessage] = useState<{ type: 'error' | 'success'; text: string } | null>(null)
     const router = useRouter()
     const supabase = createClient()
+    const searchParams = useSearchParams()
+
+    // Handle redirect errors
+    useEffect(() => {
+        const error = searchParams.get('error')
+        const errorMessage = searchParams.get('message')
+        if (error === 'account_not_found') {
+            setMessage({
+                type: 'error',
+                text: errorMessage || 'No Sivi account found for this email. Please register first.'
+            })
+        }
+    }, [searchParams])
 
     // Form validation
     const {

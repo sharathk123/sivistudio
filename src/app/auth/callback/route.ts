@@ -9,9 +9,23 @@ export async function GET(request: Request) {
 
     if (code) {
         const supabase = await createClient()
-        const { error } = await supabase.auth.exchangeCodeForSession(code)
+        const { data: { session }, error } = await supabase.auth.exchangeCodeForSession(code)
 
-        if (!error) {
+        if (!error && session?.user) {
+            // Check if profile exists
+            const { data: profile } = await supabase
+                .from('profiles')
+                .select('id')
+                .eq('id', session.user.id)
+                .single()
+
+            if (!profile) {
+                // If no profile exists, this user authenticated via Google but hasn't "registered" in our system.
+                // We sign them out to prevent a partial session and tell them to register.
+                await supabase.auth.signOut()
+                return NextResponse.redirect(`${origin}/signup?error=account_not_found&message=No%20Sivi%20account%20found%20for%20this%20email.%20Please%20register%20first.`)
+            }
+
             // In Vercel, 'origin' will correctly be the deployment URL
             return NextResponse.redirect(`${origin}${next}`)
         } else {
