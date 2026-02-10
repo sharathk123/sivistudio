@@ -1,4 +1,5 @@
 'use client'
+// @ts-nocheck - React Three Fiber types not yet compatible with React 19
 
 import { useRef, useState, Suspense } from 'react'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
