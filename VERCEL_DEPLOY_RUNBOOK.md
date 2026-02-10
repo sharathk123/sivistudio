@@ -54,7 +54,19 @@ In your Supabase Dashboard:
 2. Set **Site URL** to your Vercel URL.
 3. Add `{YOUR_VERCEL_URL}/auth/v1/callback` to **Redirect URLs**.
 
-### 5. Razorpay Webhook Configuration (Optional)
+### 5. Google OAuth Configuration (Gmail Login)
+For Gmail login to work in production, you must complete these outside of Vercel:
+
+1.  **Google Cloud Console**:
+    *   Add your Vercel domain (e.g., `https://sivistudio.vercel.app`) to **Authorized JavaScript Origins**.
+    *   Ensure the Supabase redirect URI is present: `https://zumktgkradrhwrojbbji.supabase.co/auth/v1/callback`.
+2.  **Supabase Dashboard**:
+    *   Go to **Authentication** > **Providers** > **Google**.
+    *   Ensure it is **Enabled**.
+    *   Client ID & Secret must match your Google Cloud Project.
+    *   **Skip nonce check** should be enabled for some SSR flows if you encounter issues.
+
+### 6. Razorpay Webhook Configuration (Optional)
 If you use webhooks for payment verification:
 1. URL: `https://{YOUR_VERCEL_URL}/api/payment/webhook` (if implemented).
 
