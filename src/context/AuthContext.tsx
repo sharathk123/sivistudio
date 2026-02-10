@@ -45,23 +45,45 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         let mounted = true
 
         const fetchSession = async () => {
+            // Set a safety timeout to ensure isLoading eventually becomes false
+            const timeoutId = setTimeout(() => {
+                if (mounted) {
+                    setIsLoading(false)
+                }
+            }, 5000)
+
             try {
-                const { data: { session: currentSession } } = await supabase.auth.getSession()
+                const { data: { session: currentSession }, error } = await supabase.auth.getSession()
+
+                if (error) {
+                    // Handle specific error like 'signal is aborted' or others
+                    if (error.message?.includes('aborted')) {
+                        console.warn('Auth session fetch was aborted, will retry on auth state change')
+                    } else {
+                        console.error('Error fetching session:', error)
+                    }
+                }
 
                 if (mounted) {
                     setSession(currentSession)
                     setUser(currentSession?.user ?? null)
-                }
 
-                if (currentSession?.user) {
-                    // Check if we need to fetch profile (using ref to avoid stale closure issues)
-                    if (currentSession.user.id !== lastUserIdRef.current) {
-                        await fetchProfile(currentSession.user.id)
+                    if (currentSession?.user) {
+                        // Check if we need to fetch profile (using ref to avoid stale closure issues)
+                        if (currentSession.user.id !== lastUserIdRef.current) {
+                            await fetchProfile(currentSession.user.id)
+                        }
                     }
                 }
-            } catch (error) {
-                console.error('Error fetching session:', error)
+            } catch (error: any) {
+                // Catch any unexpected runtime errors
+                if (error?.name === 'AbortError' || error?.message?.includes('aborted')) {
+                    console.warn('Auth session fetch aborted caught in catch block')
+                } else {
+                    console.error('Unexpected error in fetchSession:', error)
+                }
             } finally {
+                clearTimeout(timeoutId)
                 if (mounted) setIsLoading(false)
             }
         }
@@ -69,6 +91,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         fetchSession()
 
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
+            // Log auth events for debugging
+            console.log('Auth State Change:', event)
+
             if (mounted) {
                 setSession(currentSession)
                 setUser(currentSession?.user ?? null)

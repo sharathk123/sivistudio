@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Footer from '@/components/ui/Footer'
 import { User, Package, MapPin, Heart, LogOut, Settings } from 'lucide-react'
 import StickyHeader from '@/components/ui/StickyHeader'
-import { LogoLoader } from '@/components/ui'
+import { LogoLoader, ErrorBoundary } from '@/components/ui'
 import NavButton from '@/components/account/NavButton'
 import OverviewTab from '@/components/account/OverviewTab'
 import OrdersTab from '@/components/account/OrdersTab'
@@ -123,7 +123,9 @@ export default function AccountPage() {
                     <LogoLoader variant="inline" />
                 </div>
             }>
-                <AccountContent />
+                <ErrorBoundary>
+                    <AccountContent />
+                </ErrorBoundary>
             </Suspense>
             <Footer />
         </main>
