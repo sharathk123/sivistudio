@@ -1,6 +1,8 @@
 import { getProducts, getCollections } from '@/lib/sanity/client'
 import StickyHeader from '@/components/ui/StickyHeader'
 import ShopDisplay from '@/components/shop/ShopDisplay'
+import Footer from '@/components/ui/Footer'
+import Link from 'next/link'
 import Script from 'next/script'
 
 export const revalidate = 60 // Revalidate every 60 seconds
@@ -66,7 +68,7 @@ export default async function ShopPage({
     }
 
     return (
-        <div className="min-h-screen bg-bone">
+        <main id="main-content" className="min-h-screen bg-bone">
             <Script
                 id="shop-jsonld"
                 type="application/ld+json"
@@ -86,6 +88,50 @@ export default async function ShopPage({
 
             {/* Main Shop Interface */}
             <ShopDisplay products={products} collections={collections} />
-        </div>
+
+            {/* Bespoke CTA Section */}
+            <section className="relative bg-charcoal text-bone py-28 px-6 overflow-hidden">
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{
+                    backgroundImage: `repeating-linear-gradient(
+                        45deg,
+                        transparent,
+                        transparent 35px,
+                        currentColor 35px,
+                        currentColor 36px
+                    )`
+                }} />
+
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <span className="text-sage text-xs font-semibold tracking-[0.3em] uppercase block mb-6">
+                        Beyond the Collection
+                    </span>
+                    <h2 className="font-serif text-4xl md:text-6xl italic text-sage-100 leading-tight mb-8">
+                        Envision Something <br className="hidden md:block" />Uniquely Yours
+                    </h2>
+                    <div className="w-16 h-[1px] bg-sage mx-auto mb-8" />
+                    <p className="text-bone/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
+                        Can't find exactly what you're looking for? Our bespoke tailoring service lets you
+                        co-create a one-of-a-kind garment with our artisans — your vision, our heritage craft.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <Link
+                            href="/custom-tailoring"
+                            className="inline-block px-10 py-4 bg-sage text-bone text-sm uppercase tracking-widest font-medium hover:bg-sage-700 transition-all duration-300 rounded-sm"
+                        >
+                            Explore Bespoke
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="inline-block px-10 py-4 border border-bone/30 text-bone/80 text-sm uppercase tracking-widest font-medium hover:border-sage hover:text-sage transition-all duration-300 rounded-sm"
+                        >
+                            Get in Touch
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+        </main>
     )
 }
