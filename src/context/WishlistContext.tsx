@@ -29,6 +29,7 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
     const fetchWishlist = async () => {
         if (!user) {
             setItems([]);
+            setIsLoading(false);
             return;
         }
 
@@ -38,8 +39,13 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
             if (response.success && response.data) {
                 setItems(response.data);
             }
-        } catch (error) {
-            console.error('Failed to fetch wishlist:', error);
+        } catch (error: any) {
+            // Silently handle auth errors - expected when not logged in
+            if (error.message?.includes('Not authenticated') || error.message?.includes('Unauthorized')) {
+                setItems([]);
+            } else {
+                console.error('Failed to fetch wishlist:', error);
+            }
         } finally {
             setIsLoading(false);
         }

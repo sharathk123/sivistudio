@@ -106,10 +106,11 @@ function SignUpForm() {
         setMessage(null)
 
         try {
+            const redirectUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${window.location.origin}/auth/callback`,
+                    redirectTo: `${redirectUrl}/auth/callback`,
                 },
             })
 

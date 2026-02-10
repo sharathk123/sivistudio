@@ -69,6 +69,32 @@ export async function updateSession(request: NextRequest) {
         return NextResponse.redirect(url)
     }
 
+    // Protect admin routes - only users with admin role can access
+    if (request.nextUrl.pathname.startsWith('/admin')) {
+        if (!user) {
+            // Not logged in, redirect to login
+            const url = request.nextUrl.clone()
+            url.pathname = '/login'
+            url.searchParams.set('redirect', request.nextUrl.pathname)
+            return NextResponse.redirect(url)
+        }
+
+        // Check if user has admin role
+        const { data: profile } = await supabase
+            .from('profiles')
+            .select('role')
+            .eq('id', user.id)
+            .single()
+
+        if (profile?.role !== 'admin') {
+            // Not an admin, redirect to home with error
+            const url = request.nextUrl.clone()
+            url.pathname = '/'
+            url.searchParams.set('error', 'Admin access required')
+            return NextResponse.redirect(url)
+        }
+    }
+
     // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
     // creating a new response object with NextResponse.next() make sure to:
     // 1. Pass the request in it, like so:
