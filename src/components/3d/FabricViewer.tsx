@@ -2,10 +2,19 @@
 // @ts-nocheck - React Three Fiber types not yet compatible with React 19
 
 import { useRef, useState, Suspense } from 'react'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader, ThreeElements } from '@react-three/fiber'
 import { OrbitControls, PerspectiveCamera, Environment, ContactShadows } from '@react-three/drei'
 import * as THREE from 'three'
 import { TextureLoader } from 'three'
+
+// Add explicit types for React 19 JSX
+declare global {
+    namespace React {
+        namespace JSX {
+            interface IntrinsicElements extends ThreeElements { }
+        }
+    }
+}
 
 interface FabricViewerProps {
     fabricImage: string

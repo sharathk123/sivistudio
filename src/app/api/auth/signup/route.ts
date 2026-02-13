@@ -61,6 +61,7 @@ export async function POST(request: NextRequest) {
 
         // 2. Generate 6-digit OTP
         const otpCode = Math.floor(100000 + Math.random() * 900000).toString()
+        const expiresAt = new Date(Date.now() + 10 * 60 * 1000) // 10 minutes from now
 
         // 3. Store OTP in DB (using Service Role)
         const { error: otpError } = await supabase
@@ -68,7 +69,8 @@ export async function POST(request: NextRequest) {
             .insert({
                 email,
                 code: otpCode,
-                user_id: user.id
+                user_id: user.id,
+                expires_at: expiresAt.toISOString()
             })
 
         if (otpError) throw new Error('Failed to generate OTP')
