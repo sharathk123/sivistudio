@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { validateEmail, validatePassword, parseAuthError, useFormValidation } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
+import { toast } from 'sonner'
 
 import { Suspense } from 'react'
 
@@ -84,10 +85,7 @@ function LoginForm() {
             if (error) throw error
 
             if (data.user) {
-                setMessage({
-                    type: 'success',
-                    text: 'Login successful! Redirecting...',
-                })
+                toast.success('Welcome back to Sivi Studio!')
 
                 // Redirect to dashboard/home
                 setTimeout(() => {
@@ -97,6 +95,7 @@ function LoginForm() {
             }
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
+            toast.error(errorMessage)
             setMessage({
                 type: 'error',
                 text: errorMessage,
@@ -121,6 +120,7 @@ function LoginForm() {
             if (error) throw error
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
+            toast.error(errorMessage)
             setMessage({
                 type: 'error',
                 text: errorMessage,

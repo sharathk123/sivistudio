@@ -13,6 +13,7 @@ import { Plus, MapPin, Lock as LockIcon } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity/client'
+import { toast } from 'sonner'
 
 // Re-use logic from AddressesTab for fetching addresses
 interface Address {
@@ -86,7 +87,7 @@ export default function CheckoutPage() {
 
     const handleError = (error: string) => {
         console.error("Checkout Error:", error)
-        alert(error)
+        toast.error(error || "Payment failed. Please try again.")
     }
 
     if (isAuthLoading) {

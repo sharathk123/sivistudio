@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { validatePassword, validatePasswordConfirmation, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
 import { LogoLoader } from '@/components/ui'
+import { toast } from 'sonner'
 
 export default function ResetPasswordPage() {
     const [password, setPassword] = useState('')
@@ -68,6 +69,7 @@ export default function ResetPasswordPage() {
         const isValid = validateAllFields({ password, confirmPassword })
 
         if (!isValid) {
+            toast.error('Please correct the errors before continuing.')
             setMessage({
                 type: 'error',
                 text: 'Please correct the errors before continuing.',
@@ -83,6 +85,7 @@ export default function ResetPasswordPage() {
 
             if (error) throw error
 
+            toast.success('Password updated successfully!')
             setMessage({
                 type: 'success',
                 text: 'Password updated successfully! Redirecting to login...',
@@ -94,6 +97,7 @@ export default function ResetPasswordPage() {
             }, 2000)
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
+            toast.error(errorMessage)
             setMessage({
                 type: 'error',
                 text: errorMessage,

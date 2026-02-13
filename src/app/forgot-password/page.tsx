@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/client'
 import Link from 'next/link'
 import { validateEmail, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
+import { toast } from 'sonner'
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState('')
@@ -37,6 +38,7 @@ export default function ForgotPasswordPage() {
         const isValid = validateAllFields({ email })
 
         if (!isValid) {
+            toast.error('Please enter a valid email address.')
             setMessage({
                 type: 'error',
                 text: 'Please enter a valid email address.',
@@ -53,6 +55,7 @@ export default function ForgotPasswordPage() {
             if (error) throw error
 
             setEmailSent(true)
+            toast.success('Password reset link sent!')
             setMessage({
                 type: 'success',
                 text: 'Password reset link sent! Please check your email inbox and spam folder.',
@@ -61,6 +64,7 @@ export default function ForgotPasswordPage() {
             clearErrors()
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
+            toast.error(errorMessage)
             setMessage({
                 type: 'error',
                 text: errorMessage,

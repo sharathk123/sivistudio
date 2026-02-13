@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { api } from '@/lib/api/client'
+import { toast } from 'sonner'
 import { Plus, MapPin, Trash2, Edit2, Loader2, Home, Briefcase, Star } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -71,8 +72,10 @@ export default function AddressesTab() {
         try {
             if (editingId) {
                 await api.updateAddress(editingId, data)
+                toast.success('Address updated successfully.')
             } else {
                 await api.createAddress(data)
+                toast.success('New address saved.')
             }
             await fetchAddresses()
             reset()
@@ -80,6 +83,7 @@ export default function AddressesTab() {
             setEditingId(null)
         } catch (error) {
             console.error('Failed to save address:', error)
+            toast.error('Failed to save address. Please try again.')
         } finally {
             setIsSubmitting(false)
         }
@@ -104,9 +108,11 @@ export default function AddressesTab() {
         if (confirm('Are you sure you want to delete this address?')) {
             try {
                 await api.deleteAddress(id)
+                toast.success('Address deleted.')
                 await fetchAddresses()
             } catch (error) {
                 console.error('Failed to delete address:', error)
+                toast.error('Failed to delete address.')
             }
         }
     }

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useEffect, Suspense } from 'react'
 import { validateEmail, validatePassword, validateFullName, parseAuthError, useFormValidation, isHardError } from '@/lib/auth'
 import { FormInput, AlertMessage, AuthLayout, SubmitButton } from '@/components/auth'
+import { toast } from 'sonner'
 
 export default function SignUpPage() {
     return (
@@ -61,6 +62,7 @@ function SignUpForm() {
         const isValid = validateAllFields({ fullName, email, password })
 
         if (!isValid) {
+            toast.error('Please correct the errors before continuing.')
             setMessage({
                 type: 'error',
                 text: 'Please correct the errors before continuing.',
@@ -89,10 +91,12 @@ function SignUpForm() {
                 throw new Error(data.error || 'Failed to sign up')
             }
 
+            toast.success('Account created! Please verify your email.')
             // Redirect to OTP Verification
             router.push(`/auth/verify?email=${encodeURIComponent(email)}`)
 
         } catch (error: any) {
+            toast.error(error.message)
             setMessage({
                 type: 'error',
                 text: error.message,
@@ -118,6 +122,7 @@ function SignUpForm() {
         } catch (error: any) {
             console.error('Google Sign Up Error:', error)
             const errorMessage = parseAuthError(error)
+            toast.error(errorMessage)
             setMessage({
                 type: 'error',
                 text: errorMessage,

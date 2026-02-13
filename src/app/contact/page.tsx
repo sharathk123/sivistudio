@@ -10,6 +10,7 @@ import StickyHeader from '@/components/ui/StickyHeader'
 import { IMAGES } from '@/lib/images'
 import { faqItems } from '@/data/contactData'
 import { SubmitButton } from '@/components/auth'
+import { toast } from 'sonner'
 
 export default function ContactPage() {
     const heroRef = useRef<HTMLDivElement>(null)
@@ -100,12 +101,14 @@ export default function ContactPage() {
             }
 
             setSubmitStatus('success')
+            toast.success("Message sent! We'll get back to you shortly.")
             setFormState({ name: '', email: '', subject: '', message: '' })
             setTouched({})
             setErrors({})
         } catch (error) {
             console.error('Submission error:', error)
-            // Ideally set an error status here to show UI feedback
+            setSubmitStatus('error')
+            toast.error("Failed to send message. Please try again or email us directly.")
         } finally {
             setIsSubmitting(false)
         }

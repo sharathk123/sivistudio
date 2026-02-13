@@ -125,6 +125,7 @@ const jsonLd = {
 }
 
 import AuthListener from '@/components/auth/AuthListener'
+import { Toaster } from 'sonner'
 
 // ... existing imports
 
@@ -152,6 +153,7 @@ export default function RootLayout({
         </a>
 
         <Providers>
+          <Toaster position="bottom-right" expand={false} richColors closeButton />
           <AuthListener />
           <CartDrawer />
           <BoutiqueButton />

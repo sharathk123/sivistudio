@@ -10,6 +10,7 @@ import { LogoLoader } from '@/components/ui'
 import { ArrowLeft, Package, MapPin, CreditCard, Download } from 'lucide-react'
 import Link from 'next/link'
 import { generateInvoice } from '@/lib/utils/invoiceGenerator'
+import { toast } from 'sonner'
 
 export default function OrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -49,7 +50,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
             generateInvoice(order)
         } catch (err) {
             console.error('Failed to generate invoice:', err)
-            alert('Failed to generate invoice. Please try again.')
+            toast.error('Failed to generate invoice. Please try again.')
         }
     }
 

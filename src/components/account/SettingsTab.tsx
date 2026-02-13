@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { api } from '@/lib/api/client'
 import { useAuth } from '@/context/AuthContext'
 import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 
 interface ProfileFormData {
     full_name: string
@@ -45,9 +46,9 @@ export default function SettingsTab() {
                 hyderabad_locality: data.hyderabad_locality
             })
             await refreshProfile()
-            setMessage({ type: 'success', text: 'Profile updated successfully.' })
+            toast.success('Profile updated successfully.')
         } catch (error) {
-            setMessage({ type: 'error', text: 'Failed to update profile.' })
+            toast.error('Failed to update profile.')
         } finally {
             setIsSaving(false)
         }
