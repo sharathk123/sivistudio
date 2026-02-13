@@ -29,7 +29,8 @@ export async function GET(request: Request) {
                 )
             }
 
-            return NextResponse.redirect(`${origin}${next}`)
+            const separator = next.includes('?') ? '&' : '?'
+            return NextResponse.redirect(`${origin}${next}${separator}login=success`)
         } else if (error) {
             console.error('Auth Error during code exchange:', error)
         }

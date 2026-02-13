@@ -30,12 +30,10 @@ function SignUpForm() {
     useEffect(() => {
         const error = searchParams.get('error')
         if (error) {
-            setMessage({
-                type: 'error',
-                text: error,
-            })
+            toast.error(error)
+            router.replace('/signup')
         }
-    }, [searchParams])
+    }, [searchParams, router])
 
     // Form validation
     const {

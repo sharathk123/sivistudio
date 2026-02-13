@@ -43,20 +43,18 @@ function LoginForm() {
 
     // Check for success or error message from redirect
     useEffect(() => {
-        if (searchParams.get('verified') === 'true') {
-            setMessage({
-                type: 'success',
-                text: 'Email verified successfully! Please sign in.',
-            })
-        }
+        const verified = searchParams.get('verified') === 'true'
         const error = searchParams.get('error')
-        if (error) {
-            setMessage({
-                type: 'error',
-                text: error,
-            })
+
+        if (verified) {
+            toast.success('Email verified successfully! Please sign in.')
+            // Clear params
+            router.replace('/login')
+        } else if (error) {
+            toast.error(error)
+            router.replace('/login')
         }
-    }, [searchParams])
+    }, [searchParams, router])
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
