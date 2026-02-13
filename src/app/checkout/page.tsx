@@ -238,9 +238,13 @@ export default function CheckoutPage() {
 
                         <PaymentButton
                             items={items.map(i => ({
-                                id: i.product._id,
+                                product: {
+                                    _id: i.product._id,
+                                    title: i.product.title,
+                                    price: i.product.price || 0,
+                                    priceDisplay: i.product.priceDisplay
+                                },
                                 quantity: i.quantity,
-                                price: i.product.price || 0,
                                 selectedSize: i.selectedSize
                             }))}
                             shippingAddressId={selectedAddressId}

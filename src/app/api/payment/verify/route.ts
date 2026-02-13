@@ -82,7 +82,7 @@ export const POST = async (request: NextRequest) => {
 
                 // Format shipping address
                 const rawAddress = order.shipping_address
-                const formattedAddress = `${rawAddress.address_line1}, ${rawAddress.address_line2 ? rawAddress.address_line2 + ', ' : ''}\n${rawAddress.city}, ${rawAddress.state} - ${rawAddress.pincode}\n${rawAddress.country || 'India'}`
+                const formattedAddress = `${rawAddress.address_line1}, ${rawAddress.address_line2 ? rawAddress.address_line2 + ', ' : ''}\n${rawAddress.city}, ${rawAddress.state} - ${rawAddress.zip_code}\n${rawAddress.country || 'India'}`
 
                 await EmailService.sendOrderConfirmation(
                     order.profiles.email,

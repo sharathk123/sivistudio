@@ -59,8 +59,13 @@ export async function validateCartPrices(
         };
     }
 
-    // Extract product IDs
-    const productIds = cartItems.map(item => item.product._id);
+    // Extract product IDs with safety check
+    const validCartItems = cartItems.filter(item => item && item.product && item.product._id);
+    const productIds = validCartItems.map(item => item.product._id);
+
+    if (validCartItems.length !== cartItems.length) {
+        warnings.push('Some items in the cart were invalid and were skipped.');
+    }
 
     // Fetch products from database
     let dbProducts: Product[];
@@ -77,7 +82,7 @@ export async function validateCartPrices(
     }
 
     // Validate each cart item
-    for (const cartItem of cartItems) {
+    for (const cartItem of validCartItems) {
         const dbProduct = dbProducts.find(p => p._id === cartItem.product._id);
 
         if (!dbProduct) {
