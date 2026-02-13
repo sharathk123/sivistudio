@@ -25,8 +25,8 @@ export default function AuthErrorPage() {
                 const { data, error } = await supabase.auth.getSession()
 
                 if (data?.session) {
-                    // Success! Redirect to verified
-                    router.push('/auth/verified')
+                    // Success! Redirect to home
+                    router.push('/')
                     return
                 }
             }

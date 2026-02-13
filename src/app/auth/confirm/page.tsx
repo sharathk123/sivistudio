@@ -18,7 +18,7 @@ export default function ConfirmPage() {
                 const { data, error } = await supabase.auth.getSession()
 
                 if (data?.session) {
-                    router.push('/auth/verified')
+                    router.push('/')
                     return
                 }
             }
@@ -26,7 +26,7 @@ export default function ConfirmPage() {
             // 2. Check for existing session (PKCE that finished already)
             const { data } = await supabase.auth.getSession()
             if (data?.session) {
-                router.push('/auth/verified')
+                router.push('/')
                 return
             }
 

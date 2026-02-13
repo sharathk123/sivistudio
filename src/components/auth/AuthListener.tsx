@@ -21,9 +21,9 @@ export default function AuthListener() {
                     // Clear the hash to clean up the URL
                     window.history.replaceState(null, '', window.location.pathname)
 
-                    // Redirect to the verified success page
+                    // Redirect to the home page
                     // This handles the case where we might be on /auth/error incorrectly due to implicit flow
-                    router.push('/auth/verified')
+                    router.push('/')
                 } else if (error) {
                     console.error('Error verifying email link:', error)
                 }
