@@ -175,10 +175,12 @@ export const POST = withAuth(async (request: NextRequest, { user }) => {
 
         return NextResponse.json({
             success: true,
-            orderId: razorpayOrder.id, // For Razorpay Checkout
-            amount: totalAmount,
-            currency: currency,
-            dbOrderId: order.id // Our internal DB ID
+            data: {
+                orderId: razorpayOrder.id, // For Razorpay Checkout
+                amount: totalAmount,
+                currency: currency,
+                dbOrderId: order.id // Our internal DB ID
+            }
         })
 
     } catch (error: any) {

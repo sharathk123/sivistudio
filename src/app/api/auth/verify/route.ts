@@ -91,7 +91,9 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: 'Email verified successfully',
+            data: {
+                message: 'Email verified successfully'
+            }
         })
 
     } catch (error: any) {

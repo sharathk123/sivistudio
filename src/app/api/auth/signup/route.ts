@@ -80,7 +80,9 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({
             success: true,
-            message: 'Account created. Please check your email for the verification code.',
+            data: {
+                message: 'Account created. Please check your email for the verification code.'
+            }
         })
 
     } catch (error: any) {

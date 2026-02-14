@@ -98,7 +98,7 @@ export const POST = async (request: NextRequest) => {
             // Do not fail the request, payment was successful
         }
 
-        return NextResponse.json({ success: true })
+        return NextResponse.json({ success: true, data: { success: true } })
 
     } catch (error: any) {
         console.error('Payment Verification Error:', error)
