@@ -94,10 +94,6 @@ function LoginForm() {
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
             toast.error(errorMessage)
-            setMessage({
-                type: 'error',
-                text: errorMessage,
-            })
         } finally {
             setLoading(false)
         }
@@ -119,10 +115,6 @@ function LoginForm() {
         } catch (error: any) {
             const errorMessage = parseAuthError(error)
             toast.error(errorMessage)
-            setMessage({
-                type: 'error',
-                text: errorMessage,
-            })
             setLoading(false)
         }
     }

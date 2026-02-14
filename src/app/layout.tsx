@@ -163,14 +163,14 @@ export default function RootLayout({
                 fontFamily: 'var(--font-inter)',
               },
               classNames: {
-                toast: 'group toast group-[.toaster]:bg-bone group-[.toaster]:text-charcoal group-[.toaster]:border-ivory-200 group-[.toaster]:shadow-lg group-[.toaster]:rounded-sm',
-                description: 'group-[.toast]:text-charcoal-400',
-                actionButton: 'group-[.toast]:bg-charcoal group-[.toast]:text-bone',
-                cancelButton: 'group-[.toast]:bg-ivory group-[.toast]:text-charcoal',
-                success: 'group-[.toaster]:!bg-sage-100 group-[.toaster]:!text-sage-700 group-[.toaster]:!border-sage-300',
-                error: 'group-[.toaster]:!bg-red-50 group-[.toaster]:!text-red-900 group-[.toaster]:!border-red-200',
-                warning: 'group-[.toaster]:!bg-amber-50 group-[.toaster]:!text-amber-900 group-[.toaster]:!border-amber-200',
-                info: 'group-[.toaster]:!bg-ivory-50 group-[.toaster]:!text-charcoal group-[.toaster]:!border-ivory-300',
+                toast: 'group toast !bg-bone !text-charcoal !border-ivory-200 !shadow-lg !rounded-sm',
+                description: '!text-charcoal-400',
+                actionButton: '!bg-charcoal !text-bone',
+                cancelButton: '!bg-ivory !text-charcoal',
+                success: '!bg-sage-100 !text-sage-700 !border-sage-300',
+                error: '!bg-red-50 !text-red-900 !border-red-200',
+                warning: '!bg-amber-50 !text-amber-900 !border-amber-200',
+                info: '!bg-ivory-50 !text-charcoal !border-ivory-300',
               },
             }}
           />

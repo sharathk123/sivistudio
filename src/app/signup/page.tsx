@@ -95,10 +95,6 @@ function SignUpForm() {
 
         } catch (error: any) {
             toast.error(error.message)
-            setMessage({
-                type: 'error',
-                text: error.message,
-            })
         } finally {
             setLoading(false)
         }

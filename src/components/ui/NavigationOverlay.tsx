@@ -119,7 +119,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                     aria-label="Navigation menu"
                 >
                     {/* Left: Navigation Links */}
-                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative overflow-y-auto pt-24 pb-32">
+                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-8 md:px-24 z-10 relative overflow-y-auto scrollbar-hide pt-24 pb-32">
                         <nav className="flex flex-col space-y-1 pointer-events-auto" aria-label="Main navigation">
                             {displayItems.map((item, index) => (
                                 <motion.div
@@ -136,7 +136,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                     <Link
                                         href={item.displayHref}
                                         onClick={onClose}
-                                        className="font-serif text-5xl md:text-7xl italic hover:text-sage transition-all duration-300 block py-4 md:py-2 focus:outline-none focus:text-sage focus:pl-4"
+                                        className="font-serif text-4xl md:text-5xl italic hover:text-sage transition-all duration-300 block py-3 md:py-2 focus:outline-none focus:text-sage focus:pl-4"
                                     >
                                         {item.displayLabel}
                                     </Link>
@@ -152,7 +152,7 @@ export default function NavigationOverlay({ isOpen, onClose }: NavigationOverlay
                                         signOut()
                                         onClose()
                                     }}
-                                    className="font-serif text-2xl md:text-4xl italic text-white/40 hover:text-white transition-colors duration-300 block py-4 text-left focus:outline-none focus:text-white"
+                                    className="font-serif text-xl md:text-2xl italic text-white/40 hover:text-white transition-colors duration-300 block py-3 text-left focus:outline-none focus:text-white"
                                 >
                                     Sign Out
                                 </motion.button>

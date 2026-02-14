@@ -197,6 +197,15 @@
     letter-spacing: var(--tracking-nav);
   }
 
+  /* Scrollbar hide utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Accessibility Utilities */
   .sr-only {
     position: absolute;
